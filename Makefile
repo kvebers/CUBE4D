@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
+#    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/05/23 07:13:03 by asioud           ###   ########.fr        #
+#    Updated: 2023/05/23 15:16:50 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,12 @@ LIBMLX		=	libs/MLX42/build/libmlx42.a
 CFLAGS		=	-Wall -Wextra -Werror -g
 SRC_DIR		=	src/
 OBJ_DIR		=	obj/
+LIBS 		+= -L/Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib -lglfw
 FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
 
 SOURCE		=	main \
 				parsing/parser \
+				init/init \
 				
 
 SRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SOURCE)))
@@ -50,7 +52,7 @@ $(LIBFT):
 	@echo "Libft installed"
 
 $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
-	@$(CC) $(CFLAGS) $(LIBFT) $(OBJ) $(LIBMLX) $(FRAMEWORK) -o $(NAME)
+	@$(CC) $(CFLAGS) $(LIBFT) $(OBJ) $(LIBMLX) $(FRAMEWORK) $(LIBS) -o $(NAME)
 
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c

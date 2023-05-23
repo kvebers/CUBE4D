@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 02:09:48 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/23 12:40:22 by kvebers          ###   ########.fr       */
+/*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
+/*   Updated: 2023/05/23 14:35:30 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing/parser.h"
-#include "../cub3d.h"
+#ifndef INIT_H
+# define INIT_H
 
+# include "../../cub3d.h"
+# include "../../libs/MLX42/include/MLX42/MLX42.h"
 
-int	main(int argc, char **argv)
-{
-	t_params	params;
-	parse_error	error;
+typedef struct s_params t_params;
 
-	error = parse(argc, argv, &params);
-	if (error == VALID)
-	{
-		init_cube(&params);
-		// start game
-		ft_putstr_fd(error_msgs[error], 2);
-		return (0);
-	}
-	else
-	{
-		ft_putstr_fd(error_msgs[error], 2);
-		return (1);
-	}
+int	init_cube(t_params *params);
 
-	return (0);
-}
+#endif

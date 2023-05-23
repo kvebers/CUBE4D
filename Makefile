@@ -6,7 +6,7 @@
 #    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/05/23 15:16:50 by kvebers          ###   ########.fr        #
+#    Updated: 2023/05/23 15:29:56 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBMLX		=	libs/MLX42/build/libmlx42.a
 CFLAGS		=	-Wall -Wextra -Werror -g
 SRC_DIR		=	src/
 OBJ_DIR		=	obj/
-LIBS 		+= -L/Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib -lglfw
+LIBS 		=	-L/Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib -lglfw
 FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
 
 SOURCE		=	main \

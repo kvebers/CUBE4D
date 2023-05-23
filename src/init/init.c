@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/23 15:19:10 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/23 15:24:31 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	render_map(t_params *params)
 void	render_minimap(t_params *params)
 {
 	(void) params;
+	
 }
 
 void	game_loop(t_params *params)
@@ -33,7 +34,8 @@ void	game_loop(t_params *params)
 
 //tocheckout add flexible map scaling
 //todo add variables for the map size
-//todo 
+//todo add flexible map size
+
 int	init_cube(t_params *params)
 {
 	params->mlx = mlx_init(1920, 1080, "Cub3d", true);

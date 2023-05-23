@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/23 14:30:52 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/23 15:29:07 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,16 @@ static char	*error_msgs[10] =
 	[INVALID_FILE]		=   "Invalid map file or wrong path",
 };
 
+typedef struct s_map
+{
+	int	size_x;
+	int	size_y;
+}	t_map;
+
 typedef struct s_params
 {
 	char	**lines;
+	
 	mlx_t	*mlx;
 }	t_params;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/23 07:30:22 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/23 15:30:39 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**get_lines(char **lines, char **tmp, int fd)
 	return (lines);
 }
 
-parse_error parse(int argc, char **argv, t_params *params)
+parse_error	parse(int argc, char **argv, t_params *params)
 {
 	int		fd;
 	char	**tmp = NULL;
@@ -56,7 +56,5 @@ parse_error parse(int argc, char **argv, t_params *params)
 	while (params->lines[i])
 		printf("%s", params->lines[i++]);
 	close(fd);
-	
-	
 	return (VALID);
 }

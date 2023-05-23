@@ -6,7 +6,7 @@
 #    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/05/23 07:07:17 by asioud           ###   ########.fr        #
+#    Updated: 2023/05/23 07:13:03 by asioud           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		=	cub3D
 USER		=	$(shell whoami)
 LIBFT		=	libs/libft/libft.a
 LIBMLX		=	libs/MLX42/build/libmlx42.a
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g
 SRC_DIR		=	src/
 OBJ_DIR		=	obj/
 FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
@@ -55,7 +55,7 @@ $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	@mkdir -p $(@D)
-	@$(CC) -c $< -o $@
+	@$(CC) $(CFLAGS) $(HEADER_FILES) -c $< -o $@
 
 $(LIBMLX): install_glfw
 	@echo "MLX installed"
@@ -75,4 +75,4 @@ re:
 	@make
 
 
-.PHONY: all clean fclean re run no_glfw have_glfw 
+.PHONY: all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/23 04:54:46 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/23 07:30:22 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 char	**get_lines(char **lines, char **tmp, int fd)
 {
-	char	*s = NULL;
+	char	*s;
 	int		i;
 	int		j;
 
 	i = 1;
+	s = get_next_line(fd);
 	while (s)
 	{
-		s = get_next_line(fd);
 		tmp = lines;
 		j = 0;
 		lines = malloc((i + 1) * sizeof(char *));
@@ -36,6 +36,7 @@ char	**get_lines(char **lines, char **tmp, int fd)
 		lines[j++] = s;
 		lines[j] = 0;
 		i++;
+		s = get_next_line(fd);
 	}
 	return (lines);
 }
@@ -51,7 +52,9 @@ parse_error parse(int argc, char **argv, t_params *params)
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		return (INVALID_FILE);
 	params->lines = get_lines(params->lines, tmp, fd);
-	printf("%s\n", params->lines[0]);
+	int i = 0;
+	while (params->lines[i])
+		printf("%s", params->lines[i++]);
 	close(fd);
 	
 	

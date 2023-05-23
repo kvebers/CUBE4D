@@ -1,0 +1,12 @@
+[submodule "incl"]
+	path = incl
+	url = https://github.com/AzerSD/libft.git
+[submodule "libs/libft"]
+	path = libs/libft
+	url = https://github.com/AzerSD/libft.git
+[submodule "libs/MLX42"]
+	path = libs/MLX42
+	url = https://github.com/codam-coding-college/MLX42.git
+[submodule "MLX42"]
+	path = MLX42
+	url = https://github.com/codam-coding-college/MLX42.git

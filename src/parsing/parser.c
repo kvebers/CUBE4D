@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/23 15:30:39 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:02:02 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,16 @@ char	**get_lines(char **lines, char **tmp, int fd)
 parse_error	parse(int argc, char **argv, t_params *params)
 {
 	int		fd;
-	char	**tmp = NULL;
+	int		i;
+	char	**tmp;
 
-
+	tmp = NULL;
+	i = 0;
 	if (argc > 3 || argc < 2)
 		return (WRONG_NUM_ARGS);
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		return (INVALID_FILE);
 	params->lines = get_lines(params->lines, tmp, fd);
-	int i = 0;
 	while (params->lines[i])
 		printf("%s", params->lines[i++]);
 	close(fd);

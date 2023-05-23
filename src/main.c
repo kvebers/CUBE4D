@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:09:48 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/23 12:40:22 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:08:22 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int argc, char **argv)
 	if (error == VALID)
 	{
 		init_cube(&params);
-		// start game
 		ft_putstr_fd(error_msgs[error], 2);
 		return (0);
 	}

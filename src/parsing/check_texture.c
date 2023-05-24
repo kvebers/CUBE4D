@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:20:07 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/24 09:00:16 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/24 10:06:55 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,29 +103,3 @@ parse_error	set_ceiling(char *str, t_params *p)
 // 	return (VALID);
 // }
 
-parse_error	set_floor(char *str, t_params *p)
-{
-	if (p->floor)
-		return (MANY_FLOOR_INPUT);
-	while (*str == ' ')
-		str++;
-	p->txt->f_r = ft_cubatoi_f(str);
-	while (ft_isdigit(*str) || *str == ' ')
-		str++;
-	if (*(str++) != ',')
-		return (INVALID_FLOOR_FORMAT);
-	while (*str == ' ')
-		str++;
-	p->txt->f_g = ft_cubatoi_f(str);
-	while (ft_isdigit(*str) || *str == ' ')
-		str++;
-	if (*(str++) != ',')
-		return (INVALID_FLOOR_FORMAT);
-	while (*str == ' ')
-		str++;
-	p->txt->f_b = ft_cubatoi_f(str);
-	if (p->txt->f_b == -1 || p->txt->f_r == -1 || p->txt->f_g == -1)
-		return (INVALID_FLOOR_VALUES);
-	p->floor = true;
-	return (VALID);
-}

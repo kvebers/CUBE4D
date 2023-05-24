@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 03:06:44 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/23 14:28:45 by kvebers          ###   ########.fr       */
+/*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
+/*   Updated: 2023/05/23 18:47:00 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef INIT_H
+# define INIT_H
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <unistd.h>
+# include "../../cub3d.h"
+# include "../../libs/MLX42/include/MLX42/MLX42.h"
 
-# include "libs/libft/includes/libft.h"
-# include "libs/MLX42/include/MLX42/MLX42.h"
+typedef struct s_params	t_params;
 
-# include "src/init/init.h"
-# include "src/parsing/parser.h"
+int			init_cube(t_params *params);
+uint32_t	rgb(int r, int g, int b, int a);
 
 #endif

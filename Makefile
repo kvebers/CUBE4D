@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
+#    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/05/23 15:29:56 by kvebers          ###   ########.fr        #
+#    Updated: 2023/05/24 07:46:22 by asioud           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
 
 SOURCE		=	main \
 				parsing/parser \
+				parsing/check_texture \
 				init/init \
 				
 
@@ -33,18 +34,14 @@ OBJ			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SOURCE)))
 all: $(NAME)
 
 install_glfw:
-	@if [ -z "$(LIBMLX)" ]; then \
+	@if [ ! -f $(LIBMLX) ]; then \
 		git submodule update --init --recursive --remote; \
 		brew uninstall glfw; \
 		cmake -S libs/MLX42/ -B libs/MLX42/build -DGLFW_FETCH=1; \
 		make -C libs/MLX42/build; \
 		brew install glfw; \
 		echo "GLFW installed"; \
-	else \
-		echo "GLFW already installed"; \
 	fi
-
-
 
 $(LIBFT):
 	@git submodule update --init --recursive --remote
@@ -60,7 +57,6 @@ $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	@$(CC) $(CFLAGS) $(HEADER_FILES) -c $< -o $@
 
 $(LIBMLX): install_glfw
-	@echo "MLX installed"
 
 clean:
 	@$(RM) obj

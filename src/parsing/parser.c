@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/24 08:30:08 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/24 08:40:25 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ parse_error		set_params(char c, char *str, t_params *p)
 			return (MULT_SOUTH_INPUT);
 		else
 		{
-			p->south = true;	
+			p->south = true;
+			printf("south");	
 			if (open(str, O_RDONLY) == -1)
 				return (INVALID_SOUTH_PATH);
 			else
@@ -64,7 +65,7 @@ parse_error		set_params(char c, char *str, t_params *p)
 			return (MULT_WEST_INPUT);
 		else
 		{
-			p->north = true;
+			p->west = true;
 			if (open(str, O_RDONLY) == -1)
 				return (INVALID_WEST_PATH);
 			else

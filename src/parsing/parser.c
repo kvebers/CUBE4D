@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/24 08:40:25 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/24 08:49:15 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ parse_error		set_params(char c, char *str, t_params *p)
 		if (p->floor)
 			return (MULT_NORTH_INPUT);
 		else
-			set_floor(str, p);
+			printf("\n..... %d ....\n", set_floor(str, p));
 	}
 	else if (c == 'C' && *(str + 1) == ' ')
 	{
 		if (p->ceiling)
 			return (MULT_SOUTH_INPUT);
 		else
-			set_ceiling(str, p);
+			printf("\n..... %d ....\n", set_ceiling(str, p));
 	}
 	else if (c == 'N' && *(str + 1) == 'O' && *(str + 2) == ' ')
 	{
@@ -167,7 +167,7 @@ parse_error parse(int argc, char **argv, t_params *params)
 
 	params->lines = get_lines(fd);
 	close(fd);
-	
+
 	while (params->lines[i])
 		printf("%s", params->lines[i++]);
 

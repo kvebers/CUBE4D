@@ -6,7 +6,7 @@
 #    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/05/24 11:10:31 by kvebers          ###   ########.fr        #
+#    Updated: 2023/05/24 14:08:30 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,9 @@ SOURCE		=	main \
 				parsing/check_texture \
 				init/init \
 				init/utils \
+				init/keyhooks \
+				init/minimap \
+				init/rendermap \
 				
 
 SRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SOURCE)))

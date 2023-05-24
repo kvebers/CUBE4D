@@ -6,35 +6,12 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/23 07:35:33 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/23 07:30:22 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "../../cub3d.h"
-
-char	**parse_parameters(t_param *p, char **lines)
-{
-	int i;
-	int j;
-	int map;
-
-	i = 0;
-	map = 0;
-	while (lines[i])
-	{
-		j = 0;
-		while (lines[i][j] == ' ')
-			j++;
-		if (!choose_param(lines[i][j], lines[i], p))
-		{
-			return (&lines[i]);
-		}
-		i++;
-	}
-	put_error("ERROR\nNO MAP FOUND\n", p);
-	return (lines);
-}
 
 char	**get_lines(char **lines, char **tmp, int fd)
 {
@@ -75,6 +52,9 @@ parse_error parse(int argc, char **argv, t_params *params)
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		return (INVALID_FILE);
 	params->lines = get_lines(params->lines, tmp, fd);
+	int i = 0;
+	while (params->lines[i])
+		printf("%s", params->lines[i++]);
 	close(fd);
 	
 	

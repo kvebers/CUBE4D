@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:20:07 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/24 05:32:38 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/24 07:47:32 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 #include "parser.h"
 #include <stdbool.h>
 
-void	make_sky(char *str, t_params *p)
+parse_error	set_ceiling(char *str, t_params *p)
 {
-	if (p->skyfloor)
+	int		count;
+	float	value;
+	
+	if (p->ceiling)
 		return (MANY_CEILING_INPUT);
 	
-	int count = 0; // Counter to keep track of the expected number of values
-	
+	count = 0;
 	while (*str != '\0')
 	{
 		while (*str == ' ')
@@ -34,30 +36,29 @@ void	make_sky(char *str, t_params *p)
 			while (*str == ' ')
 				str++;
 		}
-		
-		float value = ft_cubatoi_f(str);
+		value = ft_atoll(str);
 		if (!ft_isdigit(*str) || value == -1)
 			return (INVALID_CEILING_VALUES);
 		
 		if (count == 0)
-			p->mlx->sr = value;
+			p->txt->c_r = value;
 		else if (count == 1)
-			p->mlx->sg = value;
+			p->txt->c_g = value;
 		else if (count == 2)
 		{
-			p->mlx->sb = value;
-			p->skyfloor = 1;
+			p->txt->c_b = value;
+			p->ceiling = true;
 			break;
 		}
 		
 		while (ft_isdigit(*str) || *str == ' ')
 			str++;
-		
 		count++;
 	}
+	return (VALID);
 }
 
-void	make_floor(char *str, t_params *p)
+parse_error	set_floor(char *str, t_params *p)
 {
 	int		count;
 	float	value;
@@ -98,5 +99,6 @@ void	make_floor(char *str, t_params *p)
 		
 		count++;
 	}
+	return (VALID);
 }
 

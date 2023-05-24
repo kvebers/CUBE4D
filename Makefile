@@ -6,7 +6,7 @@
 #    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/05/24 04:45:37 by asioud           ###   ########.fr        #
+#    Updated: 2023/05/24 07:46:22 by asioud           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
 
 SOURCE		=	main \
 				parsing/parser \
+				parsing/check_texture \
 				init/init \
 				
 

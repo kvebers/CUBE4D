@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/24 05:50:08 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/24 07:44:34 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ parse_error		set_params(char c, char *str, t_params *p)
 		if (p->floor)
 			return (MULT_NORTH_INPUT);
 		else
-			p->floor = true;
+			set_floor(str, p);
 	}
 	else if (c == 'C' && *(str + 1) == ' ')
 	{
 		if (p->ceiling)
 			return (MULT_SOUTH_INPUT);
 		else
-			p->ceiling = true;
+			set_ceiling(str, p);
 	}
 	else if (c == 'N' && *(str + 1) == 'O' && *(str + 2) == ' ')
 	{
@@ -39,7 +39,10 @@ parse_error		set_params(char c, char *str, t_params *p)
 		else
 		{
 			p->north = true;
-			p->txt->no = mlx_load_png(str);
+			if (open(str, O_RDONLY) == -1)
+				return (INVALID_NORTH_PATH);
+			else
+				p->txt->no = mlx_load_png(str);
 		}
 	}
 	else if (c == 'S' && *(str + 1) == 'O' && *(str + 2) == ' ')
@@ -49,7 +52,10 @@ parse_error		set_params(char c, char *str, t_params *p)
 		else
 		{
 			p->south = true;	
-			p->txt->so = mlx_load_png(str);
+			if (open(str, O_RDONLY) == -1)
+				return (INVALID_SOUTH_PATH);
+			else
+				p->txt->so = mlx_load_png(str);
 		}
 	}
 	else if (c == 'W' && *(str + 1) == 'E' && *(str + 2) == ' ')
@@ -59,7 +65,10 @@ parse_error		set_params(char c, char *str, t_params *p)
 		else
 		{
 			p->north = true;
-			p->txt->we = mlx_load_png(str);
+			if (open(str, O_RDONLY) == -1)
+				return (INVALID_WEST_PATH);
+			else
+				p->txt->we = mlx_load_png(str);
 		}
 	}
 	else if (c == 'E' && *(str + 1) == 'A' && *(str + 2) == ' ')
@@ -68,14 +77,16 @@ parse_error		set_params(char c, char *str, t_params *p)
 			return (MULT_NORTH_INPUT);
 		else
 		{
-			p->east = true;	
-			p->txt->ea = mlx_load_png(str);
+			p->east = true;
+			if (open(str, O_RDONLY) == -1)
+				return (INVALID_EAST_PATH);
+			else
+				p->txt->ea = mlx_load_png(str);
 		}
 	}
 	else if (c)
 		return (INVALID_IDENTIFIERS);
-	// (void)p;
-	return (1);
+	return (VALID);
 }
 
 char	**init_params(t_params *p)
@@ -102,8 +113,8 @@ char	**init_params(t_params *p)
 
 char	**get_lines(int fd)
 {
-	char	**lines;
-	char	**tmp;
+	char	**lines = 0;
+	char	**tmp = NULL;
 	char	*s;
 	int		i;
 	int		j;
@@ -134,7 +145,6 @@ static void printParams(t_params *params) {
     printf("txt: %p\n", (void *)params->txt);
     printf("map: %p\n", (void *)params->map);
     printf("mlx: %p\n", (void *)params->mlx);
-    printf("screen: %s\n", params->screen ? "true" : "false");
     printf("floor: %s\n", params->floor ? "true" : "false");
     printf("ceiling: %s\n", params->ceiling ? "true" : "false");
     printf("north: %s\n", params->north ? "true" : "false");

@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/24 05:06:23 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/24 07:46:55 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ typedef enum {
 	MULT_SOUTH_INPUT,
 	MULT_WEST_INPUT,
 	MULT_EAST_INPUT,
-	MULT_SPRITE_INPUT,
+	INVALID_NORTH_PATH,
+	INVALID_SOUTH_PATH,
+	INVALID_WEST_PATH,
+	INVALID_EAST_PATH,
 	MAP_404,	
 } parse_error;
 
@@ -69,8 +72,12 @@ static char *error_msgs[100]	= {
 	[MULT_SOUTH_INPUT]			=	"Multiple south inputs",
 	[MULT_WEST_INPUT]			=	"Multiple west inputs",
 	[MULT_EAST_INPUT]			=	"Multiple east inputs",
-	[MULT_SPRITE_INPUT]			=	"Multiple sprite inputs",
+	[INVALID_NORTH_PATH]		=	"Invalid north path",
+	[INVALID_SOUTH_PATH]		=	"Invalid south path",
+	[INVALID_WEST_PATH]			=	"Invalid west path",
+	[INVALID_EAST_PATH]			=	"Invalid east path",
 	[MAP_404]					=	"Map not found",
+	
 };
 
 
@@ -102,7 +109,6 @@ typedef struct s_params {
 	t_textures	*txt;
 	t_map		*map;
 	mlx_t		*mlx;
-	bool		screen;
 	bool		floor;
 	bool		ceiling;
 	bool		north;
@@ -111,7 +117,12 @@ typedef struct s_params {
 	bool		east;
 } t_params;
 
-
+/* parser.c */
 parse_error	parse(int argc, char **argv, t_params *params);
+
+
+/* check_texture.c */
+parse_error		set_ceiling(char *str, t_params *p);
+parse_error		set_floor(char *str, t_params *p);
 
 #endif

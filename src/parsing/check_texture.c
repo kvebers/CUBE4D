@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:20:07 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/24 09:00:16 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/24 10:54:00 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ parse_error	set_ceiling(char *str, t_params *p)
 			while (*str == ' ')
 				str++;
 		}
-		value = ft_cubatoi_f(str);
+		value = ft_atoi(str);
 		if (!ft_isdigit(*str) || value == -1)
 			return (INVALID_CEILING_VALUES);
 		
@@ -109,21 +109,21 @@ parse_error	set_floor(char *str, t_params *p)
 		return (MANY_FLOOR_INPUT);
 	while (*str == ' ')
 		str++;
-	p->txt->f_r = ft_cubatoi_f(str);
+	p->txt->f_r = ft_atoi(str);
 	while (ft_isdigit(*str) || *str == ' ')
 		str++;
 	if (*(str++) != ',')
 		return (INVALID_FLOOR_FORMAT);
 	while (*str == ' ')
 		str++;
-	p->txt->f_g = ft_cubatoi_f(str);
+	p->txt->f_g = ft_atoi(str);
 	while (ft_isdigit(*str) || *str == ' ')
 		str++;
 	if (*(str++) != ',')
 		return (INVALID_FLOOR_FORMAT);
 	while (*str == ' ')
 		str++;
-	p->txt->f_b = ft_cubatoi_f(str);
+	p->txt->f_b = ft_atoi(str);
 	if (p->txt->f_b == -1 || p->txt->f_r == -1 || p->txt->f_g == -1)
 		return (INVALID_FLOOR_VALUES);
 	p->floor = true;

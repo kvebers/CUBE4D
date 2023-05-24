@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
+#    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/05/24 07:46:22 by asioud           ###   ########.fr        #
+#    Updated: 2023/05/24 11:10:31 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SOURCE		=	main \
 				parsing/parser \
 				parsing/check_texture \
 				init/init \
+				init/utils \
 				
 
 SRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SOURCE)))

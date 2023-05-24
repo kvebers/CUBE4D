@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/24 08:49:15 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/24 12:46:42 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,28 @@
 
 parse_error		set_params(char c, char *str, t_params *p)
 {
+	char *path;
+	parse_error err;
+
+	path = ft_strtrim(str+3, "\n");
 	while (*str == ' ')
 		str++;
-
+	
 	if (c == 'F' && *(str + 1) == ' ')
 	{
 		if (p->floor)
 			return (MULT_NORTH_INPUT);
 		else
-			printf("\n..... %d ....\n", set_floor(str, p));
+			if ((err = set_floor(str, p)) != VALID)
+				ft_putstr_fd(error_msgs[INVALID_FLOOR_FORMAT], 2);
 	}
 	else if (c == 'C' && *(str + 1) == ' ')
 	{
 		if (p->ceiling)
 			return (MULT_SOUTH_INPUT);
 		else
-			printf("\n..... %d ....\n", set_ceiling(str, p));
+			if ((err = set_ceiling(str, p)) != VALID)
+				ft_putstr_fd(error_msgs[INVALID_FLOOR_FORMAT], 2);
 	}
 	else if (c == 'N' && *(str + 1) == 'O' && *(str + 2) == ' ')
 	{
@@ -38,11 +44,14 @@ parse_error		set_params(char c, char *str, t_params *p)
 			return (MULT_NORTH_INPUT);
 		else
 		{
-			p->north = true;
-			if (open(str, O_RDONLY) == -1)
+			if (open(path, O_RDONLY) == -1)
+			{
+				ft_putstr_fd(error_msgs[INVALID_NORTH_PATH], 2);
 				return (INVALID_NORTH_PATH);
+			}
 			else
-				p->txt->no = mlx_load_png(str);
+				p->txt->no = mlx_load_png(path);
+			p->north = true;
 		}
 	}
 	else if (c == 'S' && *(str + 1) == 'O' && *(str + 2) == ' ')
@@ -51,12 +60,14 @@ parse_error		set_params(char c, char *str, t_params *p)
 			return (MULT_SOUTH_INPUT);
 		else
 		{
-			p->south = true;
-			printf("south");	
-			if (open(str, O_RDONLY) == -1)
+			if (open(path, O_RDONLY) == -1)
+			{
+				ft_putstr_fd(error_msgs[INVALID_SOUTH_PATH], 2);
 				return (INVALID_SOUTH_PATH);
+			}
 			else
-				p->txt->so = mlx_load_png(str);
+				p->txt->so = mlx_load_png(path);
+			p->south = true;
 		}
 	}
 	else if (c == 'W' && *(str + 1) == 'E' && *(str + 2) == ' ')
@@ -65,11 +76,14 @@ parse_error		set_params(char c, char *str, t_params *p)
 			return (MULT_WEST_INPUT);
 		else
 		{
-			p->west = true;
-			if (open(str, O_RDONLY) == -1)
+			if (open(path, O_RDONLY) == -1)
+			{
+				ft_putstr_fd(error_msgs[INVALID_WEST_PATH], 2);
 				return (INVALID_WEST_PATH);
+			}
 			else
-				p->txt->we = mlx_load_png(str);
+				p->txt->we = mlx_load_png(path);
+			p->west = true;
 		}
 	}
 	else if (c == 'E' && *(str + 1) == 'A' && *(str + 2) == ' ')
@@ -78,14 +92,17 @@ parse_error		set_params(char c, char *str, t_params *p)
 			return (MULT_NORTH_INPUT);
 		else
 		{
-			p->east = true;
-			if (open(str, O_RDONLY) == -1)
+			if (open(path, O_RDONLY) == -1)
+			{
+				ft_putstr_fd(error_msgs[INVALID_EAST_PATH], 2);
 				return (INVALID_EAST_PATH);
+			}
 			else
-				p->txt->ea = mlx_load_png(str);
+				p->txt->ea = mlx_load_png(path);
+			p->east = true;
 		}
 	}
-	else if (c)
+	else if (c == '1' || c == '2' || c == '0')
 		return (INVALID_IDENTIFIERS);
 	return (VALID);
 }
@@ -96,6 +113,7 @@ char	**init_params(t_params *p)
 	int j;
 	int map;
 	char **lines = p->lines;
+	parse_error error;
 
 	i = 0;
 	map = 0;
@@ -104,12 +122,13 @@ char	**init_params(t_params *p)
 		j = 0;
 		while (lines[i][j] == ' ')
 			j++;
-		if (!set_params(lines[i][j], lines[i], p))
+		error = set_params(lines[i][j], lines[i], p);
+		if (error != VALID)
 			return (&lines[i]);
 		i++;
 	}
-	ft_putstr_fd("ERROR\nNO MAP FOUND\n", 2);
-	return (lines);
+	ft_putstr_fd(error_msgs[MAP_404], 2);
+	return (NULL);
 }
 
 char	**get_lines(int fd)
@@ -141,9 +160,10 @@ char	**get_lines(int fd)
 	return (lines);
 }
 
-static void printParams(t_params *params) {
+void printParams(t_params *params) {
     printf("\nlines: %p\n", (void *)params->lines);
-    printf("txt: %p\n", (void *)params->txt);
+    printf("txt: %d %d %d\n", params->txt->c_r, params->txt->c_g, params->txt->c_b);
+    printf("txt: %d %d %d\n", params->txt->f_r, params->txt->f_g, params->txt->f_b);
     printf("map: %p\n", (void *)params->map);
     printf("mlx: %p\n", (void *)params->mlx);
     printf("floor: %s\n", params->floor ? "true" : "false");
@@ -152,33 +172,35 @@ static void printParams(t_params *params) {
     printf("south: %s\n", params->south ? "true" : "false");
     printf("west: %s\n", params->west ? "true" : "false");
     printf("east: %s\n", params->east ? "true" : "false");
+	
 }
 
-parse_error parse(int argc, char **argv, t_params *params)
+int parse(int argc, char **argv, t_params *params)
 {
 	int		fd;
-	int		i = 0;
+	params->txt = malloc(sizeof(t_textures));
 
-	if (argc > 3 || argc < 2)
-		return (INVALID_NUM_ARGS);
+	if (argc != 3)
+	{
+		ft_printf_fd(2, error_msgs[INVALID_NUM_ARGS]);
+		return (1);
+	}
 
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
-		return (INVALID_FILE);
+	{
+		ft_printf_fd(2, error_msgs[INVALID_FILE]);
+		return (1);
+	}
 
 	params->lines = get_lines(fd);
 	close(fd);
 
-	while (params->lines[i])
-		printf("%s", params->lines[i++]);
-
-
 	char **map = init_params(params);
-	
-	printf("\n\nmap: %s\n", map[0]);
-	
+	if (!map)
+		return 1;
 	printParams(params);
 	
 	
-	
-	return (VALID);
+	(void) map;
+	return (0);
 }

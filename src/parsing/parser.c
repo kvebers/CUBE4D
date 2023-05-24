@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/24 07:44:34 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/24 08:30:08 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ char	**get_lines(int fd)
 }
 
 static void printParams(t_params *params) {
-    printf("lines: %p\n", (void *)params->lines);
+    printf("\nlines: %p\n", (void *)params->lines);
     printf("txt: %p\n", (void *)params->txt);
     printf("map: %p\n", (void *)params->map);
     printf("mlx: %p\n", (void *)params->mlx);
@@ -156,7 +156,7 @@ static void printParams(t_params *params) {
 parse_error parse(int argc, char **argv, t_params *params)
 {
 	int		fd;
-	int i = 0;
+	int		i = 0;
 
 	if (argc > 3 || argc < 2)
 		return (INVALID_NUM_ARGS);
@@ -165,11 +165,16 @@ parse_error parse(int argc, char **argv, t_params *params)
 		return (INVALID_FILE);
 
 	params->lines = get_lines(fd);
+	close(fd);
+	
 	while (params->lines[i])
 		printf("%s", params->lines[i++]);
-	close(fd);
 
-	init_params(params);
+
+	char **map = init_params(params);
+	
+	printf("\n\nmap: %s\n", map[0]);
+	
 	printParams(params);
 	
 	

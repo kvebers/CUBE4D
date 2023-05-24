@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:09:48 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/24 05:11:54 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/24 08:28:16 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 	t_params	params;
 	parse_error	error;
 
+	
 	error = parse(argc, argv, &params);
 	if (error == VALID)
 	{

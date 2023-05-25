@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 18:37:17 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/24 17:22:48 by kvebers          ###   ########.fr       */
+/*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
+/*   Updated: 2023/05/24 16:59:37 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,23 @@
 #include <stdio.h>
 #include "init.h"
 
-uint32_t	rgb(int r, int g, int b, int a)
+void	game_loop(t_params *params)
 {
-	return (r << 24 | g << 16 | b << 8 | a);
+	render_skybox(params);
+	render_map(params);
+	render_minimap(params);
+	mlx_key_hook(params->mlx, keyhook, params);
+	mlx_loop(params->mlx);
 }
 
-int	count_lines(char **lines)
+//tocheckout add flexible map scaling
+//@todo add variables for the map size
+//@todo add flexible map size
+
+int	init_cube(t_params *params)
 {
-	int	cnt;
-
-	cnt = 0;
-	while (lines[cnt] != NULL)
-		cnt++;
-	return (cnt);
-}
-
-int	get_longest_line(char **lines)
-{
-	size_t	temp;
-	int		cnt;
-
-	temp = 0;
-	cnt = 0;
-	while (lines[cnt] != NULL)
-	{
-		if (ft_strlen(lines[cnt]) > temp)
-			temp = ft_strlen(lines[cnt]);
-		cnt++;
-	}
-	return ((int) temp);
+	test_textures(params);
+	params->mlx = mlx_init(1920, 1080, "Cub3d", true);
+	game_loop(params);
+	return (0);
 }

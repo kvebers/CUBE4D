@@ -6,7 +6,7 @@
 #    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/05/24 14:08:30 by kvebers          ###   ########.fr        #
+#    Updated: 2023/05/24 16:54:10 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SOURCE		=	main \
 				init/keyhooks \
 				init/minimap \
 				init/rendermap \
+				init/game \
 				
 
 SRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SOURCE)))

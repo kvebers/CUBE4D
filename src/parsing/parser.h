@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/24 14:35:48 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/24 17:36:14 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,9 @@ typedef struct s_map
 {
 	int32_t	size_x;
 	int32_t	size_y;
+	int		**map;
+	int		width;
+	int		height;
 }	t_map;
 
 typedef struct s_textures

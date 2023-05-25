@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:20:07 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/25 18:28:47 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/25 18:40:05 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,8 @@ parse_error	set_floor(char *str, t_params *p)
 			p->floor = true;
 			break;
 		}
-		
 		while (ft_isdigit(*str) || *str == ' ')
 			str++;
-		
 		count++;
 	}
 	return (VALID);

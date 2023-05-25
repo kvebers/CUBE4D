@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/25 18:29:52 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/25 18:37:57 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include "../../libs/MLX42/include/MLX42/MLX42.h"
 # include <stdbool.h>
 
-typedef enum {
+typedef enum
+{
 	VALID,
 	INVALID_NUM_ARGS,
 	INVALID_ARG,

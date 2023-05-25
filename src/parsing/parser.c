@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/25 18:30:34 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/25 21:05:00 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,8 @@ char	**get_lines(int fd)
 	return (lines);
 }
 
-void printParams(t_params *params) {
+void printParams(t_params *params) 
+{
     printf("\nlines: %p\n", (void *)params->lines);
     printf("txt: %d %d %d\n", params->txt->c_r, params->txt->c_g, params->txt->c_b);
     printf("txt: %d %d %d\n", params->txt->f_r, params->txt->f_g, params->txt->f_b);
@@ -179,7 +180,7 @@ int parse(int argc, char **argv, t_params *params)
 {
 	int		fd;
 	params->txt = malloc(sizeof(t_textures));
-
+	params->map = malloc(sizeof(t_map)); //@todo added an memprry alocation here, since it is better here, should check on how to fix it up
 	if (argc != 3)
 	{
 		ft_printf_fd(2, error_msgs[INVALID_NUM_ARGS]);
@@ -199,8 +200,6 @@ int parse(int argc, char **argv, t_params *params)
 	if (!map)
 		return 1;
 	printParams(params);
-	
-	
 	(void) map;
 	return (0);
 }

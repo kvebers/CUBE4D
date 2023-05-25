@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:53:53 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/25 21:00:55 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/25 23:33:36 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ void	test_textures(t_params *params)
 	params->txt->c_g = 255;
 	params->map->size_x = 1920;
 	params->map->size_y = 1080;
-	if (false)
-	{
-		params->map->height = count_lines(params->lines);
-		params->map->width = get_longest_line(params->lines);
-	}
+	params->map->minimap_box = params->map->size_y / 4;
+	params->map->offset = params->map->size_y / 8;
+	params->map->height = count_lines(params->lines);
+	params->map->width = get_longest_line(params->lines);
+	params->map->total_width = params->map->width * 64;
+	params->map->total_height = params->map->height * 64;
+	get_player_pos(params);
 }

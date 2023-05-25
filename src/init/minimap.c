@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:04:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/25 20:03:00 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/25 23:36:43 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,21 @@ void	render_player(t_params *params)
 
 void	render_mini_map(t_params *params, int x, int y)
 {
-	mlx_put_pixel(params->txt->minimap, x, y, 600);
+	int	new_x;
+	int	new_y;
+
+	new_x = x + params->map->player.x - params->map->offset;
+	new_y = y + params->map->player.y - params->map->offset;
+	if (new_x < 0 || new_y < 0)
+		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
+	else if (new_x > params->map->total_width
+		|| new_y > params->map->total_height)
+		mlx_put_pixel(params->txt->minimap, x, y, rgb(16, 16, 16, 255));
+	else if (*(params->lines[new_y / 64] + new_x / 64) != '1')
+		mlx_put_pixel(params->txt->minimap, x, y, rgb(13, 13, 13, 255));
+	else
+		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
+
 }
 
 void	put_mini_pixel(t_params *params, int x, int y)
@@ -59,15 +73,13 @@ void	put_mini_pixel(t_params *params, int x, int y)
 
 void	render_minimap(t_params *params)
 {
-	int	minimap_box_x;
 	int	minimap_box_y;
 	int	x;
 	int	y;
 
-	minimap_box_x = params->map->size_x / 4;
 	minimap_box_y = params->map->size_y / 4;
 	params->txt->minimap = mlx_new_image(params->mlx,
-			minimap_box_x, minimap_box_x);
+			params->map->minimap_box, params->map->minimap_box);
 	x = 0;
 	while (x < minimap_box_y)
 	{

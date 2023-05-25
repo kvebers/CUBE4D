@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/25 18:37:57 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/25 22:22:12 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,24 @@ static char *error_msgs[100]	= {
 	
 };
 
+typedef struct s_pos
+{
+	int	x;
+	int	y;
+}	t_pos;
 
 typedef struct s_map
 {
 	int32_t	size_x;
 	int32_t	size_y;
 	int		**map;
+	int		total_width;
+	int		total_height;
 	int		width;
+	int		offset;
+	int		minimap_box;
 	int		height;
+	t_pos	player;
 }	t_map;
 
 typedef struct s_textures

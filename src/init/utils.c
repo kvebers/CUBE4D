@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 18:37:17 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/25 20:58:28 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/25 22:39:10 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	count_lines(char **lines)
 {
 	int	cnt;
 
-	cnt = 0;
+	cnt = 7;
 	while (lines[cnt] != NULL)
 		cnt++;
 	return (cnt);
@@ -35,7 +35,7 @@ int	get_longest_line(char **lines)
 	int		cnt;
 
 	temp = 0;
-	cnt = 0;
+	cnt = 7;
 	while (lines[cnt] != NULL)
 	{
 		if (ft_strlen(lines[cnt]) > temp)
@@ -43,4 +43,25 @@ int	get_longest_line(char **lines)
 		cnt++;
 	}
 	return ((int) temp);
+}
+
+void	get_player_pos(t_params *params)
+{
+	int	cnt;
+	int	cnt1;
+
+	cnt = 7;
+	cnt1 = 0;
+	while (params->lines[cnt] != NULL)
+	{
+		if (ft_strchr(params->lines[cnt], 'N') != NULL)
+		{
+			params->map->player.y = cnt * 64 + 32;
+			while (*(params->lines[cnt] + cnt1) != 'N')
+				cnt1++;
+			params->map->player.x = cnt1 * 64 + 32;
+			break ;
+		}
+		cnt++;
+	}
 }

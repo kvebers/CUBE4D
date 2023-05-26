@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/24 17:21:45 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/25 21:50:30 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int			init_cube(t_params *params);
 //UTILS.c
 uint32_t	rgb(int r, int g, int b, int a);
 int			count_lines(char **lines);
-int			get_longest_line(char **lines);
+int         get_longest_line(char **lines);
+void	    get_player_pos(t_params *params);
 //KEYHOOKS.c
 void		keyhook(mlx_key_data_t key_data, void *param);
 //MINIMAP.c

@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/24 17:36:14 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/25 22:22:12 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include "../../libs/MLX42/include/MLX42/MLX42.h"
 # include <stdbool.h>
 
-typedef enum {
+typedef enum
+{
 	VALID,
 	INVALID_NUM_ARGS,
 	INVALID_ARG,
@@ -49,45 +50,55 @@ typedef enum {
 } parse_error;
 
 static char *error_msgs[100]	= {
-	[VALID]						=	"VALID",
-	[INVALID_NUM_ARGS]			=	"Wrong number of arguments",
-	[INVALID_ARG]				=	"Invalid argument",
-	[INVALID_FILE]				=	"Invalid map file or wrong path",
-	[INVALID_IDENTIFIERS]		=	"Invalid identifiers",
-	[MULT_RES_INPUT]			=	"Multiple resolution inputs",
-	[MANY_RES_INPUT]			=	"Too many resolution inputs",
-	[INVALID_RES_INPUT]			=	"Invalid resolution input",
-	[INVALID_HEIGHT]			=	"Invalid height",
-	[INVALID_WIDTH]				=	"Invalid width",
-	[MULT_FLOOR_INPUT]			=	"Multiple floor inputs",
-	[MANY_FLOOR_INPUT]			=	"Too many floor inputs",
-	[INVALID_FLOOR_FORMAT]		=	"Invalid floor format",
-	[INVALID_FLOOR_VALUES]		=	"Invalid floor values",
-	[MULT_CEILING_INPUT]		=	"Multiple ceiling inputs",
-	[MANY_CEILING_INPUT]		=	"Too many ceiling inputs",
-	[INVALID_CEILING_FORMAT]	=	"Invalid ceiling format",
-	[INVALID_CEILING_VALUES]	=	"Invalid ceiling values",
-	[INVALID_TXT_PATH]			=	"Invalid texture path",
-	[MULT_NORTH_INPUT]			=	"Multiple north inputs",
-	[MULT_SOUTH_INPUT]			=	"Multiple south inputs",
-	[MULT_WEST_INPUT]			=	"Multiple west inputs",
-	[MULT_EAST_INPUT]			=	"Multiple east inputs",
-	[INVALID_NORTH_PATH]		=	"Invalid north path",
-	[INVALID_SOUTH_PATH]		=	"Invalid south path",
-	[INVALID_WEST_PATH]			=	"Invalid west path",
-	[INVALID_EAST_PATH]			=	"Invalid east path",
-	[MAP_404]					=	"Map not found",
+	[VALID]						=	"Error\nVALID\n",
+	[INVALID_NUM_ARGS]			=	"Error\nWrong number of arguments\n",
+	[INVALID_ARG]				=	"Error\nInvalid argument\n",
+	[INVALID_FILE]				=	"Error\nInvalid file or wrong path\n",
+	[INVALID_IDENTIFIERS]		=	"Error\nInvalid identifiers\n",
+	[MULT_RES_INPUT]			=	"Error\nMultiple resolution inputs\n",
+	[MANY_RES_INPUT]			=	"Error\nToo many resolution inputs\n",
+	[INVALID_RES_INPUT]			=	"Error\nInvalid resolution input\n",
+	[INVALID_HEIGHT]			=	"Error\nInvalid height\n",
+	[INVALID_WIDTH]				=	"Error\nInvalid width\n",
+	[MULT_FLOOR_INPUT]			=	"Error\nMultiple floor inputs\n",
+	[MANY_FLOOR_INPUT]			=	"Error\nToo many floor inputs\n",
+	[INVALID_FLOOR_FORMAT]		=	"Error\nInvalid floor format\n",
+	[INVALID_FLOOR_VALUES]		=	"Error\nInvalid floor values\n",
+	[MULT_CEILING_INPUT]		=	"Error\nMultiple ceiling inputs\n",
+	[MANY_CEILING_INPUT]		=	"Error\nToo many ceiling inputs\n",
+	[INVALID_CEILING_FORMAT]	=	"Error\nInvalid ceiling format\n",
+	[INVALID_CEILING_VALUES]	=	"Error\nInvalid ceiling values\n",
+	[INVALID_TXT_PATH]			=	"Error\nInvalid texture path\n",
+	[MULT_NORTH_INPUT]			=	"Error\nMultiple north inputs\n",
+	[MULT_SOUTH_INPUT]			=	"Error\nMultiple south inputs\n",
+	[MULT_WEST_INPUT]			=	"Error\nMultiple west inputs\n",
+	[MULT_EAST_INPUT]			=	"Error\nMultiple east inputs\n",
+	[INVALID_NORTH_PATH]		=	"Error\nInvalid north path\n",
+	[INVALID_SOUTH_PATH]		=	"Error\nInvalid south path\n",
+	[INVALID_WEST_PATH]			=	"Error\nInvalid west path\n",
+	[INVALID_EAST_PATH]			=	"Error\nInvalid east path\n",
+	[MAP_404]					=	"Error\nMap not found\n",
 	
 };
 
+typedef struct s_pos
+{
+	int	x;
+	int	y;
+}	t_pos;
 
 typedef struct s_map
 {
 	int32_t	size_x;
 	int32_t	size_y;
 	int		**map;
+	int		total_width;
+	int		total_height;
 	int		width;
+	int		offset;
+	int		minimap_box;
 	int		height;
+	t_pos	player;
 }	t_map;
 
 typedef struct s_textures
@@ -122,7 +133,7 @@ typedef struct s_params {
 } t_params;
 
 /* parser.c */
-parse_error	parse(int argc, char **argv, t_params *params);
+int	parse(int argc, char **argv, t_params *params);
 
 
 /* check_texture.c */

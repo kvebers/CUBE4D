@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/26 00:04:48 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/26 11:40:52 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	keyhook(mlx_key_data_t key_data, void *param)
 	}
 	else if (mlx_is_key_down(params->mlx, MLX_KEY_S))
 	{
+		printf("%i\n", (params->map->player.y + 4) / 64);
 		if (*(params->lines[(params->map->player.y + 4) /64] + params->map->player.x / 64) != '1')
 		{
 			params->map->player.y = params->map->player.y + 4;

@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:06:45 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/24 14:30:42 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/26 21:33:43 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,31 @@
 #include <stdio.h>
 #include "init.h"
 
+// // float	get_distance(int angle, t_params *params)
+// // {
+// // 	int	cnt;
+
+// // 	while (true)
+// // 	{
+		
+// // 	}
+// // }
+
+
 void	render_map(t_params *params)
 {
-	(void) params;
+	// float	x;
+	// float	angle;
+	// float	distance;
+
+	// x = params->map->size_x / (-2);
+	// while (x < params->map->size_x / 2)
+	// {
+	// 	angle = params->fov / x + params->map->player.angle;
+		
+	// 	x++;
+	// }
+	mlx_image_to_window(params->mlx, params->txt->ground, 0, 0);
 }
 
 void	render_skybox(t_params *params)
@@ -44,5 +66,4 @@ void	render_skybox(t_params *params)
 		}
 		x++;
 	}
-	mlx_image_to_window(params->mlx, params->txt->ground, 0, 0);
 }

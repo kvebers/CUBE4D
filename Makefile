@@ -6,7 +6,7 @@
 #    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/05/24 16:54:10 by kvebers          ###   ########.fr        #
+#    Updated: 2023/05/26 19:38:10 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SOURCE		=	main \
 				init/minimap \
 				init/rendermap \
 				init/game \
+				init/vectors \
+				init/move_valid \
 				
 
 SRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SOURCE)))

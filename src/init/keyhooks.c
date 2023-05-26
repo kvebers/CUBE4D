@@ -6,55 +6,51 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/26 15:17:08 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/26 19:37:00 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 #include <stdio.h>
 #include "init.h"
+#include <math.h>
 
 void	a_pressed(t_params *params)
 {
-	params->map->player.angle++;
-	if (params->map->player.angle > 360)
-		params->map->player.angle = params->map->player.angle - 360;
+	params->map->player.angle = params->map->player.angle - 4;
+	if (params->map->player.angle < 0)
+		params->map->player.angle = 360 + params->map->player.angle;
 	mlx_delete_image(params->mlx, params->txt->minimap);
-	printf("%i\n", params->map->player.angle);
 	render_minimap(params);
 }
 
 void	d_pressed(t_params *params)
 {
-	params->map->player.angle--;
-	if (params->map->player.angle < 0)
-		params->map->player.angle = 360 + params->map->player.angle;
-	printf("%i\n", params->map->player.angle);
+	params->map->player.angle = params->map->player.angle + 4;
+	if (params->map->player.angle > 360)
+		params->map->player.angle = params->map->player.angle - 360;
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
 }
 
 void	w_pressed(t_params *params)
 {
-	if (*(params->lines[(int)(params->map->player.y - params->map->speed) / 64]
-			+ (int) params->map->player.x / 64) != '1')
-	{
-		params->map->player.y = params->map->player.y - params->map->speed;
-		mlx_delete_image(params->mlx, params->txt->minimap);
-		render_minimap(params);
-	}
+	t_vector	vector;
+
+	vector = vector_estimation(params->map->speed, params->map->player.angle);
+	check_valid_move1(params, vector.pos_x, vector.pos_y);
+	mlx_delete_image(params->mlx, params->txt->minimap);
+	render_minimap(params);
 }
 
 void	s_pressed(t_params *params)
 {
-	
-	if (*(params->lines[((int)(params->map->player.y + params->map->speed)) / 64]
-			+ (int) params->map->player.x / 64) != '1')
-	{
-		params->map->player.y = params->map->player.y + params->map->speed;
-		mlx_delete_image(params->mlx, params->txt->minimap);
-		render_minimap(params);
-	}
+	t_vector	vector;
+
+	vector = vector_estimation(params->map->speed, params->map->player.angle);
+	check_valid_move(params, vector.pos_x, vector.pos_y);
+	mlx_delete_image(params->mlx, params->txt->minimap);
+	render_minimap(params);
 }
 
 void	keyhook(mlx_key_data_t key_data, void *param)
@@ -68,7 +64,7 @@ void	keyhook(mlx_key_data_t key_data, void *param)
 		w_pressed(params);
 	else if (mlx_is_key_down(params->mlx, MLX_KEY_S))
 		s_pressed(params);
-	else if (mlx_is_key_down(params->mlx, MLX_KEY_A))
+	if (mlx_is_key_down(params->mlx, MLX_KEY_A))
 		a_pressed(params);
 	else if (mlx_is_key_down(params->mlx, MLX_KEY_D))
 		d_pressed(params);

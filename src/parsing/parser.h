@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/26 15:06:47 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/26 21:23:36 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct s_vector
 
 typedef struct s_pos
 {
-	int		angle;
+	float	angle;
 	float	x;
 	float	y;
 }	t_pos;
@@ -132,6 +132,7 @@ typedef struct s_params {
 	t_textures	*txt;
 	t_map		*map;
 	mlx_t		*mlx;
+	float		fov;
 	bool		floor;
 	bool		ceiling;
 	bool		north;

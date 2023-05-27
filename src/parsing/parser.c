@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/27 16:42:21 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/27 16:45:23 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ void debug_info(t_params *params)
     printf("west: %s\n", params->west ? "true" : "false");
     printf("east: %s\n", params->east ? "true" : "false");
 	printf("map_size_x: %d\nmap_size_y: %d\n", params->map->size_x, params->map->size_y);
-	printf("player_pos_x: %d\nplayer_pos_y: %d\n", params->map->player.x, params->map->player.y);
+//	printf("player_pos_x: %d\nplayer_pos_y: %d\n", params->map->player.x, params->map->player.y);
 	printf("---------------------- fin info ----------------------\n");
 }
 

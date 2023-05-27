@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/27 15:51:39 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/27 16:21:17 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 void	a_pressed(t_params *params)
 {
 	params->map->player.angle = params->map->player.angle - 1;
-	if (params->map->player.angle < 0)
-		params->map->player.angle = 360 + params->map->player.angle;
 	mlx_delete_image(params->mlx, params->txt->ground);
 	render_skybox(params);
 	render_map(params);
@@ -29,9 +27,7 @@ void	a_pressed(t_params *params)
 
 void	d_pressed(t_params *params)
 {
-	params->map->player.angle = params->map->player.angle + 4;
-	if (params->map->player.angle > 360)
-		params->map->player.angle = params->map->player.angle - 360;
+	params->map->player.angle = params->map->player.angle + 1;
 	mlx_delete_image(params->mlx, params->txt->ground);
 	render_skybox(params);
 	render_map(params);

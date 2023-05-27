@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:06:45 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/27 15:58:07 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/27 16:24:53 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	put_line(t_params *params, int x, float distance)
 	int	y;
 
 	if (distance > params->map->size_y)
-		distance = 1080;
-	yoffset = (params->map->size_y - distance) / 2;
+		distance = params->map->size_y;
+	yoffset = (params->map->size_y - (int) distance) / 2;
 	y = 0;
 	while (y < distance)
 	{
@@ -60,7 +60,7 @@ float	get_distance(int angle, t_params *params)
 
 void	render_map(t_params *params)
 {
-	float	x;
+	int		x;
 	float	angle;
 	float	distance;
 	float	perpendicularDistance;
@@ -71,15 +71,11 @@ void	render_map(t_params *params)
 	{
 		angle = params->map->player.angle - params->fov / 2
 			+ (x * params->fov / params->map->size_x);
-		// if (angle > 360)
-		// 	angle = angle - 360;
-		// else if (angle < 0)
-		// 	angle = 360 + angle;
 		distance = get_distance(angle, params);
 		perpendicularDistance = fabs(distance * cos(angle * M_PI / 180 - params->map->player.angle));
 		wall_height = (64 / perpendicularDistance) * params->map->size_y;
 		put_line(params, x, wall_height);
-		printf("%f %f\n", wall_height, params->map->player.angle);
+		printf("%i %f\n", x, wall_height);
 		x++;
 	}
 	mlx_image_to_window(params->mlx, params->txt->ground, 0, 0);

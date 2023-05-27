@@ -6,7 +6,7 @@
 #    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/05/26 19:38:10 by kvebers          ###   ########.fr        #
+#    Updated: 2023/05/27 16:44:28 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
 SOURCE		=	main \
 				parsing/parser \
 				parsing/check_texture \
+				parsing/map \
+				parsing/player \
 				init/init \
 				init/utils \
 				init/keyhooks \

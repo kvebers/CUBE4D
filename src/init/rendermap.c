@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:06:45 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/27 16:24:53 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/27 16:54:34 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	render_map(t_params *params)
 	float	wall_height;
 
 	x = 0;
-	while (x <= params->map->size_x)
+	while (x < params->map->size_x)
 	{
 		angle = params->map->player.angle - params->fov / 2
 			+ (x * params->fov / params->map->size_x);

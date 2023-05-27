@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:06:45 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/27 12:21:23 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/27 15:58:07 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,21 @@
 #include "init.h"
 #include <math.h>
 
-void	put_line(t_params *params, int x, float offset)
+void	put_line(t_params *params, int x, float distance)
 {
+	int	yoffset;
 	int	y;
 
-	// if (offset < params->fov && offset > 0)
-	// 	y = offset / params->fov * 1080;
-	// else
-	// 	y = 0;
+	if (distance > params->map->size_y)
+		distance = 1080;
+	yoffset = (params->map->size_y - distance) / 2;
 	y = 0;
-	printf("%f\n", offset);
-	while (y < params->map->size_y - offset)
+	while (y < distance)
 	{
-		mlx_put_pixel(params->txt->ground, x, y, rgb(255, 0, 0, 255));
+		mlx_put_pixel(params->txt->ground, x, y + yoffset, rgb(255, 0, 0, 255));
 		y++;
 	}
 }
-
-float	get_tangent(float distance)
-{
-	if (distance == -1 || distance == 0)
-		return (0);
-	return (atan(64 / distance) * 180 / M_PI);
-}
-
 
 float	get_distance(int angle, t_params *params)
 {
@@ -48,17 +39,22 @@ float	get_distance(int angle, t_params *params)
 
 	cnt = 0;
 	vector = vector_estimation(1, angle);
-	vector1.pos_x = vector.pos_x;
-	vector1.pos_y = vector.pos_y;
+	vector1.pos_x = params->map->player.x;
+	vector1.pos_y = params->map->player.y;
 	while (cnt < 10000)
 	{
-		if (check_cordinates(params, vector1.pos_x, vector1.pos_x) == 0)
-			return (sqrt(vector1.pos_x * vector1.pos_x + vector1.pos_y * vector1.pos_y));
-		vector1.pos_y = vector1.pos_y + vector.pos_y;
-		vector1.pos_x = vector1.pos_x + vector.pos_x;
+		vector1.pos_y = vector1.pos_y - vector.pos_y;
+		vector1.pos_x = vector1.pos_x - vector.pos_x;
+		if (check_cordinates(params, vector1.pos_x, vector1.pos_y) == 0)
+		{
+			return (sqrt((vector1.pos_x - params->map->player.x)
+					* (vector1.pos_x - params->map->player.x)
+					+ (vector1.pos_y - params->map->player.y)
+					* (vector1.pos_y - params->map->player.y)));
+		}
 		cnt++;
 	}
-	return (-1);
+	return (0);
 }
 
 
@@ -67,16 +63,23 @@ void	render_map(t_params *params)
 	float	x;
 	float	angle;
 	float	distance;
-	float	get_offset;
+	float	perpendicularDistance;
+	float	wall_height;
 
-	x = params->map->size_x / (-2);
-	while (x < params->map->size_x / 2)
+	x = 0;
+	while (x <= params->map->size_x)
 	{
-		angle = params->fov / x + params->map->player.angle;
+		angle = params->map->player.angle - params->fov / 2
+			+ (x * params->fov / params->map->size_x);
+		// if (angle > 360)
+		// 	angle = angle - 360;
+		// else if (angle < 0)
+		// 	angle = 360 + angle;
 		distance = get_distance(angle, params);
-		get_offset = get_tangent(distance);
-		put_line(params, x + params->map->size_x / 4, get_offset);
-		//printf("%f %f %i\n",distance, angle, get_offset);
+		perpendicularDistance = fabs(distance * cos(angle * M_PI / 180 - params->map->player.angle));
+		wall_height = (64 / perpendicularDistance) * params->map->size_y;
+		put_line(params, x, wall_height);
+		printf("%f %f\n", wall_height, params->map->player.angle);
 		x++;
 	}
 	mlx_image_to_window(params->mlx, params->txt->ground, 0, 0);

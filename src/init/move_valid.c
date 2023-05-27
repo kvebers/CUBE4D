@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:36:51 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/27 10:37:40 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/27 14:41:43 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@
 
 int	check_cordinates(t_params *params, int x, int y)
 {
-	if (params->map->player.y + y <= 0 || params->map->player.x + x <= 0
-		|| params->map->player.x + x >= params->map->total_width
-		|| params->map->player.y + y >= params->map->total_height)
+	if (y <= 0 || x <= 0
+		|| x >= params->map->total_width
+		|| y >= params->map->total_height)
 		return (0);
-	if (*(params->lines[((int)(params->map->player.y + x))
-			/ 64] + (int) (params->map->player.x + y) / 64) == '1')
+	if (*(params->lines[((int)(y)) / 64] + (int) x / 64) == '1')
 		return (0);
 	return (1);
 }

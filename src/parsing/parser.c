@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/25 21:27:34 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/27 14:31:08 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ int parse(int argc, char **argv, t_params *params)
 {
 	int		fd;
 	params->txt = malloc(sizeof(t_textures));
-	params->map = malloc(sizeof(t_map)); //@todo added an  alocation here, since it is better here, should check on how to fix it up
+	params->map = malloc(sizeof(t_map));
 	if (argc != 3)
 	{
 		ft_printf_fd(2, error_msgs[INVALID_NUM_ARGS]);

@@ -6,12 +6,13 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/27 14:31:08 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/27 16:49:21 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "../../cub3d.h"
+
 
 parse_error		set_params(char c, char *str, t_params *p)
 {
@@ -107,16 +108,19 @@ parse_error		set_params(char c, char *str, t_params *p)
 	return (VALID);
 }
 
+/**
+ * @brief Parse the map file and set the parameters 
+ * @param p pointer to the params struct
+ * @return char** pointer to the first line of the map 
+ */
 char	**init_params(t_params *p)
 {
 	int i;
 	int j;
-	int map;
 	char **lines = p->lines;
 	parse_error error;
 
 	i = 0;
-	map = 0;
 	while (lines[i])
 	{
 		j = 0;
@@ -160,9 +164,10 @@ char	**get_lines(int fd)
 	return (lines);
 }
 
-void printParams(t_params *params) 
+void debug_info(t_params *params) 
 {
-    printf("\nlines: %p\n", (void *)params->lines);
+	printf("--------------------- debug info ---------------------\n");
+    printf("lines: %p\n", (void *)params->lines);
     printf("txt: %d %d %d\n", params->txt->c_r, params->txt->c_g, params->txt->c_b);
     printf("txt: %d %d %d\n", params->txt->f_r, params->txt->f_g, params->txt->f_b);
     printf("map: %p\n", (void *)params->map);
@@ -173,14 +178,15 @@ void printParams(t_params *params)
     printf("south: %s\n", params->south ? "true" : "false");
     printf("west: %s\n", params->west ? "true" : "false");
     printf("east: %s\n", params->east ? "true" : "false");
-	
+	printf("map_size_x: %d\nmap_size_y: %d\n", params->map->size_x, params->map->size_y);
+//	printf("player_pos_x: %d\nplayer_pos_y: %d\n", params->map->player.x, params->map->player.y);
+	printf("---------------------- fin info ----------------------\n");
 }
 
 int parse(int argc, char **argv, t_params *params)
 {
 	int		fd;
 	params->txt = malloc(sizeof(t_textures));
-	params->map = malloc(sizeof(t_map));
 	if (argc != 3)
 	{
 		ft_printf_fd(2, error_msgs[INVALID_NUM_ARGS]);
@@ -197,9 +203,15 @@ int parse(int argc, char **argv, t_params *params)
 	close(fd);
 
 	char **map = init_params(params);
-	if (!map)
+	init_map(params, map);
+	parse_map(params, map);
+	print_map(params, map);
+	init_player(params);
+	debug_info(params);
+
+	if (!params->map->map)
 		return 1;
-	printParams(params);
-	(void) map;
+
+	check_map(params, params->map->player.x, params->map->player.y);
 	return (0);
 }

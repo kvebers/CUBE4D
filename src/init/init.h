@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/26 19:37:52 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/27 10:14:48 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ t_vector	vector_estimation(int speed, int angle);
 //MOVE_VALID.c
 void	check_valid_move(t_params *params, float posx, float posy);
 void	check_valid_move1(t_params *params, float posx, float posy);
+int     check_cordinates(t_params *params, int x, int y);
 #endif

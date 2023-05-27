@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/26 19:37:00 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/27 12:04:52 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ void	d_pressed(t_params *params)
 	params->map->player.angle = params->map->player.angle + 4;
 	if (params->map->player.angle > 360)
 		params->map->player.angle = params->map->player.angle - 360;
+	mlx_delete_image(params->mlx, params->txt->ground);
+	render_skybox(params);
+	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
 }

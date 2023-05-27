@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
+#    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/05/24 16:54:10 by kvebers          ###   ########.fr        #
+#    Updated: 2023/05/27 10:17:18 by asioud           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
 SOURCE		=	main \
 				parsing/parser \
 				parsing/check_texture \
+				parsing/map \
+				parsing/player \
 				init/init \
 				init/utils \
 				init/keyhooks \

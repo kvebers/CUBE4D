@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/25 22:22:12 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/27 16:40:05 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef enum
 	INVALID_WEST_PATH,
 	INVALID_EAST_PATH,
 	MAP_404,	
+	MAP_NOT_CLOSED,
 } parse_error;
 
 static char *error_msgs[100]	= {
@@ -78,6 +79,7 @@ static char *error_msgs[100]	= {
 	[INVALID_WEST_PATH]			=	"Error\nInvalid west path\n",
 	[INVALID_EAST_PATH]			=	"Error\nInvalid east path\n",
 	[MAP_404]					=	"Error\nMap not found\n",
+	[MAP_NOT_CLOSED]			=	"Error\nMap not closed\n",
 	
 };
 
@@ -139,5 +141,12 @@ int	parse(int argc, char **argv, t_params *params);
 /* check_texture.c */
 parse_error		set_ceiling(char *str, t_params *p);
 parse_error		set_floor(char *str, t_params *p);
+
+void	init_map(t_params *p, char **map);
+void	parse_map(t_params *p, char **map);
+void	check_map(t_params *p, int x, int y);
+
+int	init_player(t_params *p);
+void print_map(t_params *p, char **map);
 
 #endif

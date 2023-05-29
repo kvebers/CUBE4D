@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:04:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/27 11:11:01 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/29 15:41:18 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	render_player(t_params *params)
 		while (y < upper_border)
 		{
 			if (y * y + x * x < 100)
-				mlx_put_pixel(params->txt->minimap, x + size, y + size, 2000);
+				mlx_put_pixel(params->txt->minimap, x + size, y + size,
+					rgb(255, 0, 0, 255));
 			y++;
 		}
 		x++;
@@ -44,14 +45,14 @@ void	render_mini_map(t_params *params, int x, int y)
 	int	new_x;
 	int	new_y;
 
-	new_x = x + params->map->player.x - params->map->offset;
-	new_y = y + params->map->player.y - params->map->offset;
+	new_x = x * 2 + params->map->player.x - params->map->offset * 2;
+	new_y = y * 2 + params->map->player.y - params->map->offset * 2;
 	if (new_x <= 0 || new_y <= 0)
 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
 	else if (new_x >= params->map->total_width
 		|| new_y >= params->map->total_height)
 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
-	else if (*(params->lines[new_y / 64] + new_x / 64) != '1')
+	else if (params->map->map[new_x / 64][new_y / 64] != '1')
 		mlx_put_pixel(params->txt->minimap, x, y, rgb(13, 13, 13, 255));
 	else
 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
@@ -90,7 +91,6 @@ void	render_minimap(t_params *params)
 		}
 		x++;
 	}
-	x = 0;
 	render_player(params);
 	mlx_image_to_window(params->mlx, params->txt->minimap,
 		params->map->size_x - params->map->size_y / 4,

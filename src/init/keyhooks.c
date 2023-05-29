@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/27 16:21:17 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/29 15:06:00 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	a_pressed(t_params *params)
 {
-	params->map->player.angle = params->map->player.angle - 1;
+	params->map->player.angle = params->map->player.angle - SPEED / 2;
 	mlx_delete_image(params->mlx, params->txt->ground);
 	render_skybox(params);
 	render_map(params);
@@ -27,7 +27,7 @@ void	a_pressed(t_params *params)
 
 void	d_pressed(t_params *params)
 {
-	params->map->player.angle = params->map->player.angle + 1;
+	params->map->player.angle = params->map->player.angle + SPEED / 2;
 	mlx_delete_image(params->mlx, params->txt->ground);
 	render_skybox(params);
 	render_map(params);
@@ -72,7 +72,7 @@ void	keyhook(mlx_key_data_t key_data, void *param)
 		w_pressed(params);
 	else if (mlx_is_key_down(params->mlx, MLX_KEY_S))
 		s_pressed(params);
-	if (mlx_is_key_down(params->mlx, MLX_KEY_A))
+	else if (mlx_is_key_down(params->mlx, MLX_KEY_A))
 		a_pressed(params);
 	else if (mlx_is_key_down(params->mlx, MLX_KEY_D))
 		d_pressed(params);

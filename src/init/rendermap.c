@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:06:45 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/29 13:19:55 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/29 15:35:35 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,75 +15,122 @@
 #include "init.h"
 #include <math.h>
 
-// void	put_line(t_params *params, int x, float distance)
-// {
-// 	int	yoffset;
-// 	int	y;
-
-// 	if (distance > params->map->size_y)
-// 		distance = params->map->size_y;
-// 	yoffset = (params->map->size_y - (int) distance) / 2;
-// 	y = 0;
-// 	while (y < distance)
-// 	{
-// 		mlx_put_pixel(params->txt->ground, x, y + yoffset, rgb(255, 0, 0, 255));
-// 		y++;
-// 	}
-// }
-
-// float	get_distance(int angle, t_params *params)
-// {
-// 	int			cnt;
-// 	t_vector	vector;
-// 	t_vector	vector1;
-
-// 	cnt = 0;
-// 	vector = vector_estimation(1, angle);
-// 	vector1.pos_x = params->map->player.x;
-// 	vector1.pos_y = params->map->player.y;
-// 	while (cnt < 10000)
-// 	{
-// 		vector1.pos_y = vector1.pos_y - vector.pos_y;
-// 		vector1.pos_x = vector1.pos_x - vector.pos_x;
-// 		if (check_cordinates(params, vector1.pos_x, vector1.pos_y) == 0)
-// 		{
-// 			return (sqrt((vector1.pos_x - params->map->player.x)
-// 					* (vector1.pos_x - params->map->player.x)
-// 					+ (vector1.pos_y - params->map->player.y)
-// 					* (vector1.pos_y - params->map->player.y)));
-// 		}
-// 		cnt++;
-// 	}
-// 	return (0);
-// }
-
-
-// void	render_map(t_params *params)
-// {
-// 	int		x;
-// 	float	angle;
-// 	float	distance;
-// 	float	perpendicularDistance;
-// 	float	wall_height;
-
-// 	x = 0;
-// 	while (x < params->map->size_x)
-// 	{
-// 		angle = params->map->player.angle - params->fov / 2
-// 			+ (x * params->fov / params->map->size_x);
-// 		distance = get_distance(angle, params);
-// 		perpendicularDistance = fabs(distance * cos(angle * M_PI / 180 - params->map->player.angle));
-// 		wall_height = (64 / perpendicularDistance) * params->map->size_y;
-// 		put_line(params, x, wall_height);
-// 		// printf("%i %f\n", x, wall_height);
-// 		x++;
-// 	}
-// 	mlx_image_to_window(params->mlx, params->txt->ground, 0, 0);
-// }
-
-void	render_map(t_params *params)
+void	draw_line(t_params *params, t_ray *ray)
 {
-	(void) params;
+	while (ray->draw_start < ray->draw_end)
+	{
+		mlx_put_pixel(params->txt->ground, ray->x, ray->draw_start, rgb(255, 0, 0, 255));
+		ray->draw_start++;
+	}
+}
+
+void	calculate_wall_dist(t_params *params, t_ray *ray)
+{
+	if (ray->side == 0)
+		ray->p_wall = ray->side_step.pos_x - ray->delta_dist.pos_x;
+	else
+		ray->p_wall = ray->side_step.pos_y - ray->delta_dist.pos_y;
+	ray->line_height = (int)params->map->size_y / ray->p_wall;
+	ray->draw_start = -ray->line_height / 2 + params->map->size_y / 2;
+	if (ray->draw_start < 0)
+		ray->draw_start = 0;
+	ray->draw_end = ray->line_height / 2 + params->map->size_y / 2;
+	if (ray->draw_start > params->map->size_y)
+		ray->draw_end = params->map->size_y - 1;
+}
+
+void	dda(t_params *params, t_ray *ray)
+{
+	while (ray->hit == 0)
+	{
+		if (ray->side_step.pos_x < ray->side_step.pos_y)
+		{
+			ray->side_step.pos_x += ray->delta_dist.pos_x;
+			ray->player.pos_x += ray->step_x;
+			ray->side = 0;
+		}
+		else
+		{
+			ray->side_step.pos_y += ray->delta_dist.pos_y;
+			ray->player.pos_y += ray->step_y;
+			ray->side = 1;
+		}
+		if (check_cordinates(params, ray->player.pos_x, ray->player.pos_x) == 0)
+			ray->hit = 1;
+	}
+}
+
+void	step_side_dist(t_params *params, t_ray *ray)
+{
+	if (ray->dir.pos_x < 0)
+	{
+		ray->step_x = -1;
+		ray->side_step.pos_x = (ray->player.pos_x - params->map->player.x)
+			* ray->delta_dist.pos_x;
+	}
+	else
+	{
+		ray->step_x = 1;
+		ray->side_step.pos_x = (ray->player.pos_x - params->map->player.x + 1)
+			* ray->delta_dist.pos_x;
+	}
+	if (ray->dir.pos_y < 0)
+	{
+		ray->step_y = -1;
+		ray->side_step.pos_y = (ray->player.pos_y - params->map->player.y)
+			* ray->delta_dist.pos_y;
+	}
+	else
+	{
+		ray->step_y = 1;
+		ray->side_step.pos_y = (ray->player.pos_y - params->map->player.y + 1)
+			* ray->delta_dist.pos_y;
+	}
+}
+
+void	init_ray(t_params *params, t_ray *ray)
+{
+	ray->hit = 0;
+	ray->side = 0;
+	ray->player.pos_x = (int)params->map->player.x;
+	ray->player.pos_y = (int)params->map->player.y;
+	ray->camera_x = ray->x * 2 / (double)params->map->size_x - 1;
+	ray->dir.pos_x = ray->v_angle.pos_x + ray->c_p2d.pos_x * ray->camera_x;
+	ray->dir.pos_y = ray->v_angle.pos_y + ray->c_p2d.pos_y * ray->camera_x;
+	ray->delta_dist.pos_x = fabs(1 / ray->dir.pos_x);
+	ray->delta_dist.pos_y = fabs(1 / ray->dir.pos_y);
+	if (ray->dir.pos_x < EPSILON && ray->dir.pos_x > -EPSILON)
+		ray->delta_dist.pos_x = 1;
+	if (ray->dir.pos_y < EPSILON && ray->dir.pos_y > -EPSILON)
+		ray->delta_dist.pos_y = 1;
+}
+
+void	init_ray_const(t_params *params, t_ray *ray)
+{
+	ray->c_plane = 0.66;
+	ray->angle = params->map->player.angle;
+	ray->angle_rad = ray->angle * M_PI / 180;
+	ray->v_angle.pos_x = cos(ray->angle_rad);
+	ray->v_angle.pos_y = sin(ray->angle_rad);
+	ray->c_p2d.pos_x = ray->v_angle.pos_y;
+    ray->c_p2d.pos_y = ray->v_angle.pos_x;
+	ray->x = 0;
+}
+
+void	render_map(t_params	*params)
+{
+	t_ray	ray;
+
+	init_ray_const(params, &ray);
+	while (ray.x < params->map->size_x)
+	{
+		init_ray(params, &ray);
+		step_side_dist(params, &ray);
+		dda(params, &ray);
+		calculate_wall_dist(params, &ray);
+		draw_line(params, &ray);
+		ray.x++;
+	}
 	mlx_image_to_window(params->mlx, params->txt->ground, 0, 0);
 }
 

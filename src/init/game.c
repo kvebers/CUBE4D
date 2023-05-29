@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/29 13:32:00 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/29 14:56:57 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ void	init_settings(t_params *p)
 	p->map->offset = OFFSET;
 	p->map->total_width = p->map->width * 64;
 	p->map->total_height = p->map->height * 64;
+	p->map->player.x = p->map->player.x * 64;
+	p->map->player.y = p->map->player.y * 64;
 }
 
 int	init_cube(t_params *params)
 {
-	params->mlx = mlx_init(1920, 1080, "Cub3d", false);
 	init_settings(params);
+	params->mlx = mlx_init(1920, 1080, "Cub3d", false);
 	debug_info(params);
 	game_loop(params);
 	free(params->map->map);

@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/29 15:55:10 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/29 16:22:06 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 typedef struct s_params	t_params;
 typedef struct s_vector	t_vector;
+typedef struct s_ray	t_ray;
 //INIT.c
 int			init_cube(t_params *params);
 //UTILS.c
@@ -35,7 +36,9 @@ void		test_textures(t_params *params);
 //VECTORS.c
 t_vector	vector_estimation(int speed, int angle);
 //MOVE_VALID.c
-void	check_valid_move(t_params *params, double posx, double posy);
-void	check_valid_move1(t_params *params, double posx, double posy);
-int		check_cordinates(t_params *params, int x, int y);
+void		check_valid_move(t_params *params, double posx, double posy);
+void		check_valid_move1(t_params *params, double posx, double posy);
+int			check_cordinates(t_params *params, int x, int y);
+//DEBUG.c
+void    	debug_ray(t_ray *ray);
 #endif

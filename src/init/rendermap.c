@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:06:45 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/29 15:35:35 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/29 16:25:10 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	init_ray_const(t_params *params, t_ray *ray)
 	ray->angle_rad = ray->angle * M_PI / 180;
 	ray->v_angle.pos_x = cos(ray->angle_rad);
 	ray->v_angle.pos_y = sin(ray->angle_rad);
-	ray->c_p2d.pos_x = ray->v_angle.pos_y;
+	ray->c_p2d.pos_x = ray->v_angle.pos_y * -1;
     ray->c_p2d.pos_y = ray->v_angle.pos_x;
 	ray->x = 0;
 }
@@ -129,6 +129,7 @@ void	render_map(t_params	*params)
 		dda(params, &ray);
 		calculate_wall_dist(params, &ray);
 		draw_line(params, &ray);
+		debug_ray(&ray);
 		ray.x++;
 	}
 	mlx_image_to_window(params->mlx, params->txt->ground, 0, 0);

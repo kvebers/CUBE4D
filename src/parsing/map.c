@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:33 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/27 16:40:41 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/29 11:05:01 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 
 char	put_chars(char c);
+
 /**
  * @brief Recursively call the checkmap function for the adjacent cells in the map:
  * @param p The params struct

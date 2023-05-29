@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/27 16:49:21 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/29 11:17:54 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,14 @@ parse_error		set_params(char c, char *str, t_params *p)
 	if (c == 'F' && *(str + 1) == ' ')
 	{
 		if (p->floor)
+		{
 			return (MULT_NORTH_INPUT);
+		}
 		else
+		{
 			if ((err = set_floor(str, p)) != VALID)
 				ft_putstr_fd(error_msgs[INVALID_FLOOR_FORMAT], 2);
+		}
 	}
 	else if (c == 'C' && *(str + 1) == ' ')
 	{
@@ -119,7 +123,7 @@ char	**init_params(t_params *p)
 	int j;
 	char **lines = p->lines;
 	parse_error error;
-
+	
 	i = 0;
 	while (lines[i])
 	{
@@ -167,19 +171,26 @@ char	**get_lines(int fd)
 void debug_info(t_params *params) 
 {
 	printf("--------------------- debug info ---------------------\n");
-    printf("lines: %p\n", (void *)params->lines);
-    printf("txt: %d %d %d\n", params->txt->c_r, params->txt->c_g, params->txt->c_b);
-    printf("txt: %d %d %d\n", params->txt->f_r, params->txt->f_g, params->txt->f_b);
+		
     printf("map: %p\n", (void *)params->map);
     printf("mlx: %p\n", (void *)params->mlx);
-    printf("floor: %s\n", params->floor ? "true" : "false");
-    printf("ceiling: %s\n", params->ceiling ? "true" : "false");
-    printf("north: %s\n", params->north ? "true" : "false");
-    printf("south: %s\n", params->south ? "true" : "false");
-    printf("west: %s\n", params->west ? "true" : "false");
-    printf("east: %s\n", params->east ? "true" : "false");
+    printf("floor: %s    | r:%d g:%d b:%d\n", params->floor ? "true" : "false", params->txt->f_r, params->txt->f_g, params->txt->f_b);
+    printf("ceiling: %s  | r:%d g:%d b:%d\n", params->ceiling ? "true" : "false", params->txt->c_r, params->txt->c_g, params->txt->c_b);
+    printf("north: %s  | %p\n", params->north ? "true" : "false", params->txt->no);
+    printf("south: %s  | %p\n", params->south ? "true" : "false", params->txt->so);
+    printf("west: %s   | %p\n", params->west ? "true" : "false", params->txt->we);
+    printf("east: %s   | %p\n", params->east ? "true" : "false",	params->txt->ea);
 	printf("map_size_x: %d\nmap_size_y: %d\n", params->map->size_x, params->map->size_y);
-//	printf("player_pos_x: %d\nplayer_pos_y: %d\n", params->map->player.x, params->map->player.y);
+	printf("player_pos_x: %f\nplayer_pos_y: %f\n", params->map->player.x, params->map->player.y);
+	printf("player_angle: %f\n", params->map->player.angle);
+	printf("player_speed: %d\n", params->map->speed);
+	printf("minimap_box: %d\n", params->map->minimap_box);
+	printf("offset: %d\n", params->map->offset);
+	printf("height: %d\n", params->map->height);
+	printf("width: %d\n", params->map->width);
+	printf("total_width: %d\n", params->map->total_width);
+	printf("total_height: %d\n", params->map->total_height);
+
 	printf("---------------------- fin info ----------------------\n");
 }
 
@@ -207,7 +218,6 @@ int parse(int argc, char **argv, t_params *params)
 	parse_map(params, map);
 	print_map(params, map);
 	init_player(params);
-	debug_info(params);
 
 	if (!params->map->map)
 		return 1;

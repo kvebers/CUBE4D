@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendermap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:06:45 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/27 16:54:34 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/29 11:16:01 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	render_map(t_params *params)
 		perpendicularDistance = fabs(distance * cos(angle * M_PI / 180 - params->map->player.angle));
 		wall_height = (64 / perpendicularDistance) * params->map->size_y;
 		put_line(params, x, wall_height);
-		printf("%i %f\n", x, wall_height);
+		// printf("%i %f\n", x, wall_height);
 		x++;
 	}
 	mlx_image_to_window(params->mlx, params->txt->ground, 0, 0);

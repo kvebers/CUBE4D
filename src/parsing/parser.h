@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/29 15:29:53 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/29 19:03:35 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,25 +91,20 @@ typedef struct s_vector
 
 typedef struct s_ray
 {
-	int			x;
-	int			hit;
-	int			side;
-	int			step_x;
-	int			step_y;
-	int			line_height;
-	int			draw_start;
-	int			draw_end;
-	double		camera_x;
-	double		c_plane;
-	double		angle_rad;
-	double		angle;
-	double		p_wall;
-	t_vector	player;
-	t_vector	side_step;
-	t_vector	v_angle;
-	t_vector	dir;
-	t_vector	c_p2d;
-	t_vector	delta_dist;
+	double		player_angle;
+	double		ray_angle;
+	double		half_fov;
+	double		distance;
+	double		ray_increment;
+	double		ray_cos;
+	double		ray_sin;
+	double		ray_radians;
+	t_vector	ray_pos;
+	int			ray_count;
+	int			wall;
+	int			wall_height;
+	int			start_pos;
+	int			end_pos;
 }	t_ray;
 
 typedef struct s_pos
@@ -131,6 +126,7 @@ typedef struct s_map
 	int		minimap_box;
 	int		width;
 	int		height;
+	double	fov;
 	t_pos	player;
 }	t_map;
 

@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/29 14:56:57 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/29 21:01:13 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_settings(t_params *p)
 	p->map->size_y = WIDTH;
 	p->map->minimap_box = MINIMAP_BOX;
 	p->map->offset = OFFSET;
+	p->map->fov = 66.0;
 	p->map->total_width = p->map->width * 64;
 	p->map->total_height = p->map->height * 64;
 	p->map->player.x = p->map->player.x * 64;

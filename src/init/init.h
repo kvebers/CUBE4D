@@ -6,16 +6,18 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/29 16:22:06 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/29 18:18:21 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INIT_H
 # define INIT_H
 
-# define EPSILON 0.000001
 # include "../../cub3d.h"
 # include "../../libs/MLX42/include/MLX42/MLX42.h"
+
+# define EPSILON 0.000001
+# define PRECISION 64
 
 typedef struct s_params	t_params;
 typedef struct s_vector	t_vector;

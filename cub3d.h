@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 03:06:44 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/29 15:45:48 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/29 20:04:36 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define ANGLE 270
 # define FOV 60
-# define SPEED 20
+# define SPEED 10
 # define HEIGHT 1920
 # define WIDTH 1080
 # define MINIMAP_BOX WIDTH / 4

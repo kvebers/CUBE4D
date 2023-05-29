@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:36:51 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/29 15:44:35 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/29 20:04:20 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	check_valid_move(t_params *params, double posx, double posy)
 	int	x;
 	int	y;
 
-	x = (int)((round(params->map->player.x - posx) / 64));
-	y = (int)((round(params->map->player.y - posy) / 64));
+	x = (int)((round(params->map->player.x - posx * 1.5) / 64));
+	y = (int)((round(params->map->player.y - posy * 1.5) / 64));
 	if (params->map->map[x][y] != '1')
 	{
 		params->map->player.x = params->map->player.x - posx;
@@ -56,8 +56,8 @@ void	check_valid_move1(t_params *params, double posx, double posy)
 	int	x;
 	int	y;
 
-	x = (int)((round(params->map->player.x + posx) / 64));
-	y = (int)((round(params->map->player.y + posy) / 64));
+	x = (int)((round(params->map->player.x + posx * 1.5) / 64));
+	y = (int)((round(params->map->player.y + posy * 1.5) / 64));
 	if (params->map->map[x][y] != '1')
 	{
 		params->map->player.x = params->map->player.x + posx;

@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:04:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/26 20:29:35 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/27 11:11:01 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	render_player(t_params *params)
 		y = upper_border * (-1);
 		while (y < upper_border)
 		{
-			if (y * y + x * x < 64)
+			if (y * y + x * x < 100)
 				mlx_put_pixel(params->txt->minimap, x + size, y + size, 2000);
 			y++;
 		}

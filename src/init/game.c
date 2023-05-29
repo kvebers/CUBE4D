@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/25 23:36:10 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/27 11:22:50 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ void	game_loop(t_params *params)
 	mlx_key_hook(params->mlx, keyhook, params);
 	mlx_loop(params->mlx);
 }
-
-//tocheckout add flexible map scaling
-//@todo add variables for the map size
-//@todo add flexible map size
 
 int	init_cube(t_params *params)
 {

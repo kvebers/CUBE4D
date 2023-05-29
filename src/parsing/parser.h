@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/29 11:18:39 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/29 13:28:36 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ typedef struct s_map
 	int		**map;
 	int		total_width;
 	int		total_height;
-	int		width;
 	int		offset;
 	int		speed;
 	int		minimap_box;
+	int		width;
 	int		height;
 	t_pos	player;
 }	t_map;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:54 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/27 16:05:02 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/29 13:44:32 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	init_player(t_params *p)
 		}
 		i++;
 	}
+	/*@todo set degree here */
 	if (c == 0)
 	{
 		ft_putstr_fd("NO SPAWNPOINT\n", 2);

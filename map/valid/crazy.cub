@@ -4,7 +4,7 @@ WE textures/Test1.png
 EA textures/Test1.png
 
 F 0,0,0
-C 10,10,10
+C 255,10,10
 
                        1111111
                        100001

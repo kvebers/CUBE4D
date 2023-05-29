@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:33 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/29 11:05:01 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/29 13:29:25 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	parse_map(t_params *p, char **map)
 		i++;
 		x++;
 	}
+		p->map->height = i; /* to change later */
 }
 
 /**
@@ -153,7 +154,7 @@ void	init_map(t_params *p, char **map)
 	}
 }
 
-void print_map(t_params *p, char **map)
+void	print_map(t_params *p, char **map)
 {
 	int i = 0;
 	int j = 0;

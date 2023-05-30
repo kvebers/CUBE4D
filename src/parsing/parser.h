@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/30 08:51:23 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 10:41:48 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ parse_error		set_floor(char *str, t_params *p);
 
 void	init_map(t_params *p, char **map);
 void	parse_map(t_params *p, char **map);
-void	check_map(t_params *p, int x, int y);
+void	check_map(t_params *p, int x, int y, int **map);
 
 int	init_player(t_params *p);
 void print_map(t_params *p, char **map);

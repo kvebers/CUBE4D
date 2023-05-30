@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:04:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/29 15:41:18 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 10:18:26 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include "init.h"
 #include "math.h"
+
 
 void	render_player(t_params *params)
 {
@@ -40,23 +41,40 @@ void	render_player(t_params *params)
 	}
 }
 
-void	render_mini_map(t_params *params, int x, int y)
-{
-	int	new_x;
-	int	new_y;
+// void	render_mini_map(t_params *params, int x, int y)
+// {
+// 	int	new_x;
+// 	int	new_y;
 
-	new_x = x * 2 + params->map->player.x - params->map->offset * 2;
-	new_y = y * 2 + params->map->player.y - params->map->offset * 2;
-	if (new_x <= 0 || new_y <= 0)
-		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
-	else if (new_x >= params->map->total_width
-		|| new_y >= params->map->total_height)
-		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
-	else if (params->map->map[new_x / 64][new_y / 64] != '1')
-		mlx_put_pixel(params->txt->minimap, x, y, rgb(13, 13, 13, 255));
-	else
-		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
+// 	new_x = x * 2 + params->map->player.x - params->map->offset * 2;
+// 	new_y = y * 2 + params->map->player.y - params->map->offset * 2;
+// 	if (new_x <= 0 || new_y <= 0)
+// 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
+// 	else if (new_x >= params->map->total_width
+// 		|| new_y >= params->map->total_height)
+// 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
+// 	else if (params->map->map[new_x / 64][new_y / 64] != '1')
+// 		mlx_put_pixel(params->txt->minimap, x, y, rgb(13, 13, 13, 255));
+// 	else
+// 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
+// }
+
+void render_mini_map(t_params *params, int x, int y)
+{
+    int new_x;
+    int new_y;
+
+    new_x = x * 2 + params->map->player.x - params->map->offset * 2;
+    new_y = y * 2 + params->map->player.y - params->map->offset * 2;
+    if (new_x < 0 || new_y < 0 || new_x >= params->map->total_width
+        || new_y >= params->map->total_height)
+        mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
+    else if (params->map->map[new_x / 64][new_y / 64] != '1')
+        mlx_put_pixel(params->txt->minimap, x, y, rgb(13, 13, 13, 255));
+    else
+        mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
 }
+
 
 void	put_mini_pixel(t_params *params, int x, int y)
 {
@@ -96,3 +114,28 @@ void	render_minimap(t_params *params)
 		params->map->size_x - params->map->size_y / 4,
 		params->map->size_y - params->map->size_y / 4);
 }
+
+// void render_minimap(t_params *params)
+// {
+//     int x;
+//     int y;
+
+//     params->txt->minimap = mlx_new_image(params->mlx,
+//         params->map->minimap_box, params->map->minimap_box);
+//     x = 0;
+//     while (x < params->map->size_x / 4)
+//     {
+//         y = 0;
+//         while (y < params->map->size_y / 4)
+//         {
+//             render_mini_map(params, x, y);
+//             put_mini_pixel(params, x, y);
+//             y++;
+//         }
+//         x++;
+//     }
+//     render_player(params);
+//     mlx_image_to_window(params->mlx, params->txt->minimap,
+//         params->map->size_x - params->map->size_y / 4,
+//         params->map->size_y - params->map->size_y / 4);
+// }

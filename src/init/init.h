@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/29 18:18:21 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 13:28:29 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,7 @@ void		check_valid_move1(t_params *params, double posx, double posy);
 int			check_cordinates(t_params *params, int x, int y);
 //DEBUG.c
 void    	debug_ray(t_ray *ray);
+//render_texture.c
+int32_t	    render_pixel(t_params *params, t_ray *ray);
+
 #endif

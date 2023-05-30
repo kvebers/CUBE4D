@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:06:45 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/30 10:32:41 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 10:58:53 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,7 @@ void	init_ray(t_params *params, t_ray *ray)
 	ray->ray_radians = ray->ray_angle * M_PI / 180;
 	ray->ray_cos = cos(ray->ray_radians);
 	ray->ray_sin = sin(ray->ray_radians);
+	ray->perp_ray = ray->ray_angle - 90;
 	ray->wall = 0;
 }
 

@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:06:45 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/29 21:06:19 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 10:32:41 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void	calculate_distance(t_params *params, t_ray *ray)
 			ray->wall = 1;
 	}
 	ray->distance = sqrt(pow(params->map->player.x - ray->ray_pos.pos_x, 2)
-			+ pow(params->map->player.y - ray->ray_pos.pos_y, 2));
+			+ pow(params->map->player.y - ray->ray_pos.pos_y, 2)) / 64;
 	ray->distance = ray->distance * cos(M_PI / 180
 			* (ray->ray_angle - params->map->player.angle));
 	if (ray->distance <= 0)
@@ -169,6 +169,8 @@ void	init_ray(t_params *params, t_ray *ray)
 {
 	ray->ray_pos.pos_x = params->map->player.x;
 	ray->ray_pos.pos_y = params->map->player.y;
+	ray->ray_perp = ((ray->ray_angle - 90) * M_PI / 180);
+	ray->ray_pos.pos_x = ray->ray_pos.pos_x + ray->ray_count * cos(ray->ray_perp) / 1920;
 	ray->ray_radians = ray->ray_angle * M_PI / 180;
 	ray->ray_cos = cos(ray->ray_radians);
 	ray->ray_sin = sin(ray->ray_radians);
@@ -181,7 +183,7 @@ void	init_ray_frame(t_params *params, t_ray *ray)
 	ray->ray_increment = (double) params->fov / (double) params->map->size_x;
 	if (ray->ray_increment < EPSILON)
 		ray->ray_increment = 66.0 / 1920.0;
-	ray->ray_angle = params->map->player.angle - ray->half_fov;
+	ray->ray_angle = params->map->player.angle - 30;
 	ray->ray_count = 0;
 }
 

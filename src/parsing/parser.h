@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/29 19:03:35 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 09:19:09 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct s_ray
 	double		ray_cos;
 	double		ray_sin;
 	double		ray_radians;
+	double		ray_perp;
 	t_vector	ray_pos;
 	int			ray_count;
 	int			wall;

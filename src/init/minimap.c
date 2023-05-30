@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:04:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/29 15:41:18 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 10:18:59 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,29 @@
 #include <stdio.h>
 #include "init.h"
 #include "math.h"
+
+void	print_cordinates(t_params *params)
+{
+	int x;
+	int y;
+
+	x = 0;
+	while (x < params->map->height)
+	{
+	y = 0;
+		while (y < params->map->width)
+		{
+			if (x != (int)(params->map->player.x / 64) && (int) (params->map->player.y / 64) != y)
+				printf("%c", params->map->map[x][y]);
+			else
+				printf("*");
+			y++;
+		}
+		printf("\n");
+		x++;
+	}
+}
+
 
 void	render_player(t_params *params)
 {
@@ -45,8 +68,8 @@ void	render_mini_map(t_params *params, int x, int y)
 	int	new_x;
 	int	new_y;
 
-	new_x = x * 2 + params->map->player.x - params->map->offset * 2;
-	new_y = y * 2 + params->map->player.y - params->map->offset * 2;
+	new_x = x + params->map->player.x - params->map->offset;
+	new_y = y + params->map->player.y - params->map->offset;
 	if (new_x <= 0 || new_y <= 0)
 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
 	else if (new_x >= params->map->total_width
@@ -80,6 +103,7 @@ void	render_minimap(t_params *params)
 	params->txt->minimap = mlx_new_image(params->mlx,
 			params->map->minimap_box, params->map->minimap_box);
 	x = 0;
+	print_cordinates(params);
 	while (x < minimap_box_y)
 	{
 		y = 0;

@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/30 16:08:27 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/31 00:12:18 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,23 @@ void debug_info(t_params *params)
 	printf("---------------------- fin info ----------------------\n");
 }
 
+void free_params(t_params *params)
+{
+	int i;
+
+	i = 0;
+	while (params->lines[i])
+	{
+		free(params->lines[i]);
+		i++;
+	}
+	free(params->lines);
+	free(params->txt);
+	free(params->map);
+	free(params->mlx);
+	free(params);
+}
+
 int parse(int argc, char **argv, t_params *params)
 {
 	int		fd;
@@ -221,11 +238,14 @@ int parse(int argc, char **argv, t_params *params)
 	print_map(params, NULL);
 	debug_info(params);
 	if (!params->map->map)
+	{
+		free_params(params);
 		return 1;
+	}
 
 	int **map_copy = (int **) copy_2d_array((void **)params->map->map, \
 	params->map->map_height, params->map->map_width, sizeof(int));
 	check_map(params, params->map->player.map_x, params->map->player.map_y, map_copy);
-	
+	free(map_copy);	
 	return (0);
 }

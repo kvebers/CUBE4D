@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:33 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/30 10:41:53 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/30 11:19:19 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,10 +156,10 @@ void	print_map(t_params *p, char **map)
 	printf("\n");
 	int i = 0;
 	int j = 0;
-	while (i < p->map->size_x)
+	while (i < p->map->height)
 	{
 		j = 0;
-		while (j < p->map->size_y)
+		while (j < p->map->width)
 		{
 			put_chars((char)p->map->map[i][j]);
 			j++;

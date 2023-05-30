@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:04:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/30 11:11:01 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 11:15:38 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	render_minimap(t_params *params)
 	params->txt->minimap = mlx_new_image(params->mlx,
 			params->map->minimap_box, params->map->minimap_box);
 	x = 0;
-	print_cordinates(params);
 	while (x < minimap_box_y)
 	{
 		y = 0;

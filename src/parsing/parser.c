@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/30 10:56:54 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/30 11:17:07 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,6 @@ int parse(int argc, char **argv, t_params *params)
 	char **map = init_params(params);
 	init_map(params, map);
 	parse_map(params, map);
-	print_map(params, map);
 	init_player(params);
 	if (!params->map->map)
 		return 1;

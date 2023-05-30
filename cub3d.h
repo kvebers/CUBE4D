@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 03:06:44 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/29 20:04:36 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 15:25:00 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include "src/init/init.h"
 # include "src/parsing/parser.h"
 
-# define ANGLE 270
 # define FOV 60
 # define SPEED 10
 # define HEIGHT 1920

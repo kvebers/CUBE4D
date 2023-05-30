@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:33 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/30 11:19:19 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 15:55:51 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	check_map(t_params *p, int x, int y, int **map)
 		return ;
 	if (map[x][y] == '\n' || map[x][y] == '\0')
 		return ;
-	if ((x < 0 || y < 0 || x == p->map->size_x))
+	if ((x < 0 || y < 0 || x == p->map->map_height))
 	{
 		ft_putstr_fd(error_msgs[MAP_NOT_CLOSED], 2);
 		return ;
@@ -93,7 +93,7 @@ void	parse_map(t_params *p, char **map)
 		i++;
 		x++;
 	}
-		p->map->height = i; /* to change later */
+		p->map->map_height = i; /* to change later */
 }
 
 /**
@@ -121,7 +121,7 @@ void	init_map(t_params *p, char **map)
 		i++;
 	}
 	p->map = (t_map *)malloc(sizeof(t_map));
-	p->map->size_x = i;
+	p->map->map_height = i;
 	i = 0;
 	j = 0;
 	len = 0;
@@ -140,13 +140,13 @@ void	init_map(t_params *p, char **map)
 			biglen = len;
 		i++;
 	}
-	p->map->size_y = biglen;
-	p->map->map = (int **)malloc(p->map->size_x * sizeof(int *));
+	p->map->map_width = biglen;
+	p->map->map = (int **)malloc(p->map->map_height * sizeof(int *));
 	i = 0;
-	while (i < p->map->size_x)
+	while (i < p->map->map_height)
 	{
-		p->map->map[i] = (int *)malloc(p->map->size_y * sizeof(int));
-		ft_memset(p->map->map[i], 9, p->map->size_y * sizeof(int));
+		p->map->map[i] = (int *)malloc(p->map->map_width * sizeof(int));
+		ft_memset(p->map->map[i], 9, p->map->map_width * sizeof(int));
 		i++;
 	}
 }
@@ -156,10 +156,10 @@ void	print_map(t_params *p, char **map)
 	printf("\n");
 	int i = 0;
 	int j = 0;
-	while (i < p->map->height)
+	while (i < p->map->map_height)
 	{
 		j = 0;
-		while (j < p->map->width)
+		while (j < p->map->map_width)
 		{
 			put_chars((char)p->map->map[i][j]);
 			j++;

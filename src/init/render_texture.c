@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_texture.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 12:03:31 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/30 13:27:29 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 16:10:52 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,7 @@ int32_t	render_pixel(t_params *params, t_ray *ray)
 	(void) ray;
 	return (get_pixel_color(0, 0, params->txt->ea));
 }
+
+// I did set the player angle in p->map->player->dir_x/dir_y in player.c
+// check comment in parser.h
+// I changed the conflict we had before 

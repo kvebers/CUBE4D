@@ -3,15 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:54 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/29 13:44:32 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 15:45:52 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+
+static void set_angle(t_params *p, char c)
+{
+	if (c == 'S')
+		p->map->player.angle = 270;
+	else if (c == 'W')
+		p->map->player.angle = 180;
+	else if (c == 'N')
+		p->map->player.angle = 90;
+	else 
+		p->map->player.angle = 0;
+}
 
 /**
  * @brief loop through the map to find the player's spawn point
@@ -31,23 +43,23 @@ int	init_player(t_params *p)
 	i = 0;
 	c = 0;
 	map = p->map->map;
-	while (i < p->map->size_x)
+	while (i < p->map->map_height)
 	{
 		j = 0;
-		while (j < p->map->size_y)
+		while (j < p->map->map_width)
 		{
 			if (map[i][j] == 'N' || map[i][j] == 'S' \
 			|| map[i][j] == 'E' || map[i][j] == 'W')
 			{
-				p->map->player.x = i;
-				p->map->player.y = j;
+				p->map->player.map_x = i;
+				p->map->player.map_y = j;
+				set_angle(p, map[i][j]);
 				c++;
 			}
 			j++;
 		}
 		i++;
 	}
-	/*@todo set degree here */
 	if (c == 0)
 	{
 		ft_putstr_fd("NO SPAWNPOINT\n", 2);

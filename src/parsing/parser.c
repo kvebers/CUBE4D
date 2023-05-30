@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/30 11:17:07 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 16:08:27 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,16 +180,17 @@ void debug_info(t_params *params)
     printf("south: %s  | %p\n", params->south ? "true" : "false", params->txt->so);
     printf("west: %s   | %p\n", params->west ? "true" : "false", params->txt->we);
     printf("east: %s   | %p\n", params->east ? "true" : "false",	params->txt->ea);
-	printf("map_size_x: %d\nmap_size_y: %d\n", params->map->size_x, params->map->size_y);
-	printf("player_pos_x: %f\nplayer_pos_y: %f\n", params->map->player.x, params->map->player.y);
+	printf("player_pos_x: %f\nplayer_pos_y: %f\n", params->map->player.map_x, params->map->player.map_y);
 	printf("player_angle: %f\n", params->map->player.angle);
 	printf("player_speed: %d\n", params->map->speed);
 	printf("minimap_box: %d\n", params->map->minimap_box);
 	printf("offset: %d\n", params->map->offset);
-	printf("height: %d\n", params->map->height);
-	printf("width: %d\n", params->map->width);
-	printf("total_width: %d\n", params->map->total_width);
+	printf("map_size_x: %d\nmap_size_y: %d\n", \
+			params->map->size_x, params->map->size_y);
+	printf("height: %d\n", params->map->map_height);
+	printf("width: %d\n", params->map->map_width);
 	printf("total_height: %d\n", params->map->total_height);
+	printf("total_width: %d\n", params->map->total_width);
 
 	printf("---------------------- fin info ----------------------\n");
 }
@@ -198,7 +199,7 @@ int parse(int argc, char **argv, t_params *params)
 {
 	int		fd;
 	params->txt = malloc(sizeof(t_textures));
-	if (argc != 3)
+	if (argc != 2)
 	{
 		ft_printf_fd(2, error_msgs[INVALID_NUM_ARGS]);
 		return (1);
@@ -213,16 +214,18 @@ int parse(int argc, char **argv, t_params *params)
 	params->lines = get_lines(fd);
 	close(fd);
 
-	char **map = init_params(params);
-	init_map(params, map);
+	char **map = init_params(params); // **map will point to the first line of the map
+	init_map(params, map); // will allocate memory for the map and set it to 9's 
 	parse_map(params, map);
 	init_player(params);
+	print_map(params, NULL);
+	debug_info(params);
 	if (!params->map->map)
 		return 1;
 
 	int **map_copy = (int **) copy_2d_array((void **)params->map->map, \
-	params->map->size_x, params->map->size_y, sizeof(int));
-	check_map(params, params->map->player.x, params->map->player.y, map_copy);
-
+	params->map->map_height, params->map->map_width, sizeof(int));
+	check_map(params, params->map->player.map_x, params->map->player.map_y, map_copy);
+	
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/30 11:11:29 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 16:05:46 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ typedef struct s_vector
 
 typedef struct s_ray
 {
-	double		player_angle;
 	double		ray_angle;
 	double		half_fov;
 	double		distance;
@@ -110,23 +109,25 @@ typedef struct s_ray
 
 typedef struct s_pos
 {
-	float	angle;
+	float 	angle;
+	float 	map_x; /* player position in 2dmap*/
+	float	map_y;
 	float	x;
 	float	y;
 }	t_pos;
 
 typedef struct s_map
 {
-	int32_t	size_x;
-	int32_t	size_y;
+	int 		map_width; /* size of map in 2d format */
+	int 		map_height; /* size of map in 2d format */
+	int32_t	size_x; /* size of map in pixels aka HEIGHT */
+	int32_t	size_y; /* size of map in pixels aka WIDTH */
 	int		**map;
-	int		total_width;
+	int		total_width; 
 	int		total_height;
 	int		offset;
 	int		speed;
 	int		minimap_box;
-	int		width;
-	int		height;
 	double	fov;
 	t_pos	player;
 }	t_map;
@@ -147,6 +148,7 @@ typedef struct s_textures
 	int32_t			celling;
 	mlx_image_t		*ground;
 	mlx_image_t		*minimap;
+	char 			**buffer;
 }	t_textures;
 
 typedef struct s_params {

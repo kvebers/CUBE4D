@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:33 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/29 13:29:25 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 10:41:53 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ char	put_chars(char c);
  * player's position.
  * @return void
 */
-void	check_map(t_params *p, int x, int y)
+void	check_map(t_params *p, int x, int y, int **map)
 {
-	int **map;
-
-	map = p->map->map;
 	if (map[x][y] == '1' || map[x][y] == '3' || map[x][y] == '4')
 		return ;
 	if (map[x][y] == '9')
@@ -59,10 +56,10 @@ void	check_map(t_params *p, int x, int y)
 		map[x][y] = '3';
 	if (map[x][y] == '2')
 		map[x][y] = '4';
-	check_map(p, x + 1, y);
-	check_map(p, x, y + 1);
-	check_map(p, x - 1, y);
-	check_map(p, x, y - 1);
+	check_map(p, x + 1, y, map);
+	check_map(p, x, y + 1, map);
+	check_map(p, x - 1, y, map);
+	check_map(p, x, y - 1, map);
 }
 
 /**
@@ -156,6 +153,7 @@ void	init_map(t_params *p, char **map)
 
 void	print_map(t_params *p, char **map)
 {
+	printf("\n");
 	int i = 0;
 	int j = 0;
 	while (i < p->map->size_x)

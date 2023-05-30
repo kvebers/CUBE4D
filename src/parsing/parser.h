@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/30 11:00:31 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 11:11:29 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ parse_error		set_floor(char *str, t_params *p);
 
 void	init_map(t_params *p, char **map);
 void	parse_map(t_params *p, char **map);
-void	check_map(t_params *p, int x, int y);
+void	check_map(t_params *p, int x, int y, int **map);
 
 int	init_player(t_params *p);
 void print_map(t_params *p, char **map);

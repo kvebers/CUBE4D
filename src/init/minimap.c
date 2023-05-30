@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:04:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/30 10:18:59 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/30 11:11:01 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,6 @@
 #include <stdio.h>
 #include "init.h"
 #include "math.h"
-
-void	print_cordinates(t_params *params)
-{
-	int x;
-	int y;
-
-	x = 0;
-	while (x < params->map->height)
-	{
-	y = 0;
-		while (y < params->map->width)
-		{
-			if (x != (int)(params->map->player.x / 64) && (int) (params->map->player.y / 64) != y)
-				printf("%c", params->map->map[x][y]);
-			else
-				printf("*");
-			y++;
-		}
-		printf("\n");
-		x++;
-	}
-}
 
 
 void	render_player(t_params *params)
@@ -63,10 +41,28 @@ void	render_player(t_params *params)
 	}
 }
 
-void	render_mini_map(t_params *params, int x, int y)
+// void	render_mini_map(t_params *params, int x, int y)
+// {
+// 	int	new_x;
+// 	int	new_y;
+
+// 	new_x = x * 2 + params->map->player.x - params->map->offset * 2;
+// 	new_y = y * 2 + params->map->player.y - params->map->offset * 2;
+// 	if (new_x <= 0 || new_y <= 0)
+// 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
+// 	else if (new_x >= params->map->total_width
+// 		|| new_y >= params->map->total_height)
+// 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
+// 	else if (params->map->map[new_x / 64][new_y / 64] != '1')
+// 		mlx_put_pixel(params->txt->minimap, x, y, rgb(13, 13, 13, 255));
+// 	else
+// 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
+// }
+
+void render_mini_map(t_params *params, int x, int y)
 {
-	int	new_x;
-	int	new_y;
+    int new_x;
+    int new_y;
 
 	new_x = x + params->map->player.x - params->map->offset;
 	new_y = y + params->map->player.y - params->map->offset;
@@ -80,6 +76,7 @@ void	render_mini_map(t_params *params, int x, int y)
 	else
 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
 }
+
 
 void	put_mini_pixel(t_params *params, int x, int y)
 {
@@ -120,3 +117,28 @@ void	render_minimap(t_params *params)
 		params->map->size_x - params->map->size_y / 4,
 		params->map->size_y - params->map->size_y / 4);
 }
+
+// void render_minimap(t_params *params)
+// {
+//     int x;
+//     int y;
+
+//     params->txt->minimap = mlx_new_image(params->mlx,
+//         params->map->minimap_box, params->map->minimap_box);
+//     x = 0;
+//     while (x < params->map->size_x / 4)
+//     {
+//         y = 0;
+//         while (y < params->map->size_y / 4)
+//         {
+//             render_mini_map(params, x, y);
+//             put_mini_pixel(params, x, y);
+//             y++;
+//         }
+//         x++;
+//     }
+//     render_player(params);
+//     mlx_image_to_window(params->mlx, params->txt->minimap,
+//         params->map->size_x - params->map->size_y / 4,
+//         params->map->size_y - params->map->size_y / 4);
+// }

@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 18:12:02 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/31 18:23:52 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ void	s_pressed(t_params *params)
 {
 	t_vector	vector;
 
-	vector = vector_estimation(params->map->speed, params->map->player.angle);
-	check_valid_move(params, vector.pos_x, vector.pos_y);
+	vector = vector_estimation(params->map->speed, params->map->player.angle
+			- 180);
+	check_valid_move1(params, vector.pos_x, vector.pos_y);
 	mlx_delete_image(params->mlx, params->txt->ground);
 	render_skybox(params);
 	render_map(params);
@@ -45,8 +46,9 @@ void	a_pressed(t_params *params)
 {
 	t_vector	vector;
 
-	vector = vector_estimation(params->map->speed, params->map->player.angle);
-	check_valid_move2(params, vector.pos_x, vector.pos_y);
+	vector = vector_estimation(params->map->speed, params->map->player.angle
+			- 90);
+	check_valid_move1(params, vector.pos_x, vector.pos_y);
 	mlx_delete_image(params->mlx, params->txt->ground);
 	render_skybox(params);
 	render_map(params);
@@ -58,8 +60,9 @@ void	d_pressed(t_params *params)
 {
 	t_vector	vector;
 
-	vector = vector_estimation(params->map->speed, params->map->player.angle);
-	check_valid_move3(params, vector.pos_x, vector.pos_y);
+	vector = vector_estimation(params->map->speed, params->map->player.angle
+			+ 90);
+	check_valid_move1(params, vector.pos_x, vector.pos_y);
 	mlx_delete_image(params->mlx, params->txt->ground);
 	render_skybox(params);
 	render_map(params);

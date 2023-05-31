@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 12:03:31 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 18:12:09 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/31 18:24:00 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	render_wall_line_loop(t_params *params, t_ray *ray,
 
 void	render_wall_line(t_params *params, t_ray *ray, int x, int y)
 {
-	mlx_texture_t *t;
+	mlx_texture_t	*t;
 
 	t = params->txt->no;
 	ray->r = 0;

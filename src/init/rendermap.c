@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:06:45 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/30 13:43:21 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/31 08:48:11 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,21 @@
 #include "init.h"
 #include <math.h>
 
-void	draw_line(t_params *params, t_ray *ray)
+void	calculate_distance_helper(t_params *params, t_ray *ray)
 {
-	while (ray->start_pos < ray->end_pos)
-	{
-		mlx_put_pixel(params->txt->ground, ray->ray_count,
-			ray->start_pos, render_pixel(params, ray));
-		ray->start_pos++;
-	}
+	ray->distance = sqrt(pow(params->map->player.x - ray->ray_pos.pos_x, 2)
+			+ pow(params->map->player.y - ray->ray_pos.pos_y, 2)) / 48;
+	ray->distance = ray->distance * cos(M_PI / 180
+			* (ray->ray_angle - params->map->player.angle));
+	if (ray->distance <= 0)
+		ray->distance = EPSILON;
+	ray->wall_height = (int)params->map->size_y / ray->distance;
+	ray->start_pos = params->map->size_y / 2 - ray->wall_height;
+	if (ray->start_pos < 0)
+		ray->start_pos = 0;
+	ray->end_pos = params->map->size_y / 2 + ray->wall_height;
+	if (ray->end_pos >= params->map->size_y)
+		ray->end_pos = params->map->size_y - 1;
 }
 
 void	calculate_distance(t_params *params, t_ray *ray)
@@ -39,19 +46,7 @@ void	calculate_distance(t_params *params, t_ray *ray)
 		if (params->map->map[x / 64][y / 64] == '1' && ray->wall != 2)
 			ray->wall = 1;
 	}
-	ray->distance = sqrt(pow(params->map->player.x - ray->ray_pos.pos_x, 2)
-			+ pow(params->map->player.y - ray->ray_pos.pos_y, 2)) / 64;
-	ray->distance = ray->distance * cos(M_PI / 180
-			* (ray->ray_angle - params->map->player.angle));
-	if (ray->distance <= 0)
-		ray->distance = EPSILON;
-	ray->wall_height = (int)params->map->size_y / ray->distance;
-	ray->start_pos = params->map->size_y / 2 - ray->wall_height;
-	if (ray->start_pos < 0)
-		ray->start_pos = 0;
-	ray->end_pos = params->map->size_y / 2 + ray->wall_height;
-	if (ray->end_pos >= params->map->size_y)
-		ray->end_pos = params->map->size_y - 1;
+	calculate_distance_helper(params, ray);
 }
 
 void	init_ray(t_params *params, t_ray *ray)

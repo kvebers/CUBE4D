@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyhooks.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/30 14:59:10 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/31 08:23:51 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	a_pressed(t_params *params)
 {
 	params->map->player.angle = params->map->player.angle - SPEED / 2;
-	// mlx_delete_image(params->mlx, params->txt->ground);
+	mlx_delete_image(params->mlx, params->txt->ground);
 	render_skybox(params);
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
@@ -28,7 +28,7 @@ void	a_pressed(t_params *params)
 void	d_pressed(t_params *params)
 {
 	params->map->player.angle = params->map->player.angle + SPEED / 2;
-	// mlx_delete_image(params->mlx, params->txt->ground);
+	mlx_delete_image(params->mlx, params->txt->ground);
 	render_skybox(params);
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
@@ -41,7 +41,7 @@ void	w_pressed(t_params *params)
 
 	vector = vector_estimation(params->map->speed, params->map->player.angle);
 	check_valid_move1(params, vector.pos_x, vector.pos_y);
-	// mlx_delete_image(params->mlx, params->txt->ground);
+	mlx_delete_image(params->mlx, params->txt->ground);
 	render_skybox(params);
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
@@ -54,7 +54,7 @@ void	s_pressed(t_params *params)
 
 	vector = vector_estimation(params->map->speed, params->map->player.angle);
 	check_valid_move(params, vector.pos_x, vector.pos_y);
-	// mlx_delete_image(params->mlx, params->txt->ground);
+	mlx_delete_image(params->mlx, params->txt->ground);
 	render_skybox(params);
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);

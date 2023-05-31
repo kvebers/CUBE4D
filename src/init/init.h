@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/30 13:28:29 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/31 08:45:29 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_ray	t_ray;
 int			init_cube(t_params *params);
 //UTILS.c
 uint32_t	rgb(int r, int g, int b, int a);
+void	    draw_line(t_params *params, t_ray *ray);
 //KEYHOOKS.c
 void		keyhook(mlx_key_data_t key_data, void *param);
 //MINIMAP.c

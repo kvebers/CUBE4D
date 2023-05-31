@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_texture.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 12:03:31 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/30 16:10:52 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/31 08:23:27 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int32_t	get_pixel_color(int x, int y, mlx_texture_t *texture)
 			texture->pixels[64 * 4 * y + 4 * x + 2],
 			texture->pixels[64 * 4 * 4 + 4 * x + 3]));
 }
-
 
 int32_t	render_pixel(t_params *params, t_ray *ray)
 {

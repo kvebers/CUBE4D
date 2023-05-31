@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/30 16:05:46 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/31 08:57:20 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,8 @@ typedef struct s_pos
 
 typedef struct s_map
 {
-	int 		map_width; /* size of map in 2d format */
-	int 		map_height; /* size of map in 2d format */
+	int 	map_width; /* size of map in 2d format */
+	int 	map_height; /* size of map in 2d format */
 	int32_t	size_x; /* size of map in pixels aka HEIGHT */
 	int32_t	size_y; /* size of map in pixels aka WIDTH */
 	int		**map;

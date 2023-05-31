@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:04:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/30 11:22:44 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/31 14:15:10 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	render_player(t_params *params)
 	}
 }
 
-void render_mini_map(t_params *params, int x, int y)
+void	render_mini_map(t_params *params, int x, int y)
 {
-    int new_x;
-    int new_y;
+    int	new_x;
+    int	new_y;
 
 	new_x = x + params->map->player.x - params->map->offset;
 	new_y = y + params->map->player.y - params->map->offset;

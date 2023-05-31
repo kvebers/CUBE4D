@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
+#    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/05/31 00:15:48 by asioud           ###   ########.fr        #
+#    Updated: 2023/05/31 14:20:32 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SOURCE		=	main \
 				init/vectors \
 				init/move_valid \
 				init/debug \
-				init/render_texture
+				init/render_texture \
+				init/render_background \
 				
 SRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SOURCE)))
 OBJ			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SOURCE)))

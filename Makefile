@@ -6,7 +6,11 @@
 #    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2023/05/31 14:20:32 by kvebers          ###   ########.fr        #
+=======
+#    Updated: 2023/05/31 16:11:28 by kvebers          ###   ########.fr        #
+>>>>>>> main
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +42,7 @@ SOURCE		=	main \
 				init/debug \
 				init/render_texture \
 				init/render_background \
+				init/rotation \
 				
 SRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SOURCE)))
 OBJ			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SOURCE)))

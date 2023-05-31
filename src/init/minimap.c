@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:04:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 14:15:10 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/31 17:45:58 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ void	render_mini_map(t_params *params, int x, int y)
 void	put_mini_pixel(t_params *params, int x, int y)
 {
 	if (params->map->size_y / 64 > y)
-		mlx_put_pixel(params->txt->minimap, x, y, 255);
+		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
 	else if (params->map->size_y / 4 - params->map->size_y / 64 < y)
-		mlx_put_pixel(params->txt->minimap, x, y, 255);
+		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
 	else if (params->map->size_y / 64 > x)
-		mlx_put_pixel(params->txt->minimap, x, y, 255);
+		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
 	else if (params->map->size_y / 4 - params->map->size_y / 64 < x)
-		mlx_put_pixel(params->txt->minimap, x, y, 255);
+		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
 }	
 
 void	render_minimap(t_params *params)

@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 12:03:31 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 16:47:25 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/31 18:06:59 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 #include <stdio.h>
 #include "init.h"
 #include <math.h>
+
+mlx_texture_t	*choose_texture(t_params *params, int x, int y)
+{
+	if (x % 64 == 0)
+		return (params->txt->so);
+	printf("here\n");
+	if (x % 64 == 63)
+		return (params->txt->ea);
+	printf("no\n");
+	if (y % 64 == 0)
+		return (params->txt->we);
+	return (params->txt->no);
+}
 
 int32_t	get_pixel_color(int x, int y, mlx_texture_t *texture)
 {
@@ -52,9 +65,9 @@ void	render_wall_line_loop(t_params *params, t_ray *ray,
 
 void	render_wall_line(t_params *params, t_ray *ray, int x, int y)
 {
-	mlx_texture_t *t;
+	mlx_texture_t	*t;
 
-	t = params->txt->no;
+	t = choose_texture(params, x, y);
 	ray->r = 0;
 	ray->ray_txt_inc = (((double)ray->end_pos - (double)ray->start_pos)
 			/ (double)params->txt->no->height);

@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:44:47 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 09:45:11 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/31 17:40:34 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	render_skybox(t_params *params)
 	x = 0;
 	params->txt->ground = mlx_new_image(params->mlx,
 			params->map->size_x, params->map->size_y);
-	params->txt->floor = rgb(params->txt->f_r,
-			params->txt->f_g, params->txt->f_b, 255);
-	params->txt->celling = rgb(params->txt->c_r,
+	params->txt->floor = rgb(params->txt->c_r,
 			params->txt->c_g, params->txt->c_b, 255);
+	params->txt->celling = rgb(params->txt->f_r,
+			params->txt->f_g, params->txt->f_b, 255);
 	while (x < params->map->size_x)
 	{
 		y = 0;

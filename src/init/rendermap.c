@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:06:45 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 09:44:55 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/31 13:59:48 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	calculate_distance_helper(t_params *params, t_ray *ray)
 {
 	ray->distance = sqrt(pow(params->map->player.x - ray->ray_pos.pos_x, 2)
-			+ pow(params->map->player.y - ray->ray_pos.pos_y, 2)) / 64;
+			+ pow(params->map->player.y - ray->ray_pos.pos_y, 2)) / 48;
 	ray->distance = ray->distance * cos(M_PI / 180
 			* (ray->ray_angle - params->map->player.angle));
 	if (ray->distance <= 0)
@@ -47,6 +47,7 @@ void	calculate_distance(t_params *params, t_ray *ray)
 			ray->wall = 1;
 	}
 	calculate_distance_helper(params, ray);
+	render_wall_line(params, ray, x, y);
 }
 
 void	init_ray(t_params *params, t_ray *ray)
@@ -82,7 +83,6 @@ void	render_map(t_params *params)
 	{
 		init_ray(params, &ray);
 		calculate_distance(params, &ray);
-		draw_line(params, &ray);
 		ray.ray_angle = ray.ray_angle + ray.ray_increment;
 		ray.ray_count++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/30 16:05:46 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/31 13:39:12 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,16 @@ typedef struct s_ray
 	double		ray_sin;
 	double		ray_radians;
 	double		ray_perp;
+	double		ray_txt_inc;
+	double		ray_txt_seg_s;
+	double		ray_txt_seg_e;
 	t_vector	ray_pos;
 	int			ray_count;
 	int			wall;
 	int			wall_height;
 	int			start_pos;
 	int			end_pos;
+	uint32_t	r;
 }	t_ray;
 
 typedef struct s_pos

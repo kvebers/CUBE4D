@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:34:49 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 14:34:52 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/31 16:25:44 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,11 @@ void	init_ray(t_params *params, t_ray *ray)
 
 void	init_ray_frame(t_params *params, t_ray *ray)
 {
-	ray->half_fov = (double) params->fov / 2;
-	ray->ray_increment = (double) params->fov / (double) params->map->size_x;
+	ray->half_fov = (double) params->map->fov / 2;
+	ray->ray_increment = (double) params->map->fov
+		/ (double) params->map->size_x;
 	if (ray->ray_increment < EPSILON)
-		ray->ray_increment = 66.0 / 1920.0;
+		ray->ray_increment = 60.0 / 1920.0;
 	ray->ray_angle = params->map->player.angle - 30;
 	ray->ray_count = 0;
 }

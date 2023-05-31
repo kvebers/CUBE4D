@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:36:51 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 16:43:18 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/31 18:22:01 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,6 @@ int	check_cordinates(t_params *params, int x, int y)
 	return (1);
 }
 
-void	check_valid_move(t_params *params, double posx, double posy)
-{
-	int	x;
-	int	y;
-
-	x = (int)((round(params->map->player.x - posx * 1.5) / 64));
-	y = (int)((round(params->map->player.y - posy * 1.5) / 64));
-	if (params->map->map[x][y] != '1')
-	{
-		params->map->player.x = params->map->player.x - posx;
-		params->map->player.y = params->map->player.y - posy;
-	}
-}
-
 void	check_valid_move1(t_params *params, double posx, double posy)
 {
 	int	x;
@@ -54,30 +40,3 @@ void	check_valid_move1(t_params *params, double posx, double posy)
 	}
 }
 
-void	check_valid_move2(t_params *params, double posx, double posy)
-{
-	int	x;
-	int	y;
-
-	x = (int)((round(params->map->player.x + posy * 3) / 64));
-	y = (int)((round(params->map->player.y + posx * 3) / 64));
-	if (params->map->map[x][y] != '1')
-	{
-		params->map->player.x = params->map->player.x + posy;
-		params->map->player.y = params->map->player.y + posx;
-	}
-}
-
-void	check_valid_move3(t_params *params, double posx, double posy)
-{
-	int	x;
-	int	y;
-
-	x = (int)((round(params->map->player.x - posy * 3) / 64));
-	y = (int)((round(params->map->player.y - posx * 3) / 64));
-	if (params->map->map[x][y] != '1')
-	{
-		params->map->player.x = params->map->player.x - posy;
-		params->map->player.y = params->map->player.y - posx;
-	}
-}

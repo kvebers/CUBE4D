@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 12:03:31 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 18:20:36 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/31 18:43:37 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,17 @@ int32_t	get_pixel_color(int x, int y, mlx_texture_t *texture)
 	blue = texture->pixels[64 * 4 * y + 4 * x + 2];
 	transperent = texture->pixels[64 * 4 * y + 4 * x + 3];
 	return (rgb(red, green, blue, transperent));
+}
+
+mlx_texture_t	*texture_to_render(t_params *params, int x, int y)
+{
+	if (x % 64 == 0)
+		return (params->txt->so);
+	if (x % 64 == 63)
+		return (params->txt->no);
+	if (y % 64 == 0)
+		return (params->txt->we);
+	return (params->txt->so);
 }
 
 void	render_wall_line_loop(t_params *params, t_ray *ray,
@@ -54,7 +65,7 @@ void	render_wall_line(t_params *params, t_ray *ray, int x, int y)
 {
 	mlx_texture_t	*t;
 
-	t = params->txt->no;
+	t = texture_to_render(params, x, y);
 	ray->r = 0;
 	ray->ray_txt_inc = (((double)ray->end_pos - (double)ray->start_pos)
 			/ (double)params->txt->no->height);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/30 16:02:29 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/31 18:38:12 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@
 
 void	game_loop(t_params *params)
 {
+	mlx_image_t *test;
 	render_skybox(params);
 	render_map(params);
 	render_minimap(params);
 	mlx_key_hook(params->mlx, keyhook, params);
+	test = mlx_texture_to_image(params->mlx, params->txt->so);
+	mlx_image_to_window(params->mlx, test, 0, 0);
 	mlx_loop(params->mlx);
 }
 

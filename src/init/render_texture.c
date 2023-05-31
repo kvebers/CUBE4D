@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_texture.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 12:03:31 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/30 16:10:52 by asioud           ###   ########.fr       */
+/*   Updated: 2023/05/31 10:08:00 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,36 @@ int32_t	get_pixel_color(int x, int y, mlx_texture_t *texture)
 			texture->pixels[64 * 4 * 4 + 4 * x + 3]));
 }
 
-
-int32_t	render_pixel(t_params *params, t_ray *ray)
+void	render_wall_line(t_params *params, t_ray *ray, mlx_texture_t *txt)
 {
-	(void) ray;
-	return (get_pixel_color(0, 0, params->txt->ea));
+	double	y_inc;
+	int y;
+	
+	y_inc = ray->wall_height * 2 / 	txt->height;
+	while (y < txt->height)
+	{
+		
+		y++;
+	}
+	
+	
 }
+
 
 // I did set the player angle in p->map->player->dir_x/dir_y in player.c
 // check comment in parser.h
 // I changed the conflict we had before 
+// void drawTexture(int x, int wallHeight, int texturePositionX, Texture texture) {
+//     float yIncrementer = (wallHeight * 2) / texture.height;
+//     float y = data.projection.halfHeight - wallHeight;
+//     int color = 0;
+//     for (int i = 0; i < texture.height; i++) {
+//         if (texture.id) {
+//             color = texture.data[texturePositionX + i * texture.width];
+//         } else {
+//             color = texture.colors[texture.bitmap[i][texturePositionX]];
+//         }
+//         drawLine(x, y, (int)(y + yIncrementer + 2), color);
+//         y += yIncrementer;
+//     }
+// }

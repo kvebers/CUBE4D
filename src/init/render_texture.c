@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 12:03:31 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 14:17:18 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/05/31 15:24:39 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,31 @@ int32_t	get_pixel_color(int x, int y, mlx_texture_t *texture)
 	return (rgb(red, green, blue, transperent));
 }
 
-void	render_wall_line(t_params *params, t_ray *ray, int x, int y)
+void	render_wall_line_loop(t_params *params, t_ray *ray, int x, mlx_texture_t *t)
 {
 	int32_t		color;
 
+	while (ray->r <= t->height)
+	{
+		if (ray->r == t->height)
+			ray->ray_txt_seg_e = ray->end_pos;
+		color = get_pixel_color(x, ray->r, t);
+		draw_line(params, ray, color);
+		if (ray->r != t->height
+			&& ray->ray_txt_seg_e > params->map->size_y)
+			break ;
+		ray->ray_txt_seg_e = ray->ray_txt_seg_e + ray->ray_txt_inc;
+		if (ray->ray_txt_seg_e > params->map->size_y)
+			ray->ray_txt_seg_e = params->map->size_y;
+		ray->r++;
+	}
+}
+
+void	render_wall_line(t_params *params, t_ray *ray, int x, int y)
+{
+	mlx_texture_t *t;
+
+	t = params->txt->no;
 	ray->r = 0;
 	ray->ray_txt_inc = (((double)ray->end_pos - (double)ray->start_pos)
 			/ (double)params->txt->no->height);
@@ -41,18 +62,5 @@ void	render_wall_line(t_params *params, t_ray *ray, int x, int y)
 	x = x % 64;
 	if (x == 0 || x == 63)
 		x = y % 64;
-	while (ray->r <= params->txt->ea->height)
-	{
-		if (ray->r == params->txt->ea->height)
-			ray->ray_txt_seg_e = ray->end_pos;
-		color = get_pixel_color(x, ray->r, params->txt->no);
-		draw_line(params, ray, color);
-		if (ray->r != params->txt->ea->height
-			&& ray->ray_txt_seg_e > params->map->size_y)
-			break ;
-		ray->ray_txt_seg_e = ray->ray_txt_seg_e + ray->ray_txt_inc;
-		if (ray->ray_txt_seg_e > params->map->size_y)
-			ray->ray_txt_seg_e = params->map->size_y;
-		ray->r++;
-	}
+	render_wall_line_loop(params, ray, x, t);
 }

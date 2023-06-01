@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
+#    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/05/31 18:11:52 by kvebers          ###   ########.fr        #
+#    Updated: 2023/06/01 08:26:47 by asioud           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,17 +17,17 @@ USER		=	$(shell whoami)
 LIBFT		=	libs/libft/libft.a
 LIBMLX		=	libs/MLX42/build/libmlx42.a
 CFLAGS		=	-Wall -Wextra -Werror -g -Wno-gnu-include-next -I/LeakSanitizer/include
-SRC_DIR		=	src/
-OBJ_DIR		=	obj/
+SRC_DIR		=	src/mandatory/
+OBJ_DIR		=	obj/mandatory/
 LIBS 		=	-L/Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib -lglfw
 FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
+HEADER_FILES	=	-I./src/mandatory -I./libs/libft/includes -I./libs/MLX42/include/MLX42
 
 SOURCE		=	main \
 				parsing/parser \
 				parsing/check_texture \
 				parsing/map \
 				parsing/player \
-				init/init \
 				init/utils \
 				init/keyhooks \
 				init/minimap \

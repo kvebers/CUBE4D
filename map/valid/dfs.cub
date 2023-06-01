@@ -1,10 +1,10 @@
 NO textures/Test1.png
-SO textures/Test1.png
-WE textures/Test1.png
-EA textures/Test1.png
+SO textures/Test2.png
+WE textures/Test3.png
+EA textures/Test4.png
 
-F 190,178,123
-C 135,206,235
+F 115, 2, 12
+C 38, 1, 1
 
 11111111111111111
 10000000000000001

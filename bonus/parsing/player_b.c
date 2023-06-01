@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:54 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/30 15:45:52 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/01 16:39:29 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "parser_bonus.h"
 
 
 static void set_angle(t_params *p, char c)
@@ -21,7 +21,7 @@ static void set_angle(t_params *p, char c)
 		p->map->player.angle = 180;
 	else if (c == 'N')
 		p->map->player.angle = 90;
-	else 
+	else
 		p->map->player.angle = 0;
 }
 

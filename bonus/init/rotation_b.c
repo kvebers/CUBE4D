@@ -6,13 +6,13 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 16:02:37 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 16:03:06 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:38:25 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../cub3d_bonus.h"
 #include <stdio.h>
-#include "init.h"
+#include "init_bonus.h"
 #include <math.h>
 
 void	arrow_pressed_l(t_params *params)

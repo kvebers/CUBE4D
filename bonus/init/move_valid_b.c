@@ -6,13 +6,14 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:36:51 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 18:22:01 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:37:51 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../cub3d_bonus.h"
 #include <stdio.h>
-#include "init.h"
+#include "init_bonus.h"
+#include "../parsing/parser_bonus.h"
 #include <math.h>
 
 int	check_cordinates(t_params *params, int x, int y)

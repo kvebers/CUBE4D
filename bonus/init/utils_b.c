@@ -6,13 +6,14 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 18:37:17 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/01 05:27:43 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:38:31 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../cub3d_bonus.h"
 #include <stdio.h>
-#include "init.h"
+#include "init_bonus.h"
+#include "../parsing/parser_bonus.h"
 #include <math.h>
 
 uint32_t	rgb(int r, int g, int b, int a)

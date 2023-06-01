@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/31 18:34:06 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/01 17:38:22 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,6 @@ typedef struct s_params {
 	t_textures	*txt;
 	t_map		*map;
 	mlx_t		*mlx;
-	float		fov;
 	bool		floor;
 	bool		ceiling;
 	bool		north;

@@ -6,13 +6,14 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:44:47 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 09:45:11 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:37:55 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../cub3d_bonus.h"
 #include <stdio.h>
-#include "init.h"
+#include "init_bonus.h"
+#include "../parsing/parser_bonus.h"
 
 void	render_skybox(t_params *params)
 {

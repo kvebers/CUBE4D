@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 18:38:12 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/01 04:56:08 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,10 @@
 
 void	game_loop(t_params *params)
 {
-	mlx_image_t *test;
 	render_skybox(params);
 	render_map(params);
 	render_minimap(params);
 	mlx_key_hook(params->mlx, keyhook, params);
-	test = mlx_texture_to_image(params->mlx, params->txt->so);
-	mlx_image_to_window(params->mlx, test, 0, 0);
 	mlx_loop(params->mlx);
 }
 

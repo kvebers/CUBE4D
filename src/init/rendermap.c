@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:34:49 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 18:12:12 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/01 05:44:38 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,18 @@
 
 void	calculate_distance_helper(t_params *params, t_ray *ray)
 {
-	ray->distance = sqrt(pow(params->map->player.x - ray->ray_pos.pos_x, 2)
-			+ pow(params->map->player.y - ray->ray_pos.pos_y, 2)) / 48;
+	ray->distance
+		= sqrt(pow((params->map->player.x - ray->ray_pos.pos_x) / 90, 2)
+			+ pow((params->map->player.y - ray->ray_pos.pos_y) / 90, 2));
 	ray->distance = ray->distance * cos(M_PI / 180
 			* (ray->ray_angle - params->map->player.angle));
 	if (ray->distance <= 0)
 		ray->distance = EPSILON;
 	ray->wall_height = (int)params->map->size_y / ray->distance;
-	ray->start_pos = params->map->size_y / 2 - ray->wall_height;
+	ray->start_pos = params->map->size_y / 2 - ray->wall_height / 2;
 	if (ray->start_pos < 0)
 		ray->start_pos = 0;
-	ray->end_pos = params->map->size_y / 2 + ray->wall_height;
+	ray->end_pos = params->map->size_y / 2 + ray->wall_height / 2;
 	if (ray->end_pos >= params->map->size_y)
 		ray->end_pos = params->map->size_y - 1;
 }
@@ -54,10 +55,6 @@ void	init_ray(t_params *params, t_ray *ray)
 {
 	ray->ray_pos.pos_x = params->map->player.x;
 	ray->ray_pos.pos_y = params->map->player.y;
-	ray->ray_perp = ((ray->ray_angle - 90) * M_PI / 180);
-	ray->ray_pos.pos_x = ray->ray_pos.pos_x + ray->ray_count
-		* cos(ray->ray_perp) / 1920;
-	ray->ray_pos.pos_x = ray->ray_pos.pos_x - 2 * sin(ray->ray_perp) / 1920;
 	ray->ray_radians = ray->ray_angle * M_PI / 180;
 	ray->ray_cos = cos(ray->ray_radians);
 	ray->ray_sin = sin(ray->ray_radians);

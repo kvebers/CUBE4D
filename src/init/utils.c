@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 18:37:17 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 18:44:42 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/01 05:44:41 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ void	draw_line(t_params *params, t_ray *ray, int32_t color)
 {
 	while (ray->ray_txt_seg_s < ray->ray_txt_seg_e)
 	{
-		mlx_put_pixel(params->txt->ground, ray->ray_count,
-			ray->ray_txt_seg_s, color);
+		if (ray->ray_txt_seg_s >= 0)
+		{
+			mlx_put_pixel(params->txt->ground, ray->ray_count,
+				ray->ray_txt_seg_s, color);
+		}
 		ray->ray_txt_seg_s++;
 	}
 }

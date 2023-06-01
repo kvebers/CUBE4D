@@ -6,7 +6,7 @@
 #    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/06/01 16:19:20 by kvebers          ###   ########.fr        #
+#    Updated: 2023/06/01 17:35:01 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,21 +26,21 @@ FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
 VPATH		=	$(SRC_DIR):$(SRC_BON)
 
 SOURCE_BONUS =	main \
-				parsing/parser \
-				parsing/check_texture \
-				parsing/map \
-				parsing/player \
-				init/utils \
-				init/keyhooks \
-				init/minimap \
-				init/rendermap \
-				init/game \
-				init/vectors \
-				init/move_valid \
-				init/render_texture \
-				init/render_background \
-				init/rotation \
-				init/intro
+				parsing/parser_b \
+				parsing/check_texture_b \
+				parsing/map_b \
+				parsing/player_b \
+				init/utils_b \
+				init/keyhooks_b \
+				init/minimap_b \
+				init/rendermap_b \
+				init/game_b \
+				init/vectors_b \
+				init/move_valid_b \
+				init/render_texture_b \
+				init/render_background_b \
+				init/rotation_b \
+				init/mousehook_b
 
 SOURCE		=	main \
 				parsing/parser \

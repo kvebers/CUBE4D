@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/01 16:36:37 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/01 17:12:32 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ int			check_cordinates(t_params *params, int x, int y);
 void		debug_ray(t_ray *ray);
 //render_texture.c
 void		render_wall_line(t_params *params, t_ray *ray, int x, int y);
-
+//mousehook.c
+void	    mousehook(void *param);
 #endif

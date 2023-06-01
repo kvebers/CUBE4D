@@ -6,21 +6,42 @@
 #    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/05/31 16:11:28 by kvebers          ###   ########.fr        #
+#    Updated: 2023/06/01 15:27:27 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	cc
 RM			=	rm -rf
 NAME		=	cub3D
+NAME_BONUS	=	cub_4D
 USER		=	$(shell whoami)
 LIBFT		=	libs/libft/libft.a
 LIBMLX		=	libs/MLX42/build/libmlx42.a
 CFLAGS		=	-Wall -Wextra -Werror -g
 SRC_DIR		=	src/
+SRC_BON		=	bonus/
 OBJ_DIR		=	obj/
 LIBS 		=	-L/Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib -lglfw
 FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
+
+
+SOURCE_BONUS =	main \
+				parsing/parser \
+				parsing/check_texture \
+				parsing/map \
+				parsing/player \
+				init/init \
+				init/utils \
+				init/keyhooks \
+				init/minimap \
+				init/rendermap \
+				init/game \
+				init/vectors \
+				init/move_valid \
+				init/debug \
+				init/render_texture \
+				init/render_background \
+				init/rotation \
 
 SOURCE		=	main \
 				parsing/parser \
@@ -42,6 +63,8 @@ SOURCE		=	main \
 				
 SRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SOURCE)))
 OBJ			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SOURCE)))
+SRC_B		=	$(addprefix $(SRC_BON), $(addsuffix .c, $(SOURCE_BONUS)))
+OBJ_B		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SOURCE_BONUS)))
 
 all: $(NAME)
 
@@ -68,15 +91,20 @@ $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) $(HEADER_FILES) -c $< -o $@
 
-$(LIBMLX): install_glfw
+$(LIBMLX): install_glfw \
+
+bonus: $(LIBFT) $(LIBMLX) $(OBJ_B)
+	@$(CC) $(CFLAGS) $(LIBFT) $(OBJ_B) $(LIBMLX) $(FRAMEWORK) $(LIBS) -o $(NAME_BONUS)
 
 clean:
 	@$(RM) obj
+	@$(RM) $(OBJ_B)
 	@make clean -C ./libs/libft
 
 
 fclean: clean
 	@$(RM) $(NAME)
+	@$(RM) $(NAME_BONUS)
 	# @make fclean -C ./libs/libft
 
 
@@ -85,4 +113,9 @@ re:
 	@make
 
 
-.PHONY: all clean fclean re
+re_b:
+	@make fclean
+	@make bonus
+
+
+.PHONY: all clean fclean re bonus re_b

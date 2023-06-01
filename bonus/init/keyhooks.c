@@ -6,13 +6,14 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 18:22:44 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:37:43 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../cub3d_bonus.h"
 #include <stdio.h>
-#include "init.h"
+#include "init_bonus.h"
+#include "../parsing/parser_bonus.h"
 #include <math.h>
 
 void	w_pressed(t_params *params)

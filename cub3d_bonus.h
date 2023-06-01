@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 03:06:44 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/01 16:02:05 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:35:58 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_H_BONUS
+# define CUB3D_H_BONUS
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -21,8 +21,8 @@
 # include "libs/libft/includes/libft.h"
 # include "libs/MLX42/include/MLX42/MLX42.h"
 
-# include "src/init/init.h"
-# include "src/parsing/parser.h"
+# include "bonus/init/init_bonus.h"
+# include "bonus/parsing/parser_bonus.h"
 
 # define FOV 60
 # define SPEED 10

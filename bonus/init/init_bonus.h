@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   init_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 16:29:46 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:36:37 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_H
-# define INIT_H
+#ifndef INIT_BONUS_H
+# define INIT_BONUS_H
 
-# include "../../cub3d.h"
+# include "../../cub3d_bonus.h"
 # include "../../libs/MLX42/include/MLX42/MLX42.h"
 
 # define EPSILON 0.000001

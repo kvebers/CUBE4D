@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   parser_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/31 18:34:06 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:39:10 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef PARSER_BONUS_H
+# define PARSER_BONUS_H
 
-# include "../../cub3d.h"
+# include "../../cub3d_bonus.h"
 # include "../../libs/MLX42/include/MLX42/MLX42.h"
 # include <stdbool.h>
 
@@ -153,7 +153,7 @@ typedef struct s_textures
 	int32_t			celling;
 	mlx_image_t		*ground;
 	mlx_image_t		*minimap;
-	char 			**buffer;
+	char			**buffer;
 }	t_textures;
 
 typedef struct s_params {
@@ -168,6 +168,7 @@ typedef struct s_params {
 	bool		south;
 	bool		west;
 	bool		east;
+	bool		start;
 }	t_params;
 
 /* parser.c */

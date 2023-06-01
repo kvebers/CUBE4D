@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/01 17:48:38 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/01 18:35:40 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 void	game_loop(t_params *params)
 {
-	printf("I am here\n\n");
 	render_skybox(params);
 	render_map(params);
 	render_minimap(params);

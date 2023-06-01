@@ -6,7 +6,7 @@
 #    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/06/01 17:35:01 by kvebers          ###   ########.fr        #
+#    Updated: 2023/06/01 19:12:03 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,8 @@ $(LIBFT):
 
 $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
 	@$(CC) $(CFLAGS) $(LIBFT) $(OBJ) $(LIBMLX) $(FRAMEWORK) $(LIBS) -o $(NAME)
-
+	@$(RM) $(NAME_BONUS)
+	@$(RM) $(OBJ_B)
 
 $(OBJ_DIR)%.o : %.c
 	@mkdir -p $(@D)
@@ -92,7 +93,9 @@ $(LIBMLX): install_glfw \
 
 bonus: $(LIBFT) $(LIBMLX) $(OBJ_B)
 	@$(CC) $(CFLAGS) $(LIBFT) $(OBJ_B) $(LIBMLX) $(FRAMEWORK) $(LIBS) -o $(NAME_BONUS)
-
+	@$(RM) obj
+	@$(RM) $(NAME)
+	
 clean:
 	@$(RM) obj
 	@$(RM) $(OBJ_B)

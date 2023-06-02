@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:05:04 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 17:27:21 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 18:53:27 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,17 @@ void	open_doors(t_params *params)
 		close_doors(params);
 }
 
+void	spawn_enemys(t_params *params, int x, int y)
+{
+	if (params->map->map[x][y] == '0' && params->duck.alive == 0)
+		spawn_duck(params, x, y);
+	if (params->map->map[x][y] == '0' && params->bob.alive == 0)
+		spawn_bob(params, x, y);
+	if (params->map->map[x][y] == '0' && rand() % 40 == 0)
+		spawn_bob(params, x, y);
+	if (params->map->map[x][y] == '0' && rand() % 50 == 0)
+		spawn_bob(params, x, y);
+}
 
 void	spawn_doors(t_params *params)
 {
@@ -74,16 +85,12 @@ void	spawn_doors(t_params *params)
 		y = 0;
 		while (y < params->map->map_width)
 		{
-			if (params->map->map[x][y] == '1')
-			{
-				if (rand() % 4 == 0)
+			if (params->map->map[x][y] == '1' && rand() % 4 == 0)
 					params->map->map[x][y] = '3';
-			}
-			if (params->map->map[x][y] == '0')
-			{
-				if (rand() % 25 == 0)
+			if (params->map->map[x][y] == '0' && rand() % 25 == 0)
 					params->map->map[x][y] = '2';
-			}
+			else
+				spawn_enemys(params, x, y);
 			y++;
 		}
 		x++;

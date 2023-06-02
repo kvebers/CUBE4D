@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:22:17 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 15:20:27 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 18:55:26 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,25 @@
 #include "../parsing/parser_bonus.h"
 #include <math.h>
 
-// void    spawn_enemy(t_params *params)
-// {
-    
-// }
+void	spawn_duck(t_params *params, int x, int y)
+{
+	if (sqrt(pow(params->map->player.x - x * 64, 2)
+			+ pow(params->map->player.x - x * 64, 2)) < 500)
+		return ;
+	params->duck.alive = 1;
+	params->duck.speed = 1;
+	params->duck.x = x * 64;
+	params->duck.y = y * 64 + 42;
+}
 
-// void	enemy(t_params *params)
-// {
-    
-// }
+void	spawn_bob(t_params *params, int x, int y)
+{
+	if (sqrt(pow(params->map->player.x - x * 64, 2)
+			+ pow(params->map->player.x - x * 64, 2)) < 500)
+		return ;
+	params->bob.alive = 1;
+	params->bob.speed = 1;
+	params->bob.x = x * 64;
+	params->bob.y = y * 64 + 42;
+}
+

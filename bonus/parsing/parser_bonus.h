@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/02 16:48:52 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 18:23:27 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,10 @@ typedef struct s_vector
 
 typedef struct s_enemy
 {
+	int		alive;
+	int		animation;
+	int		speed;
+	int		collider_box;
 	double	x;
 	double	y;
 }	t_enemy;
@@ -169,6 +173,8 @@ typedef struct s_params {
 	t_textures	*txt;
 	t_map		*map;
 	mlx_t		*mlx;
+	t_enemy		duck;
+	t_enemy		bob;
 	bool		floor;
 	bool		ceiling;
 	bool		north;

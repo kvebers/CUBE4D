@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 17:19:36 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 18:53:12 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,7 @@ void		shaders(int32_t *red, int32_t *green, int32_t *blue, t_ray *ray);
 //doors.c
 void		spawn_doors(t_params *params);
 void		open_doors(t_params *params);
+//enemy.c
+void		spawn_bob(t_params *params, int x, int y);
+void		spawn_duck(t_params *params, int x, int y);
 #endif

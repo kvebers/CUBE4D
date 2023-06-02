@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/01 18:35:40 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 16:49:27 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	game_loop(t_params *params)
 	render_skybox(params);
 	render_map(params);
 	render_minimap(params);
-	printf("%i ", mlx_loop_hook(params->mlx, &mousehook, params));
-	mlx_key_hook(params->mlx, &keyhook, params);
+	mlx_loop_hook(params->mlx, &keyhook, params);
+	mlx_key_hook(params->mlx, &escape, params);
 	mlx_loop(params->mlx);
 }
 
@@ -33,10 +33,14 @@ void	init_settings(t_params *p)
 	p->map->minimap_box = MINIMAP_BOX;
 	p->map->offset = OFFSET;
 	p->map->fov = 66.0;
+	p->fps = 0;
 	p->map->total_width = p->map->map_height * 64;
 	p->map->total_height = p->map->map_width * 64;
 	p->map->player.x = p->map->player.map_x * 64;
 	p->map->player.y = p->map->player.map_y * 64;
+	p->map->door = mlx_load_png("textures/Door.png");
+	p->map->def = mlx_load_png("textures/Test5.png");
+	spawn_doors(p);
 }
 
 int	init_cube(t_params *params)

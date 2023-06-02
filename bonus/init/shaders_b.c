@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_valid_b.c                                     :+:      :+:    :+:   */
+/*   shaders_b.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 19:36:51 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 17:02:33 by kvebers          ###   ########.fr       */
+/*   Created: 2023/06/02 09:31:24 by kvebers           #+#    #+#             */
+/*   Updated: 2023/06/02 10:47:15 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d_bonus.h"
 #include <stdio.h>
 #include "init_bonus.h"
-#include "../parsing/parser_bonus.h"
 #include <math.h>
 
-void	check_valid_move1(t_params *params, double posx, double posy)
+void	shaders(int32_t *red, int32_t *green, int32_t *blue, t_ray *ray)
 {
-	int	x;
-	int	y;
+	int	shader_offset;
 
-	x = (int)((round(params->map->player.x + posx * 1.5) / 64));
-	y = (int)((round(params->map->player.y + posy * 1.5) / 64));
-	if (params->map->map[x][y] != '1'
-		&& params->map->map[x][y] != '2'
-		&& params->map->map[x][y] != '3')
-	{
-		params->map->player.x = params->map->player.x + posx;
-		params->map->player.y = params->map->player.y + posy;
-	}
+	shader_offset = ray->distance / 0.05;
+	*red = *red - shader_offset;
+	if (*red < 0)
+		*red = 0;
+	*blue = *blue - shader_offset;
+	if (*blue < 0)
+		*blue = 0;
+	*green = *green - shader_offset;
+	if (*green < 0)
+		*green = 0;
 }
-

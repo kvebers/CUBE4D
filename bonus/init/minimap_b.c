@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.c                                          :+:      :+:    :+:   */
+/*   minimap_b.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:04:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/01 16:37:48 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 17:31:45 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ void	render_mini_map(t_params *params, int x, int y)
 	else if (new_x >= params->map->total_width
 		|| new_y >= params->map->total_height)
 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
-	else if (params->map->map[new_x / 64][new_y / 64] != '1')
+	else if (params->map->map[new_x / 64][new_y / 64] == '2'
+		|| params->map->map[new_x / 64][new_y / 64] == '4')
+		mlx_put_pixel(params->txt->minimap, x, y, rgb(255, 40, 40, 255));
+	else if (params->map->map[new_x / 64][new_y / 64] != '1'
+		&& params->map->map[new_x / 64][new_y / 64] != '3')
 		mlx_put_pixel(params->txt->minimap, x, y, rgb(13, 13, 13, 255));
 	else
 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
@@ -71,7 +75,14 @@ void	put_mini_pixel(t_params *params, int x, int y)
 		mlx_put_pixel(params->txt->minimap, x, y, 255);
 	else if (params->map->size_y / 4 - params->map->size_y / 64 < x)
 		mlx_put_pixel(params->txt->minimap, x, y, 255);
-}	
+}
+
+// void	draw_pain(t_params *params)
+// {
+// 	params->map->pains = mlx_texture_to_image(params->mlx, params->map->pain);
+// 	mlx_image_to_window(params->mlx, params->map->pains, 0,
+// 		params->map->size_y - params->map->size_y / 4);
+// }
 
 void	render_minimap(t_params *params)
 {
@@ -96,6 +107,6 @@ void	render_minimap(t_params *params)
 	}
 	render_player(params);
 	mlx_image_to_window(params->mlx, params->txt->minimap,
-		params->map->size_x - params->map->size_y / 4,
+		0,
 		params->map->size_y - params->map->size_y / 4);
 }

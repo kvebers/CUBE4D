@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:36:51 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 18:22:01 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 17:02:37 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,6 @@
 #include <stdio.h>
 #include "init.h"
 #include <math.h>
-
-int	check_cordinates(t_params *params, int x, int y)
-{
-	if (y <= 0 || x <= 0
-		|| x >= params->map->total_width
-		|| y >= params->map->total_height)
-		return (0);
-	if (params->map->map[x / 64][y / 64] == '1')
-		return (0);
-	return (1);
-}
 
 void	check_valid_move1(t_params *params, double posx, double posy)
 {

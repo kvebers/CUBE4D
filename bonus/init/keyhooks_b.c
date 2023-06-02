@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/01 17:35:26 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 15:02:12 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	w_pressed(t_params *params)
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
+	params->txt->ground->instances->z = 1;
+	params->txt->minimap->instances->z = 3;
 }
 
 void	s_pressed(t_params *params)
@@ -41,6 +43,8 @@ void	s_pressed(t_params *params)
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
+	params->txt->ground->instances->z = 1;
+	params->txt->minimap->instances->z = 3;
 }
 
 void	a_pressed(t_params *params)
@@ -55,6 +59,8 @@ void	a_pressed(t_params *params)
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
+	params->txt->ground->instances->z = 1;
+	params->txt->minimap->instances->z = 3;
 }
 
 void	d_pressed(t_params *params)
@@ -69,25 +75,30 @@ void	d_pressed(t_params *params)
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
+	params->txt->ground->instances->z = 1;
+	params->txt->minimap->instances->z = 3;
 }
 
-void	keyhook(mlx_key_data_t key_data, void *param)
+void	keyhook(void *param)
 {
-	t_params	*params;
+	t_params		*params;
 
 	params = (t_params *)param;
-	if (key_data.key == MLX_KEY_ESCAPE && key_data.action == MLX_PRESS)
-		mlx_close_window(params->mlx);
+	params->fps++;
+	if (params->fps % 3 == 0)
+		return ;
 	if (mlx_is_key_down(params->mlx, MLX_KEY_W))
 		w_pressed(params);
-	else if (mlx_is_key_down(params->mlx, MLX_KEY_S))
+	if (mlx_is_key_down(params->mlx, MLX_KEY_S))
 		s_pressed(params);
-	else if (mlx_is_key_down(params->mlx, MLX_KEY_LEFT))
-		arrow_pressed_l(params);
-	else if (mlx_is_key_down(params->mlx, MLX_KEY_RIGHT))
-		arrow_pressed_r(params);
-	else if (mlx_is_key_down(params->mlx, MLX_KEY_A))
+	if (mlx_is_key_down(params->mlx, MLX_KEY_A))
 		a_pressed(params);
-	else if (mlx_is_key_down(params->mlx, MLX_KEY_D))
+	if (mlx_is_key_down(params->mlx, MLX_KEY_D))
 		d_pressed(params);
+	if (mlx_is_key_down(params->mlx, MLX_KEY_LEFT))
+		arrow_pressed_l(params);
+	if (mlx_is_key_down(params->mlx, MLX_KEY_RIGHT))
+		arrow_pressed_r(params);
+	mousehook(params);
 }
+

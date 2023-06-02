@@ -6,7 +6,7 @@
 #    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/06/01 19:12:03 by kvebers          ###   ########.fr        #
+#    Updated: 2023/06/02 15:28:42 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,10 @@ SOURCE_BONUS =	main \
 				init/render_texture_b \
 				init/render_background_b \
 				init/rotation_b \
-				init/mousehook_b
+				init/mousehook_b \
+				init/shaders_b \
+				init/enemy_b \
+				init/doors_b
 
 SOURCE		=	main \
 				parsing/parser \
@@ -56,7 +59,7 @@ SOURCE		=	main \
 				init/move_valid \
 				init/render_texture \
 				init/render_background \
-				init/rotation
+				init/rotation 
 				
 SRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SOURCE)))
 OBJ			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SOURCE)))

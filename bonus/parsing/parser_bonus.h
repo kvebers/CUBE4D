@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/01 17:37:37 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 16:48:52 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,12 @@ typedef struct s_vector
 	float	pos_y;
 }	t_vector;
 
+typedef struct s_enemy
+{
+	double	x;
+	double	y;
+}	t_enemy;
+
 typedef struct s_ray
 {
 	double			ray_angle;
@@ -125,7 +131,7 @@ typedef struct s_map
 {
 	int 		map_width; /* size of map in 2d format */
 	int 		map_height; /* size of map in 2d format */
-	int32_t	size_x; /* size of map in pixels aka HEIGHT */
+	int32_t		size_x; /* size of map in pixels aka HEIGHT */
 	int32_t	size_y; /* size of map in pixels aka WIDTH */
 	int		**map;
 	int		total_width; 
@@ -134,6 +140,8 @@ typedef struct s_map
 	int		speed;
 	int		minimap_box;
 	double	fov;
+	mlx_texture_t	*def;
+	mlx_texture_t	*door;
 	t_pos	player;
 }	t_map;
 
@@ -168,6 +176,7 @@ typedef struct s_params {
 	bool		west;
 	bool		east;
 	bool		start;
+	uint32_t	fps;
 }	t_params;
 
 /* parser.c */

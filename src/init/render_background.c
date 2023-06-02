@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:44:47 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 09:45:11 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 11:45:34 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	render_skybox(t_params *params)
 		while (y < params->map->size_y)
 		{
 			if (y < params->map->size_y / 2)
-				mlx_put_pixel(params->txt->ground, x, y, params->txt->floor);
-			else
 				mlx_put_pixel(params->txt->ground, x, y, params->txt->celling);
+			else
+				mlx_put_pixel(params->txt->ground, x, y, params->txt->floor);
 			y++;
 		}
 		x++;

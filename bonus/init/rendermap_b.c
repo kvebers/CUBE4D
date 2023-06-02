@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rendermap.c                                        :+:      :+:    :+:   */
+/*   rendermap_b.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:34:49 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/01 16:38:05 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 16:50:48 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,12 @@ void	calculate_distance(t_params *params, t_ray *ray)
 		ray->ray_pos.pos_y += ray->ray_sin;
 		x = (int)ray->ray_pos.pos_x;
 		y = (int)ray->ray_pos.pos_y;
-		if (params->map->map[x / 64][y / 64] == '1' && ray->wall != 2)
+		if (params->map->map[x / 64][y / 64] == '1')
 			ray->wall = 1;
+		if (params->map->map[x / 64][y / 64] == '2')
+			ray->wall = 2;
+		if (params->map->map[x / 64][y / 64] == '3')
+			ray->wall = 3;
 	}
 	calculate_distance_helper(params, ray);
 	render_wall_line(params, ray, x, y);

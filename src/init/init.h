@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 16:29:46 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 17:02:45 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,7 @@ void		test_textures(t_params *params);
 //VECTORS.c
 t_vector	vector_estimation(int speed, int angle);
 //MOVE_VALID.c
-void		check_valid_move(t_params *params, double posx, double posy);
 void		check_valid_move1(t_params *params, double posx, double posy);
-void		check_valid_move2(t_params *params, double posx, double posy);
-void		check_valid_move3(t_params *params, double posx, double posy);
-int			check_cordinates(t_params *params, int x, int y);
 //DEBUG.c
 void		debug_ray(t_ray *ray);
 //render_texture.c

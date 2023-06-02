@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:05:04 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 19:09:49 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 20:42:38 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,8 @@ void	spawn_enemys(t_params *params, int x, int y)
 {
 	if (params->map->map[x][y] == '0' && params->duck->alive == 0)
 		spawn_duck(params, x, y);
-	if (params->map->map[x][y] == '0' && params->bob->alive == 0)
-		spawn_bob(params, x, y);
 	if (params->map->map[x][y] == '0' && rand() % 40 == 0)
-		spawn_bob(params, x, y);
-	if (params->map->map[x][y] == '0' && rand() % 50 == 0)
-		spawn_bob(params, x, y);
+		spawn_duck(params, x, y);
 }
 
 void	spawn_doors(t_params *params)

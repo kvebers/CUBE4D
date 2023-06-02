@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:34:49 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 16:50:48 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 20:41:57 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,18 @@ void	init_ray_frame(t_params *params, t_ray *ray)
 void	render_map(t_params *params)
 {
 	t_ray	ray;
+	t_ray	enemy_ray;
 
 	init_ray_frame(params, &ray);
+	init_ray_frame(params, &enemy_ray);
 	while (ray.ray_count < params->map->size_x)
 	{
 		init_ray(params, &ray);
 		calculate_distance(params, &ray);
+		init_ray_frame(params, &enemy_ray);
+		render_enemy(params, &enemy_ray);
+		enemy_ray.ray_angle = enemy_ray.ray_angle + enemy_ray.ray_increment;
+		enemy_ray.ray_count++;
 		ray.ray_angle = ray.ray_angle + ray.ray_increment;
 		ray.ray_count++;
 	}

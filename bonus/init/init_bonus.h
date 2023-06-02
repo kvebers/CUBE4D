@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 19:30:59 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 22:06:56 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int			init_cube(t_params *params);
 uint32_t	rgb(int r, int g, int b, int a);
 void		draw_line(t_params *params, t_ray *ray, int color);
 double		deg_to_rad(double deg);
+double		calculate_atan(int x_enemy,
+				int y_enemy, int x_player, int y_player);
 //KEYHOOKS.c
 void		keyhook(void *param);
 void		escape(mlx_key_data_t keydata, void *params);
@@ -39,6 +41,7 @@ void		render_minimap(t_params *params);
 void		draw_pain(t_params *params);
 //RENDERMAP.c
 void		render_map(t_params *params);
+void		calculate_distance_helper(t_params *params, t_ray *ray);
 //RENDERBACKGROUND.c
 void		render_skybox(t_params *params);
 //INIT.c
@@ -60,6 +63,7 @@ void		shaders(int32_t *red, int32_t *green, int32_t *blue, t_ray *ray);
 void		spawn_doors(t_params *params);
 void		open_doors(t_params *params);
 //enemy.c
-void		spawn_bob(t_params *params, int x, int y);
 void		spawn_duck(t_params *params, int x, int y);
+void		render_enemy(t_params *params, t_ray *ray);
+void		update_enemy(t_params *params);
 #endif

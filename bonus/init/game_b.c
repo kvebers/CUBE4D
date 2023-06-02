@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 20:36:58 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 22:31:35 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,10 @@ void	init_settings(t_params *p)
 int	init_cube(t_params *params)
 {
 	init_settings(params);
+	system("afplay ./sound/music.mp3 &");
 	params->mlx = mlx_init(1920, 1080, "Cub3d", false);
 	game_loop(params);
 	free(params->map->map);
+	system("killall afplay");
 	return (0);
 }

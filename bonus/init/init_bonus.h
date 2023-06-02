@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 22:06:56 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 22:38:29 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,6 @@ void		open_doors(t_params *params);
 void		spawn_duck(t_params *params, int x, int y);
 void		render_enemy(t_params *params, t_ray *ray);
 void		update_enemy(t_params *params);
+//sound.c
+void		check_sound(void);
 #endif

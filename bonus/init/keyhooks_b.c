@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 22:07:40 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 22:37:08 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	keyhook(void *param)
 
 	params = (t_params *)param;
 	params->fps++;
+	check_sound();
 	if (params->pause == 1)
 		return ;
 	if (mlx_is_key_down(params->mlx, MLX_KEY_W))

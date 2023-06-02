@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sound_b.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 02:09:48 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/02 22:31:21 by kvebers          ###   ########.fr       */
+/*   Created: 2023/06/02 22:36:31 by kvebers           #+#    #+#             */
+/*   Updated: 2023/06/02 22:40:20 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing/parser.h"
-#include "../cub3d.h"
+#include "../../cub3d_bonus.h"
+#include <stdio.h>
+#include "init_bonus.h"
+#include "../parsing/parser_bonus.h"
+#include <math.h>
 
-
-int	main(int argc, char **argv)
+void	check_sound(void)
 {
-	t_params	params;
+	int	result;
 
-	system("afplay ./sound/music.mp3 &");
-	if (parse(argc, argv, &params) == 0)
-		init_cube(&params);
-	return (0);
+	result = system("pgrep afplay > /dev/null");
+	if (result != 0)
+		system("afplay ./sound/music.mp3 &");
 }

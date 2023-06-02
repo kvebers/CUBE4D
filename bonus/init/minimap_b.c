@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:04:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 17:31:45 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 20:04:34 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,6 @@ void	put_mini_pixel(t_params *params, int x, int y)
 	else if (params->map->size_y / 4 - params->map->size_y / 64 < x)
 		mlx_put_pixel(params->txt->minimap, x, y, 255);
 }
-
-// void	draw_pain(t_params *params)
-// {
-// 	params->map->pains = mlx_texture_to_image(params->mlx, params->map->pain);
-// 	mlx_image_to_window(params->mlx, params->map->pains, 0,
-// 		params->map->size_y - params->map->size_y / 4);
-// }
 
 void	render_minimap(t_params *params)
 {

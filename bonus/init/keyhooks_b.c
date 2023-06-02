@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 15:02:12 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 19:55:13 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	w_pressed(t_params *params)
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
-	params->txt->ground->instances->z = 1;
+	params->txt->ground->instances->z = 2;
 	params->txt->minimap->instances->z = 3;
 }
 
@@ -43,7 +43,7 @@ void	s_pressed(t_params *params)
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
-	params->txt->ground->instances->z = 1;
+	params->txt->ground->instances->z = 2;
 	params->txt->minimap->instances->z = 3;
 }
 
@@ -59,7 +59,7 @@ void	a_pressed(t_params *params)
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
-	params->txt->ground->instances->z = 1;
+	params->txt->ground->instances->z = 2;
 	params->txt->minimap->instances->z = 3;
 }
 
@@ -75,7 +75,7 @@ void	d_pressed(t_params *params)
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
-	params->txt->ground->instances->z = 1;
+	params->txt->ground->instances->z = 2;
 	params->txt->minimap->instances->z = 3;
 }
 
@@ -85,7 +85,7 @@ void	keyhook(void *param)
 
 	params = (t_params *)param;
 	params->fps++;
-	if (params->fps % 3 == 0)
+	if (params->pause == 1)
 		return ;
 	if (mlx_is_key_down(params->mlx, MLX_KEY_W))
 		w_pressed(params);

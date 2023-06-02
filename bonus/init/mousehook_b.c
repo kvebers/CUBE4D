@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 17:02:12 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 17:20:01 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 20:01:28 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@ void	mousehook(t_params *params)
 		arrow_pressed_l(params);
 }
 
+void	render_pause(t_params *params)
+{
+	render_skybox(params);
+	render_map(params);
+	render_minimap(params);
+	mlx_delete_image(params->mlx, params->txt->pause_i);
+	params->pause = 2;
+}
+
 void	escape(mlx_key_data_t key_data, void *param)
 {
 	t_params	*params;
@@ -40,6 +49,10 @@ void	escape(mlx_key_data_t key_data, void *param)
 	params = (t_params *)param;
 	if (key_data.key == MLX_KEY_ESCAPE && key_data.action == MLX_PRESS)
 		mlx_close_window(params->mlx);
-	if (key_data.key == MLX_KEY_E && key_data.action == MLX_PRESS)
+	if (key_data.key == MLX_KEY_E && key_data.action == MLX_PRESS
+		&& params->pause != 1)
 		open_doors(params);
+	if (key_data.key == MLX_KEY_SPACE && key_data.action == MLX_PRESS
+		&& params->pause == 1)
+		render_pause(params);
 }

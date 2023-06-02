@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/02 18:23:27 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 19:27:18 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ typedef struct s_textures
 	mlx_texture_t	*so;
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
+	mlx_texture_t	*pause_t;
 	int32_t			f_r;
 	int32_t			f_b;
 	int32_t			f_g;
@@ -163,6 +164,7 @@ typedef struct s_textures
 	int32_t			c_g;
 	int32_t			floor;
 	int32_t			celling;
+	mlx_image_t		*pause_i;
 	mlx_image_t		*ground;
 	mlx_image_t		*minimap;
 	char			**buffer;
@@ -173,8 +175,8 @@ typedef struct s_params {
 	t_textures	*txt;
 	t_map		*map;
 	mlx_t		*mlx;
-	t_enemy		duck;
-	t_enemy		bob;
+	t_enemy		*duck;
+	t_enemy		*bob;
 	bool		floor;
 	bool		ceiling;
 	bool		north;
@@ -182,6 +184,7 @@ typedef struct s_params {
 	bool		west;
 	bool		east;
 	bool		start;
+	int			pause;
 	uint32_t	fps;
 }	t_params;
 

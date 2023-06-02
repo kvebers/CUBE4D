@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 16:49:27 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/02 19:59:36 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,38 @@
 #include "init_bonus.h"
 #include "../parsing/parser_bonus.h"
 
+void	load_img(t_params *params)
+{
+	params->txt->pause_i = mlx_texture_to_image(params->mlx,
+			params->txt->pause_t);
+	mlx_image_to_window(params->mlx, params->txt->pause_i, 0, 0);
+}
+
 void	game_loop(t_params *params)
 {
-	render_skybox(params);
-	render_map(params);
-	render_minimap(params);
+	load_img(params);
+	if (params->pause != 1)
+	{
+		render_skybox(params);
+		render_map(params);
+		render_minimap(params);
+	}
 	mlx_loop_hook(params->mlx, &keyhook, params);
 	mlx_key_hook(params->mlx, &escape, params);
 	mlx_loop(params->mlx);
+}
+
+void	init_helper(t_params *p)
+{
+	p->map->door = mlx_load_png("textures/Door.png");
+	p->map->def = mlx_load_png("textures/Test5.png");
+	p->txt->pause_t = mlx_load_png("textures/hell_img.png");
+	p->pause = 1;
+	p->duck = malloc(sizeof(t_enemy));
+	p->bob = malloc(sizeof(t_enemy));
+	p->bob->alive = 0;
+	p->duck->alive = 0;
+	spawn_doors(p);
 }
 
 void	init_settings(t_params *p)
@@ -38,15 +62,12 @@ void	init_settings(t_params *p)
 	p->map->total_height = p->map->map_width * 64;
 	p->map->player.x = p->map->player.map_x * 64;
 	p->map->player.y = p->map->player.map_y * 64;
-	p->map->door = mlx_load_png("textures/Door.png");
-	p->map->def = mlx_load_png("textures/Test5.png");
-	spawn_doors(p);
+	init_helper(p);
 }
 
 int	init_cube(t_params *params)
 {
 	init_settings(params);
-	// init_start(params);
 	params->mlx = mlx_init(1920, 1080, "Cub3d", false);
 	game_loop(params);
 	free(params->map->map);

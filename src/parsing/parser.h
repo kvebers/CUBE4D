@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/01 17:38:22 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 14:57:56 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef enum
 	INVALID_EAST_PATH,
 	MAP_404,	
 	MAP_NOT_CLOSED,
+	INVALID_FILE_EXTENSION,
+	INIT_GAME_ERROR,
 } parse_error;
 
 static char *error_msgs[100]	= {
@@ -80,7 +82,8 @@ static char *error_msgs[100]	= {
 	[INVALID_EAST_PATH]			=	"Error\nInvalid east path\n",
 	[MAP_404]					=	"Error\nMap not found\n",
 	[MAP_NOT_CLOSED]			=	"Error\nMap not closed\n",
-	
+	[INVALID_FILE_EXTENSION]	=	"Error\nInvalid file extension\n",
+	[INIT_GAME_ERROR]			=	"Error\nGame initialization failed\n",
 };
 
 typedef struct s_vector

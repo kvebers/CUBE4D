@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/30 16:08:27 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/03 15:00:47 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,17 +113,18 @@ parse_error		set_params(char c, char *str, t_params *p)
 }
 
 /**
- * @brief Parse the map file and set the parameters 
+ * @brief Parse the map(p->lines) and set the parameters 
  * @param p pointer to the params struct
  * @return char** pointer to the first line of the map 
  */
-char	**init_params(t_params *p)
+static char	**init_params(t_params *p)
 {
-	int i;
-	int j;
-	char **lines = p->lines;
-	parse_error error;
+	int			i;
+	int			j;
+	parse_error	error;
+	char **lines;
 	
+	lines = p->lines;
 	i = 0;
 	while (lines[i])
 	{
@@ -139,7 +140,12 @@ char	**init_params(t_params *p)
 	return (NULL);
 }
 
-char	**get_lines(int fd)
+/**
+ * @brief get all lines from files and store them in a char**
+ * @param fd the file descriptor
+ * @return char** which represents the whole file
+ */
+static char	**get_lines(int fd)
 {
 	char	**lines = 0;
 	char	**tmp = NULL;
@@ -165,7 +171,23 @@ char	**get_lines(int fd)
 		i++;
 		s = get_next_line(fd);
 	}
+	free(tmp);
+	free(s);
 	return (lines);
+}
+
+static parse_error check_file_name(char *file_name)
+{
+	int i;
+
+	i = 0;
+	while (file_name[i])
+		i++;
+	if (file_name[i - 1] == 'b' && file_name[i - 2] == 'u' \
+		&& file_name[i - 3] == 'c' && file_name[i - 4] == '.')
+		return (VALID);
+	ft_printf_fd(2, error_msgs[INVALID_FILE_EXTENSION]);
+	return (INVALID_FILE_EXTENSION);
 }
 
 void debug_info(t_params *params) 
@@ -195,26 +217,13 @@ void debug_info(t_params *params)
 	printf("---------------------- fin info ----------------------\n");
 }
 
-int parse(int argc, char **argv, t_params *params)
+parse_error init_game(t_params *params, int fd)
 {
-	int		fd;
 	params->txt = malloc(sizeof(t_textures));
-	if (argc != 2)
-	{
-		ft_printf_fd(2, error_msgs[INVALID_NUM_ARGS]);
-		return (1);
-	}
-
-	if ((fd = open(argv[1], O_RDONLY)) < 0)
-	{
-		ft_printf_fd(2, error_msgs[INVALID_FILE]);
-		return (1);
-	}
-
-	params->lines = get_lines(fd);
+	params->lines = get_lines(fd); 
+	/*@todo check if get_next_line can fail, if so, check if it fails or not to stop or preceed execution */
 	close(fd);
-
-	char **map = init_params(params); // **map will point to the first line of the map
+	char **map = init_params(params);
 	init_map(params, map); // will allocate memory for the map and set it to 9's 
 	parse_map(params, map);
 	init_player(params);
@@ -226,6 +235,32 @@ int parse(int argc, char **argv, t_params *params)
 	int **map_copy = (int **) copy_2d_array((void **)params->map->map, \
 	params->map->map_height, params->map->map_width, sizeof(int));
 	check_map(params, params->map->player.map_x, params->map->player.map_y, map_copy);
-	
+	return (VALID);
+}
+
+int parse(int argc, char **argv, t_params *params)
+{
+	int		fd;
+
+	if (argc != 2)
+	{
+		ft_printf_fd(2, error_msgs[INVALID_NUM_ARGS]);
+		return (1);
+	}
+	if ((fd = open(argv[1], O_RDONLY)) < 0)
+	{
+		ft_printf_fd(2, error_msgs[INVALID_FILE_EXTENSION]);
+		return (1);
+	}
+	if (check_file_name(argv[1]) != VALID)
+	{
+		return (1);
+	}
+	if (init_game(params, fd) != VALID)
+	{
+		ft_printf_fd(2, error_msgs[INIT_GAME_ERROR]);
+		return (1);
+	}
+
 	return (0);
 }

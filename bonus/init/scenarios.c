@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 17:06:03 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 19:20:37 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 19:38:48 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 void	trigger_duck(t_params *params)
 {
+	usleep(10000);
 	(void) params;
 }
 
@@ -30,10 +31,12 @@ void	trigger_scenarios(t_params *params)
 
 	srand(time(0));
 	vector = vector_estimation(64, params->map->player.angle);
-	if (rand() % 4 == 0 && params->map->map[(int)(params->map->player.x
-			+ vector.pos_x) / 64][(int)(vector.pos_y + params->map->player.y)
-				/ 64] == 0)
+	if (rand() % 4 == 0)
+	{
+		params->global_light = 255;
 		trigger_duck(params);
+		params->global_light = 5;
+	}
 	else if (rand() % 4 == 2)
 	{
 		params->global_light += 5;

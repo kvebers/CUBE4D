@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 12:17:42 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 15:36:29 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ void	w_pressed(t_params *params)
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
+	params->guny = params->guny - 5;
 	params->txt->ground->instances->z = 2;
 	params->txt->minimap->instances->z = 3;
+	params->txt->gun->instances->z = 4;
 }
 
 void	s_pressed(t_params *params)
@@ -43,8 +45,10 @@ void	s_pressed(t_params *params)
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
+	params->guny = params->guny + 5;
 	params->txt->ground->instances->z = 2;
 	params->txt->minimap->instances->z = 3;
+	params->txt->gun->instances->z = 4;
 }
 
 void	a_pressed(t_params *params)
@@ -59,8 +63,10 @@ void	a_pressed(t_params *params)
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
+	params->gunx = params->gunx - 5;
 	params->txt->ground->instances->z = 2;
 	params->txt->minimap->instances->z = 3;
+	params->txt->gun->instances->z = 4;
 }
 
 void	d_pressed(t_params *params)
@@ -75,6 +81,7 @@ void	d_pressed(t_params *params)
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
+	params->gunx = params->gunx + 5;
 	params->txt->ground->instances->z = 2;
 	params->txt->minimap->instances->z = 3;
 }
@@ -88,6 +95,7 @@ void	keyhook(void *param)
 	check_sound();
 	if (params->pause == 1)
 		return ;
+	gun_stuff(params);
 	if (mlx_is_key_down(params->mlx, MLX_KEY_W))
 		w_pressed(params);
 	if (mlx_is_key_down(params->mlx, MLX_KEY_S))

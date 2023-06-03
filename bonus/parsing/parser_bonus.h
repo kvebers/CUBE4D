@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/03 13:32:30 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 15:23:13 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct s_ray
 	int				ray_count;
 	unsigned int	offset;
 	int				wall;
+	int				gun_light;
 	int				wall_height;
 	int				start_pos;
 	int				end_pos;
@@ -145,6 +146,10 @@ typedef struct s_textures
 	mlx_texture_t	*so;
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
+	mlx_texture_t	*gun0;
+	mlx_texture_t	*gun1;
+	mlx_texture_t	*gun2;
+	mlx_texture_t	*gun3;
 	mlx_texture_t	*pause_t;
 	int32_t			f_r;
 	int32_t			f_b;
@@ -157,6 +162,7 @@ typedef struct s_textures
 	mlx_image_t		*pause_i;
 	mlx_image_t		*ground;
 	mlx_image_t		*minimap;
+	mlx_image_t		*gun;
 	char			**buffer;
 }	t_textures;
 
@@ -173,6 +179,9 @@ typedef struct s_params {
 	bool		east;
 	bool		start;
 	int			pause;
+	int			gunx;
+	int			guny;
+	int			gun_state;
 	uint32_t	fps;
 }	t_params;
 

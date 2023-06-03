@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:34:49 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 12:15:04 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 15:24:09 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	init_ray_frame(t_params *params, t_ray *ray)
 		ray->ray_increment = 60.0 / 1920.0;
 	ray->ray_angle = params->map->player.angle - 30;
 	ray->ray_count = 0;
+	ray->gun_light = params->gun_state * 3;
 }
 
 void	render_map(t_params *params)

@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 09:31:24 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 10:47:15 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 15:35:16 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,19 @@ void	shaders(int32_t *red, int32_t *green, int32_t *blue, t_ray *ray)
 	int	shader_offset;
 
 	shader_offset = ray->distance / 0.05;
-	*red = *red - shader_offset;
+	*red = *red - shader_offset + ray->gun_light * 3;
 	if (*red < 0)
 		*red = 0;
-	*blue = *blue - shader_offset;
+	*blue = *blue - shader_offset + ray->gun_light * 3;
 	if (*blue < 0)
 		*blue = 0;
-	*green = *green - shader_offset;
+	*green = *green - shader_offset + ray->gun_light * 3;
 	if (*green < 0)
 		*green = 0;
+	if (*red > 255)
+		*red = 255;
+	if (*blue > 255)
+		*blue = 255;
+	if (*green > 255)
+		*green = 255;
 }

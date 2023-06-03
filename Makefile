@@ -6,7 +6,7 @@
 #    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/06/03 12:16:39 by kvebers          ###   ########.fr        #
+#    Updated: 2023/06/03 14:43:07 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SOURCE_BONUS =	main \
 				init/shaders_b \
 				init/doors_b \
 				init/sound_b \
+				init/gun_b \
 
 SOURCE		=	main \
 				parsing/parser \

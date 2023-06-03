@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 17:06:03 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 19:40:19 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 19:46:15 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	trigger_scenarios(t_params *params)
 	{
 		params->global_light = 255;
 		trigger_duck(params);
-		params->global_light = 5;
+		params->global_light = 40;
 	}
 	else if (rand() % 4 == 2)
 	{

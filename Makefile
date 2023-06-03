@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
+#    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/06/03 12:16:39 by kvebers          ###   ########.fr        #
+#    Updated: 2023/06/03 15:22:05 by asioud           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,20 +46,22 @@ SOURCE_BONUS =	main \
 				init/sound_b \
 
 SOURCE		=	main \
-				parsing/parser \
-				parsing/check_texture \
 				parsing/map \
 				parsing/player \
-				init/utils \
-				init/keyhooks \
-				init/minimap \
-				init/rendermap \
+				parsing/parser \
+				parsing/set_params \
+				parsing/check_texture \
+				parsing/set_directions \
 				init/game \
+				init/utils \
+				init/minimap \
 				init/vectors \
+				init/rotation \
+				init/keyhooks \
+				init/rendermap \
 				init/move_valid \
 				init/render_texture \
 				init/render_background \
-				init/rotation 
 				
 SRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SOURCE)))
 OBJ			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SOURCE)))

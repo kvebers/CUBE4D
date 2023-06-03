@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:20:07 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/25 18:40:05 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 15:27:26 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h> // open
 #include "parser.h"
-#include <stdbool.h>
 
-parse_error	set_ceiling(char *str, t_params *p)
+parse_error	set_ceiling_txt(char *str, t_params *p)
 {
 	int		count;
 	float	value;
@@ -58,7 +56,7 @@ parse_error	set_ceiling(char *str, t_params *p)
 	return (VALID);
 }
 
-parse_error	set_floor(char *str, t_params *p)
+parse_error	set_floor_txt(char *str, t_params *p)
 {
 	int		count;
 	int	value;

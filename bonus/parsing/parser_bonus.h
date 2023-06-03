@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/03 15:23:13 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 19:10:28 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_ray
 	t_vector		ray_pos;
 	int				ray_count;
 	unsigned int	offset;
+	int				global_light;
 	int				wall;
 	int				gun_light;
 	int				wall_height;
@@ -181,6 +182,7 @@ typedef struct s_params {
 	int			pause;
 	int			gunx;
 	int			guny;
+	int			global_light;
 	int			gun_state;
 	uint32_t	fps;
 }	t_params;

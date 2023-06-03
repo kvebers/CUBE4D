@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 15:11:48 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 19:17:11 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,6 @@ void		check_sound(void);
 void		init_gun(t_params *params);
 void		render_gun(t_params *params);
 void		gun_stuff(t_params *params);
+//scenarios
+void		trigger_scenarios(t_params *params);
 #endif

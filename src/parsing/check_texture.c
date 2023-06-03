@@ -6,11 +6,13 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:20:07 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/03 15:27:26 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/03 15:52:07 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+
 
 parse_error	set_ceiling_txt(char *str, t_params *p)
 {

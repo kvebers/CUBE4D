@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/03 15:28:02 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/03 19:28:46 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,5 +193,5 @@ void			check_map(t_params *p, int x, int y, int **map);
 int				init_player(t_params *p);
 void			print_map(t_params *p, char **map);
 void			debug_info(t_params *params);
-
+void free_2d_array(void **array, int height);
 #endif

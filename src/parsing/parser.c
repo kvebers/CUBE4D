@@ -6,19 +6,32 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/03 15:17:50 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/03 19:35:19 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "../../cub3d.h"
 
+void free_2d_array(void **array, int height)
+{
+	int i;
+
+	i = 0;
+	while (i < height)
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
 /**
  * @brief Parse the map(p->lines) and set the parameters 
  * @param p pointer to the params struct
  * @return char** pointer to the first line of the map 
  */
-static char	**init_params(t_params *p)
+char	**init_params(t_params *p)
 {
 	int			i;
 	int			j;
@@ -46,9 +59,9 @@ static char	**init_params(t_params *p)
  * @param fd the file descriptor
  * @return char** which represents the whole file
  */
-static char	**get_lines(int fd)
+char	**get_lines(int fd)
 {
-	char	**lines = 0;
+	char	**lines = NULL;
 	char	**tmp = NULL;
 	char	*s;
 	int		i;
@@ -72,8 +85,6 @@ static char	**get_lines(int fd)
 		i++;
 		s = get_next_line(fd);
 	}
-	free(tmp);
-	free(s);
 	return (lines);
 }
 
@@ -82,7 +93,7 @@ static char	**get_lines(int fd)
  * @param file_name the name of the file
  * @return parse_error INVALID_FILE_EXTENSION if the file extension is not .cub
  */
-static parse_error check_file_name(char *file_name)
+parse_error check_file_name(char *file_name)
 {
 	int i;
 
@@ -123,14 +134,19 @@ void debug_info(t_params *params)
 	printf("---------------------- fin info ----------------------\n");
 }
 
+
+
 parse_error init_game(t_params *params, int fd)
 {
 	params->txt = malloc(sizeof(t_textures));
-	params->lines = get_lines(fd); 
+	params->lines = get_lines(fd);
+	// free_all_mem(&params->memory_blocks);
+
 	/*@todo check if get_next_line can fail, if so, check if it fails or not to stop or preceed execution */
 	close(fd);
 	char **map = init_params(params);
 	init_map(params, map); // will allocate memory for the map and set it to 9's 
+
 	parse_map(params, map);
 	init_player(params);
 	print_map(params, NULL);
@@ -141,6 +157,7 @@ parse_error init_game(t_params *params, int fd)
 	int **map_copy = (int **) copy_2d_array((void **)params->map->map, \
 	params->map->map_height, params->map->map_width, sizeof(int));
 	check_map(params, params->map->player.map_x, params->map->player.map_y, map_copy);
+	free_2d_array((void **)map_copy, params->map->map_height);
 	return (VALID);
 }
 

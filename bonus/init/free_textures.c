@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_valid_b.c                                     :+:      :+:    :+:   */
+/*   free_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 19:36:51 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 19:19:32 by kvebers          ###   ########.fr       */
+/*   Created: 2023/06/03 18:44:44 by kvebers           #+#    #+#             */
+/*   Updated: 2023/06/03 18:57:21 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,18 @@
 #include <stdio.h>
 #include "init_bonus.h"
 #include "../parsing/parser_bonus.h"
-#include <math.h>
 
-void	check_valid_move1(t_params *params, double posx, double posy)
+void    free_textures(t_params *params)
 {
-	int	x;
-	int	y;
-
-	x = (int)((round(params->map->player.x + posx * 1.5) / 64));
-	y = (int)((round(params->map->player.y + posy * 1.5) / 64));
-	if (params->map->map[x][y] != '1'
-		&& params->map->map[x][y] != '2'
-		&& params->map->map[x][y] != '3')
-	{
-		params->map->player.x = params->map->player.x + posx;
-		params->map->player.y = params->map->player.y + posy;
-		if (params->map->map[x][y] == '5')
-			trigger_scenarios(params);
-	}
+    mlx_delete_texture(params->txt->gun0);
+    mlx_delete_texture(params->txt->gun1);
+    mlx_delete_texture(params->txt->gun2);
+    mlx_delete_texture(params->txt->gun3);
+    mlx_delete_texture(params->txt->ea);
+    mlx_delete_texture(params->txt->no);
+    mlx_delete_texture(params->txt->we);
+    mlx_delete_texture(params->txt->so);
+    mlx_delete_texture(params->map->def);
+    mlx_delete_texture(params->map->door);
+    mlx_delete_texture(params->txt->pause_t);
 }
-

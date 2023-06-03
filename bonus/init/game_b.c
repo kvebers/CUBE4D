@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 13:32:43 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 14:45:13 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	init_helper(t_params *p)
 	p->map->def = mlx_load_png("textures/Test5.png");
 	p->txt->pause_t = mlx_load_png("textures/hell_img.png");
 	p->pause = 1;
+	init_gun(p);
 	spawn_doors(p);
 }
 

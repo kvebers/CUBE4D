@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 17:02:12 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 13:32:03 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 16:17:11 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void	mousehook(t_params *params)
 		arrow_pressed_r(params);
 	else if (x < (int32_t) params->map->size_x / 2 - 60)
 		arrow_pressed_l(params);
+	if (mlx_is_mouse_down(params->mlx, MLX_MOUSE_BUTTON_LEFT)
+		&& params->gun_state == 0)
+		params->gun_state = 4;
 }
 
 void	render_pause(t_params *params)
@@ -38,6 +41,7 @@ void	render_pause(t_params *params)
 	render_skybox(params);
 	render_map(params);
 	render_minimap(params);
+	render_gun(params);
 	mlx_delete_image(params->mlx, params->txt->pause_i);
 	params->pause = 2;
 }
@@ -55,4 +59,7 @@ void	escape(mlx_key_data_t key_data, void *param)
 	if (key_data.key == MLX_KEY_SPACE && key_data.action == MLX_PRESS
 		&& params->pause == 1)
 		render_pause(params);
+	if (key_data.key == MLX_KEY_UP
+		&& key_data.action == MLX_PRESS && params->gun_state == 0)
+		params->gun_state = 4;
 }

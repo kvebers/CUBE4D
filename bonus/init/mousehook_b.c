@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 17:02:12 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 15:46:52 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 16:17:11 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ void	escape(mlx_key_data_t key_data, void *param)
 		render_pause(params);
 	if (key_data.key == MLX_KEY_UP
 		&& key_data.action == MLX_PRESS && params->gun_state == 0)
-		params->gun_state = 6;
+		params->gun_state = 4;
 }

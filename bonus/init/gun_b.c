@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 13:51:02 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 15:30:54 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 16:18:48 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	render_gun(t_params *params)
 		params->gunx + 10, params->guny + 10);
 	params->gunx = 0;
 	params->guny = 0;
+	if (params->gun_state == 4)
+		system("afplay ./sound/Gunfire.mp3 &");
 	if (params->gun_state > 0)
 		params->gun_state--;
 }

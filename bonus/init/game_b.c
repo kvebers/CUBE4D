@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 22:31:35 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 13:32:43 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	init_helper(t_params *p)
 	p->map->def = mlx_load_png("textures/Test5.png");
 	p->txt->pause_t = mlx_load_png("textures/hell_img.png");
 	p->pause = 1;
-	p->duck = malloc(sizeof(t_enemy));
-	p->duck->alive = 0;
 	spawn_doors(p);
 }
 

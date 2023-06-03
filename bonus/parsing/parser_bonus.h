@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/02 21:31:54 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 13:32:30 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,17 +89,6 @@ typedef struct s_vector
 	float	pos_y;
 }	t_vector;
 
-typedef struct s_enemy
-{
-	int			alive;
-	int			animation;
-	double 		speed;
-	double		angle;
-	t_vector	rot;
-	t_vector	pos_1;
-	t_vector	pos_2;
-}	t_enemy;
-
 typedef struct s_ray
 {
 	double			ray_angle;
@@ -176,8 +165,6 @@ typedef struct s_params {
 	t_textures	*txt;
 	t_map		*map;
 	mlx_t		*mlx;
-	t_enemy		*duck;
-	t_enemy		*bob;
 	bool		floor;
 	bool		ceiling;
 	bool		north;

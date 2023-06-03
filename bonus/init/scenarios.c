@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 17:06:03 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 19:38:48 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 19:40:19 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 
 void	trigger_duck(t_params *params)
 {
-	usleep(10000);
 	(void) params;
 }
 

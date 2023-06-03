@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 22:37:08 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 12:17:42 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	w_pressed(t_params *params)
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
-	update_enemy(params);
 	params->txt->ground->instances->z = 2;
 	params->txt->minimap->instances->z = 3;
 }
@@ -44,7 +43,6 @@ void	s_pressed(t_params *params)
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
-	update_enemy(params);
 	params->txt->ground->instances->z = 2;
 	params->txt->minimap->instances->z = 3;
 }
@@ -61,7 +59,6 @@ void	a_pressed(t_params *params)
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
-	update_enemy(params);
 	params->txt->ground->instances->z = 2;
 	params->txt->minimap->instances->z = 3;
 }
@@ -78,7 +75,6 @@ void	d_pressed(t_params *params)
 	render_map(params);
 	mlx_delete_image(params->mlx, params->txt->minimap);
 	render_minimap(params);
-	update_enemy(params);
 	params->txt->ground->instances->z = 2;
 	params->txt->minimap->instances->z = 3;
 }

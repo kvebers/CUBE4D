@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:05:04 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 20:42:38 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/03 12:15:47 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,6 @@ void	open_doors(t_params *params)
 		close_doors(params);
 }
 
-void	spawn_enemys(t_params *params, int x, int y)
-{
-	if (params->map->map[x][y] == '0' && params->duck->alive == 0)
-		spawn_duck(params, x, y);
-	if (params->map->map[x][y] == '0' && rand() % 40 == 0)
-		spawn_duck(params, x, y);
-}
-
 void	spawn_doors(t_params *params)
 {
 	int	x;
@@ -85,8 +77,6 @@ void	spawn_doors(t_params *params)
 					params->map->map[x][y] = '3';
 			if (params->map->map[x][y] == '0' && rand() % 25 == 0)
 					params->map->map[x][y] = '2';
-			else
-				spawn_enemys(params, x, y);
 			y++;
 		}
 		x++;

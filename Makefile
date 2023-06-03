@@ -6,7 +6,7 @@
 #    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/06/02 22:36:28 by kvebers          ###   ########.fr        #
+#    Updated: 2023/06/03 12:16:39 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,6 @@ SOURCE_BONUS =	main \
 				init/rotation_b \
 				init/mousehook_b \
 				init/shaders_b \
-				init/enemy_b \
 				init/doors_b \
 				init/sound_b \
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:33 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/31 11:12:15 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/04 00:21:32 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,32 +34,35 @@ char	put_chars(char c);
  * player's position.
  * @return void
 */
-void	check_map(t_params *p, int x, int y, int **map)
+bool check_map(t_params *p, int x, int y, int **map)
 {
 	if (map[x][y] == '1' || map[x][y] == '3' || map[x][y] == '4')
-		return ;
+		return true;
 	if (map[x][y] == '9')
-		return ;
+		return true;
 	if (map[x][y] == '\n' || map[x][y] == '\0')
-		return ;
+		return true;
 	if ((x < 0 || y < 0 || x == p->map->map_height))
 	{
 		ft_putstr_fd(error_msgs[MAP_NOT_CLOSED], 2);
-		return ;
+		return false;
 	}
 	if (map[x][y] == -1)
 	{
 		ft_putstr_fd(error_msgs[MAP_NOT_CLOSED], 2);
-		return ;
+		return false;
 	}
 	if (map[x][y] == '0')
 		map[x][y] = '3';
 	if (map[x][y] == '2')
 		map[x][y] = '4';
-	check_map(p, x + 1, y, map);
-	check_map(p, x, y + 1, map);
-	check_map(p, x - 1, y, map);
-	check_map(p, x, y - 1, map);
+	bool is_valid = true;
+	is_valid &= check_map(p, x + 1, y, map);
+	is_valid &= check_map(p, x, y + 1, map);
+	is_valid &= check_map(p, x - 1, y, map);
+	is_valid &= check_map(p, x, y - 1, map);
+
+	return is_valid;
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 15:04:21 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/03 15:26:36 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/03 20:32:07 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ parse_error	set_params(char c, char *str, t_params *p)
 	while (*str == ' ')
 		str++;
 	if (c == 'F' && *(str + 1) == ' ')
-		return set_floor(str, p);
+		return free(path), set_floor(str, p);
 	else if (c == 'C' && *(str + 1) == ' ')
-		return set_ceiling(str, p);
+		return free(path), set_ceiling(str, p);
 	else if (c == 'N' && *(str + 1) == 'O' && *(str + 2) == ' ')
 		return set_north(path, p);
 	else if (c == 'S' && *(str + 1) == 'O' && *(str + 2) == ' ')
@@ -62,7 +62,7 @@ parse_error	set_params(char c, char *str, t_params *p)
 	else if (c == 'E' && *(str + 1) == 'A' && *(str + 2) == ' ')
         return set_east(path, p);
 	else if (c == '1' || c == '2' || c == '0')
-		return (INVALID_IDENTIFIERS);
-	return (VALID);
+		return (free(path), INVALID_IDENTIFIERS);
+	return (free(path), VALID);
 }
     

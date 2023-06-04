@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/03 19:28:46 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/03 21:35:07 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 # define PARSER_H
 
 # include "../../cub3d.h"
-# include "../../libs/MLX42/include/MLX42/MLX42.h"
-# include <stdbool.h>
 
 typedef enum
 {
 	VALID,
+	INVALID,
 	INVALID_NUM_ARGS,
 	INVALID_ARG,
 	INVALID_FILE,
@@ -54,6 +53,7 @@ typedef enum
 
 static char *error_msgs[100]	= {
 	[VALID]						=	"Error\nVALID\n",
+	[INVALID]					=	"Error\nINVALID\n",
 	[INVALID_NUM_ARGS]			=	"Error\nWrong number of arguments\n",
 	[INVALID_ARG]				=	"Error\nInvalid argument\n",
 	[INVALID_FILE]				=	"Error\nInvalid file or wrong path\n",
@@ -188,10 +188,11 @@ parse_error	set_floor_txt(char *str, t_params *p);
 
 void			init_map(t_params *p, char **map);
 void			parse_map(t_params *p, char **map);
-void			check_map(t_params *p, int x, int y, int **map);
+bool			check_map(t_params *p, int x, int y, int **map);
 
 int				init_player(t_params *p);
 void			print_map(t_params *p, char **map);
 void			debug_info(t_params *params);
 void free_2d_array(void **array, int height);
+
 #endif

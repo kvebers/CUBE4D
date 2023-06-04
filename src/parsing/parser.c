@@ -6,25 +6,12 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/03 19:35:19 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/04 01:56:06 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "../../cub3d.h"
-
-void free_2d_array(void **array, int height)
-{
-	int i;
-
-	i = 0;
-	while (i < height)
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
 
 /**
  * @brief Parse the map(p->lines) and set the parameters 
@@ -84,7 +71,9 @@ char	**get_lines(int fd)
 		lines[j] = 0;
 		i++;
 		s = get_next_line(fd);
+		free(tmp);
 	}
+	free(s);
 	return (lines);
 }
 
@@ -103,7 +92,7 @@ parse_error check_file_name(char *file_name)
 	if (file_name[i - 1] == 'b' && file_name[i - 2] == 'u' \
 		&& file_name[i - 3] == 'c' && file_name[i - 4] == '.')
 		return (VALID);
-	ft_printf_fd(2, error_msgs[INVALID_FILE_EXTENSION]);
+	ft_putstr_fd(error_msgs[INVALID_FILE_EXTENSION], 2);
 	return (INVALID_FILE_EXTENSION);
 }
 
@@ -134,15 +123,9 @@ void debug_info(t_params *params)
 	printf("---------------------- fin info ----------------------\n");
 }
 
-
-
 parse_error init_game(t_params *params, int fd)
 {
-	params->txt = malloc(sizeof(t_textures));
 	params->lines = get_lines(fd);
-	// free_all_mem(&params->memory_blocks);
-
-	/*@todo check if get_next_line can fail, if so, check if it fails or not to stop or preceed execution */
 	close(fd);
 	char **map = init_params(params);
 	init_map(params, map); // will allocate memory for the map and set it to 9's 
@@ -150,13 +133,15 @@ parse_error init_game(t_params *params, int fd)
 	parse_map(params, map);
 	init_player(params);
 	print_map(params, NULL);
-	debug_info(params);
 	if (!params->map->map)
 		return 1;
 
 	int **map_copy = (int **) copy_2d_array((void **)params->map->map, \
 	params->map->map_height, params->map->map_width, sizeof(int));
-	check_map(params, params->map->player.map_x, params->map->player.map_y, map_copy);
+	if (check_map(params, params->map->player.map_x, \
+		params->map->player.map_y, map_copy ) != true)
+		return (INVALID);
+	
 	free_2d_array((void **)map_copy, params->map->map_height);
 	return (VALID);
 }
@@ -167,12 +152,12 @@ int parse(int argc, char **argv, t_params *params)
 
 	if (argc != 2)
 	{
-		ft_printf_fd(2, error_msgs[INVALID_NUM_ARGS]);
+		ft_putstr_fd(error_msgs[INVALID_NUM_ARGS], 2);
 		return (1);
 	}
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 	{
-		ft_printf_fd(2, error_msgs[INVALID_FILE_EXTENSION]);
+		ft_putstr_fd(error_msgs[INVALID_FILE_EXTENSION], 2);
 		return (1);
 	}
 	if (check_file_name(argv[1]) != VALID)
@@ -181,7 +166,7 @@ int parse(int argc, char **argv, t_params *params)
 	}
 	if (init_game(params, fd) != VALID)
 	{
-		ft_printf_fd(2, error_msgs[INIT_GAME_ERROR]);
+		ft_putstr_fd(error_msgs[INIT_GAME_ERROR], 2);
 		return (1);
 	}
 

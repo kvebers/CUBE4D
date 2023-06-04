@@ -6,7 +6,7 @@
 #    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/06/03 17:34:41 by asioud           ###   ########.fr        #
+#    Updated: 2023/06/03 21:30:04 by asioud           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ SOURCE		=	main \
 				init/move_valid \
 				init/render_texture \
 				init/render_background \
-				
+
 SRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SOURCE)))
 OBJ			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SOURCE)))
 SRC_B		=	$(addprefix $(SRC_BON), $(addsuffix .c, $(SOURCE_BONUS)))
@@ -100,18 +100,16 @@ bonus: $(LIBFT) $(LIBMLX) $(OBJ_B)
 	@$(CC) $(CFLAGS) $(LIBFT) $(OBJ_B) $(LIBMLX) $(FRAMEWORK) $(LIBS) -o $(NAME_BONUS)
 	@$(RM) obj
 	@$(RM) $(NAME)
-	
+
 clean:
 	@$(RM) obj
 	@$(RM) $(OBJ_B)
 	@make clean -C ./libs/libft
 
-
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(NAME_BONUS)
 	# @make fclean -C ./libs/libft
-
 
 re:
 	@make fclean

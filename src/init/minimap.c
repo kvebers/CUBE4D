@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:04:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 18:20:25 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/04 02:13:04 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-#include <stdio.h>
 #include "init.h"
 #include "math.h"
-
+#include <stdio.h>
 
 void	render_player(t_params *params)
 {
@@ -33,8 +32,8 @@ void	render_player(t_params *params)
 		while (y < upper_border)
 		{
 			if (y * y + x * x < 100)
-				mlx_put_pixel(params->txt->minimap, x + size, y + size,
-					rgb(255, 0, 0, 255));
+				mlx_put_pixel(params->txt->minimap, x + size, y + size, rgb(255,
+							0, 0, 255));
 			y++;
 		}
 		x++;
@@ -43,22 +42,21 @@ void	render_player(t_params *params)
 
 void	render_mini_map(t_params *params, int x, int y)
 {
-    int	new_x;
-    int	new_y;
+	int	new_x;
+	int	new_y;
 
 	new_x = x + params->map->player.x - params->map->offset;
 	new_y = y + params->map->player.y - params->map->offset;
 	if (new_x <= 0 || new_y <= 0)
 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
 	else if (new_x >= params->map->total_width
-		|| new_y >= params->map->total_height)
+			|| new_y >= params->map->total_height)
 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
 	else if (params->map->map[new_x / 64][new_y / 64] != '1')
 		mlx_put_pixel(params->txt->minimap, x, y, rgb(13, 13, 13, 255));
 	else
 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
 }
-
 
 void	put_mini_pixel(t_params *params, int x, int y)
 {
@@ -70,7 +68,7 @@ void	put_mini_pixel(t_params *params, int x, int y)
 		mlx_put_pixel(params->txt->minimap, x, y, 255);
 	else if (params->map->size_y / 4 - params->map->size_y / 64 < x)
 		mlx_put_pixel(params->txt->minimap, x, y, 255);
-}	
+}
 
 void	render_minimap(t_params *params)
 {
@@ -80,7 +78,8 @@ void	render_minimap(t_params *params)
 
 	minimap_box_y = params->map->size_y / 4;
 	params->txt->minimap = mlx_new_image(params->mlx,
-			params->map->minimap_box, params->map->minimap_box);
+											params->map->minimap_box,
+											params->map->minimap_box);
 	x = 0;
 	while (x < minimap_box_y)
 	{
@@ -94,7 +93,7 @@ void	render_minimap(t_params *params)
 		x++;
 	}
 	render_player(params);
-	mlx_image_to_window(params->mlx, params->txt->minimap,
-		params->map->size_x - params->map->size_y / 4,
-		params->map->size_y - params->map->size_y / 4);
+	mlx_image_to_window(params->mlx, params->txt->minimap, params->map->size_x
+			- params->map->size_y / 4, params->map->size_y - params->map->size_y
+			/ 4);
 }

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   render_texture.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 12:03:31 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/01 17:54:47 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/04 02:13:21 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-#include <stdio.h>
 #include "init.h"
 #include <math.h>
+#include <stdio.h>
 
 int32_t	get_pixel_color(int x, int y, mlx_texture_t *texture)
 {
@@ -40,10 +40,10 @@ mlx_texture_t	*texture_to_render(t_params *params, int x, int y)
 	return (params->txt->ea);
 }
 
-void	render_wall_line_loop(t_params *params, t_ray *ray,
-		int x, mlx_texture_t *t)
+void	render_wall_line_loop(t_params *params, t_ray *ray, int x,
+		mlx_texture_t *t)
 {
-	int32_t		color;
+	int32_t	color;
 
 	while (ray->r <= t->height)
 	{
@@ -51,8 +51,7 @@ void	render_wall_line_loop(t_params *params, t_ray *ray,
 			ray->ray_txt_seg_e = ray->end_pos;
 		color = get_pixel_color(x, ray->r, t);
 		draw_line(params, ray, color);
-		if (ray->r != t->height
-			&& ray->ray_txt_seg_e > params->map->size_y)
+		if (ray->r != t->height && ray->ray_txt_seg_e > params->map->size_y)
 			break ;
 		ray->ray_txt_seg_e = ray->ray_txt_seg_e + ray->ray_txt_inc;
 		if (ray->ray_txt_seg_e > params->map->size_y)

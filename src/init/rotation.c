@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 16:02:37 by kvebers           #+#    #+#             */
-/*   Updated: 2023/05/31 16:03:06 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/04 02:13:28 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-#include <stdio.h>
 #include "init.h"
 #include <math.h>
+#include <stdio.h>
 
 void	arrow_pressed_l(t_params *params)
 {

@@ -3,25 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   rendermap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:34:49 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/01 05:35:44 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/04 02:13:24 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-#include <stdio.h>
 #include "init.h"
 #include <math.h>
+#include <stdio.h>
 
 void	calculate_distance_helper(t_params *params, t_ray *ray)
 {
-	ray->distance
-		= sqrt(pow((params->map->player.x - ray->ray_pos.pos_x) / 90, 2)
-			+ pow((params->map->player.y - ray->ray_pos.pos_y) / 90, 2));
-	ray->distance = ray->distance * cos(M_PI / 180
-			* (ray->ray_angle - params->map->player.angle));
+	ray->distance = sqrt(pow((params->map->player.x - ray->ray_pos.pos_x) / 90,
+				2) + pow((params->map->player.y - ray->ray_pos.pos_y) / 90, 2));
+	ray->distance = ray->distance * cos(M_PI / 180 * (ray->ray_angle
+				- params->map->player.angle));
 	if (ray->distance <= 0)
 		ray->distance = EPSILON;
 	ray->wall_height = (int)params->map->size_y / ray->distance;
@@ -63,9 +62,8 @@ void	init_ray(t_params *params, t_ray *ray)
 
 void	init_ray_frame(t_params *params, t_ray *ray)
 {
-	ray->half_fov = (double) params->map->fov / 2;
-	ray->ray_increment = (double) params->map->fov
-		/ (double) params->map->size_x;
+	ray->half_fov = (double)params->map->fov / 2;
+	ray->ray_increment = (double)params->map->fov / (double)params->map->size_x;
 	if (ray->ray_increment < EPSILON)
 		ray->ray_increment = 60.0 / 1920.0;
 	ray->ray_angle = params->map->player.angle - 30;

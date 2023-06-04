@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 15:12:46 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/03 20:31:45 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/04 02:12:25 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ parse_error	set_north(char *path, t_params *p)
 		p->north = true;
 	}
 	free(path);
-    return (VALID);
+	return (VALID);
 }
 
 parse_error	set_south(char *path, t_params *p)
@@ -49,7 +49,7 @@ parse_error	set_south(char *path, t_params *p)
 		p->south = true;
 	}
 	free(path);
-    return (VALID);
+	return (VALID);
 }
 
 parse_error	set_west(char *path, t_params *p)
@@ -69,7 +69,7 @@ parse_error	set_west(char *path, t_params *p)
 		p->west = true;
 	}
 	free(path);
-    return (VALID);
+	return (VALID);
 }
 
 parse_error	set_east(char *path, t_params *p)
@@ -89,5 +89,5 @@ parse_error	set_east(char *path, t_params *p)
 		p->east = true;
 	}
 	free(path);
-    return (VALID);
+	return (VALID);
 }

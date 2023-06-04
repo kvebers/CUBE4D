@@ -6,14 +6,13 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:54 by asioud            #+#    #+#             */
-/*   Updated: 2023/05/30 15:45:52 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/04 02:12:21 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-
-static void set_angle(t_params *p, char c)
+static void	set_angle(t_params *p, char c)
 {
 	if (c == 'S')
 		p->map->player.angle = 270;
@@ -21,7 +20,7 @@ static void set_angle(t_params *p, char c)
 		p->map->player.angle = 180;
 	else if (c == 'N')
 		p->map->player.angle = 90;
-	else 
+	else
 		p->map->player.angle = 0;
 }
 
@@ -37,8 +36,8 @@ int	init_player(t_params *p)
 {
 	int	i;
 	int	j;
-	int c;
-	int **map;
+	int	c;
+	int	**map;
 
 	i = 0;
 	c = 0;
@@ -48,8 +47,8 @@ int	init_player(t_params *p)
 		j = 0;
 		while (j < p->map->map_width)
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'S' \
-			|| map[i][j] == 'E' || map[i][j] == 'W')
+			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
+				|| map[i][j] == 'W')
 			{
 				p->map->player.map_x = i;
 				p->map->player.map_y = j;
@@ -63,14 +62,12 @@ int	init_player(t_params *p)
 	if (c == 0)
 	{
 		ft_putstr_fd("NO SPAWNPOINT\n", 2);
-		return 1;
+		return (1);
 	}
 	else if (c > 1)
 	{
 		ft_putstr_fd("MULTIPLE SPAWNPOINTS SET\n", 2);
-		return 1;
+		return (1);
 	}
-	return 0;
-	
+	return (0);
 }
-

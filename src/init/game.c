@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/01 06:53:27 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/04 02:12:39 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-#include <stdio.h>
-#include "init.h"
 #include "../parsing/parser.h"
+#include "init.h"
+#include <stdio.h>
 
 void	game_loop(t_params *params)
 {
@@ -22,7 +22,6 @@ void	game_loop(t_params *params)
 	render_minimap(params);
 	mlx_key_hook(params->mlx, keyhook, params);
 	mlx_loop(params->mlx);
-	
 }
 
 void	init_settings(t_params *p)

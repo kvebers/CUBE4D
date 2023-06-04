@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   move_valid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:36:51 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 17:02:37 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/04 02:13:08 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-#include <stdio.h>
 #include "init.h"
 #include <math.h>
+#include <stdio.h>
 
 void	check_valid_move1(t_params *params, double posx, double posy)
 {
@@ -28,4 +28,3 @@ void	check_valid_move1(t_params *params, double posx, double posy)
 		params->map->player.y = params->map->player.y + posy;
 	}
 }
-

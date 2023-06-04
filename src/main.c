@@ -6,18 +6,18 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:09:48 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/04 02:03:42 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/04 02:10:55 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing/parser.h"
 
-void check_leaks()
+void	check_leaks(void)
 {
 	system("leaks cub3D");
 }
 
-void cub_free(t_params p)
+void	cub_free(t_params p)
 {
 	free_2d(p.lines);
 	mlx_delete_texture(p.txt->no);

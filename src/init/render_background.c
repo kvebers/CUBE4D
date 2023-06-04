@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   render_background.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:44:47 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 11:45:34 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/04 02:13:11 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-#include <stdio.h>
 #include "init.h"
+#include <stdio.h>
 
 void	render_skybox(t_params *params)
 {
@@ -21,11 +21,16 @@ void	render_skybox(t_params *params)
 
 	x = 0;
 	params->txt->ground = mlx_new_image(params->mlx,
-			params->map->size_x, params->map->size_y);
+										params->map->size_x,
+										params->map->size_y);
 	params->txt->floor = rgb(params->txt->f_r,
-			params->txt->f_g, params->txt->f_b, 255);
+								params->txt->f_g,
+								params->txt->f_b,
+								255);
 	params->txt->celling = rgb(params->txt->c_r,
-			params->txt->c_g, params->txt->c_b, 255);
+								params->txt->c_g,
+								params->txt->c_b,
+								255);
 	while (x < params->map->size_x)
 	{
 		y = 0;

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 18:37:17 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/01 05:27:43 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/04 02:13:32 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-#include <stdio.h>
 #include "init.h"
 #include <math.h>
+#include <stdio.h>
 
 uint32_t	rgb(int r, int g, int b, int a)
 {
@@ -27,7 +27,7 @@ void	draw_line(t_params *params, t_ray *ray, int32_t color)
 		if (ray->ray_txt_seg_s >= 0)
 		{
 			mlx_put_pixel(params->txt->ground, ray->ray_count,
-				ray->ray_txt_seg_s, color);
+					ray->ray_txt_seg_s, color);
 		}
 		ray->ray_txt_seg_s++;
 	}

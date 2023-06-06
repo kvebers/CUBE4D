@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:09:48 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/04 02:10:55 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/06 21:07:38 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	main(int argc, char **argv)
 	params.txt = &(t_textures){0};
 	if (parse(argc, argv, &params) == 0)
 		init_cube(&params);
-	cub_free(params);
+	else
+		cub_free(params);
 	check_leaks();
 	return (0);
 }

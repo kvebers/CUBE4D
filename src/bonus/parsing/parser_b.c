@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/06 20:43:15 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/06 21:05:58 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ int	check_file_name(char *file_name)
 		i++;
 	if (file_name[i - 1] == 'b' && file_name[i - 2] == 'u' && file_name[i
 		- 3] == 'c' && file_name[i - 4] == '.')
-		return (0);
+		return (VALID);
 	ft_putstr_fd("Error\nInvalid file extension\n", 2);
-	return (VALID);
+	return (INVALID);
 }
 
 void	debug_info(t_params *params)

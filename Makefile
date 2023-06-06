@@ -6,7 +6,7 @@
 #    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/06/06 20:39:55 by asioud           ###   ########.fr        #
+#    Updated: 2023/06/06 21:02:51 by asioud           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ SOURCE_BONUS =	main \
 				parsing/check_texture_b \
 				parsing/map_b \
 				parsing/player_b \
+				parsing/set_params_b \
+				parsing/set_directions_b \
 				init/utils_b \
 				init/keyhooks_b \
 				init/minimap_b \

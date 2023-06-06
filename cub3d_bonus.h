@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 03:06:44 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/06 20:46:59 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/06 21:00:27 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@
 # include <unistd.h>
 # include <time.h>
 # include <math.h>
+# include <stdbool.h>
 
 # include "libs/libft/includes/libft.h"
 # include "libs/MLX42/include/MLX42/MLX42.h"
 
-# include "./src/bonus/init/init_bonus.h"
-# include "./src/bonus/parsing/parser_bonus.h"
+# include "./src/bonus/init/init_b.h"
+# include "./src/bonus/parsing/parser_b.h"
 
 # define FOV 60
 # define SPEED 15

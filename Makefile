@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
+#    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/06/03 21:30:04 by asioud           ###   ########.fr        #
+#    Updated: 2023/06/04 07:15:24 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,8 @@ SOURCE_BONUS =	main \
 				init/shaders_b \
 				init/doors_b \
 				init/sound_b \
+				init/gun_b \
+				init/scenarios \
 
 SOURCE		=	main \
 				parsing/map \

@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:34:49 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 12:15:04 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/04 07:06:47 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	calculate_distance(t_params *params, t_ray *ray)
 	{
 		ray->ray_pos.pos_x += ray->ray_cos;
 		ray->ray_pos.pos_y += ray->ray_sin;
-		x = (int)ray->ray_pos.pos_x;
-		y = (int)ray->ray_pos.pos_y;
+		x = ray->ray_pos.pos_x;
+		y = ray->ray_pos.pos_y;
 		if (params->map->map[x / 64][y / 64] == '1')
 			ray->wall = 1;
 		if (params->map->map[x / 64][y / 64] == '2')
@@ -75,6 +75,8 @@ void	init_ray_frame(t_params *params, t_ray *ray)
 		ray->ray_increment = 60.0 / 1920.0;
 	ray->ray_angle = params->map->player.angle - 30;
 	ray->ray_count = 0;
+	ray->gun_light = params->gun_state * 3;
+	ray->global_light = params->global_light;
 }
 
 void	render_map(t_params *params)

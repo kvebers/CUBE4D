@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/06 04:17:55 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/06 07:01:49 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,71 +17,6 @@
 # include "../../libs/MLX42/include/MLX42/MLX42.h"
 # include <stdbool.h>
 
-typedef enum
-{
-	VALID,
-	INVALID_NUM_ARGS,
-	INVALID_ARG,
-	INVALID_FILE,
-	INVALID_IDENTIFIERS,
-	MULT_RES_INPUT,
-	MANY_RES_INPUT,
-	INVALID_RES_INPUT,
-	INVALID_HEIGHT,
-	INVALID_WIDTH,
-	MULT_FLOOR_INPUT,
-	MANY_FLOOR_INPUT,
-	INVALID_FLOOR_FORMAT,
-	INVALID_FLOOR_VALUES,
-	MULT_CEILING_INPUT,
-	MANY_CEILING_INPUT,
-	INVALID_CEILING_FORMAT,
-	INVALID_CEILING_VALUES,
-	INVALID_TXT_PATH,
-	MULT_NORTH_INPUT,
-	MULT_SOUTH_INPUT,
-	MULT_WEST_INPUT,
-	MULT_EAST_INPUT,
-	INVALID_NORTH_PATH,
-	INVALID_SOUTH_PATH,
-	INVALID_WEST_PATH,
-	INVALID_EAST_PATH,
-	MAP_404,	
-	MAP_NOT_CLOSED,
-} char *;
-
-static char *error_msgs[100]	= {
-	[VALID]						=	"Error\nVALID\n",
-	[INVALID_NUM_ARGS]			=	"Error\nWrong number of arguments\n",
-	[INVALID_ARG]				=	"Error\nInvalid argument\n",
-	[INVALID_FILE]				=	"Error\nInvalid file or wrong path\n",
-	[INVALID_IDENTIFIERS]		=	"Error\nInvalid identifiers\n",
-	[MULT_RES_INPUT]			=	"Error\nMultiple resolution inputs\n",
-	[MANY_RES_INPUT]			=	"Error\nToo many resolution inputs\n",
-	[INVALID_RES_INPUT]			=	"Error\nInvalid resolution input\n",
-	[INVALID_HEIGHT]			=	"Error\nInvalid height\n",
-	[INVALID_WIDTH]				=	"Error\nInvalid width\n",
-	[MULT_FLOOR_INPUT]			=	"Error\nMultiple floor inputs\n",
-	[MANY_FLOOR_INPUT]			=	"Error\nToo many floor inputs\n",
-	[INVALID_FLOOR_FORMAT]		=	
-	[INVALID_FLOOR_VALUES]		=	"Error\nInvalid floor values\n",
-	[MULT_CEILING_INPUT]		=	"Error\nMultiple ceiling inputs\n",
-	[MANY_CEILING_INPUT]		=	"Error\nToo many ceiling inputs\n",
-	[INVALID_CEILING_FORMAT]	=	"Error\nInvalid ceiling format\n",
-	[INVALID_CEILING_VALUES]	=	"Error\nInvalid ceiling values\n",
-	[INVALID_TXT_PATH]			=	"Error\nInvalid texture path\n",
-	[MULT_NORTH_INPUT]			=	"Error\nMultiple north inputs\n",
-	[MULT_SOUTH_INPUT]			=	"Error\nMultiple south inputs\n",
-	[MULT_WEST_INPUT]			=	"Error\nMultiple west inputs\n",
-	[MULT_EAST_INPUT]			=	"Error\nMultiple east inputs\n",
-	[INVALID_NORTH_PATH]		=	"Error\nInvalid north path\n",
-	[INVALID_SOUTH_PATH]		=	"Error\nInvalid south path\n",
-	[INVALID_WEST_PATH]			=	"Error\nInvalid west path\n",
-	[INVALID_EAST_PATH]			=	"Error\nInvalid east path\n",
-	[MAP_404]					=	"Error\nMap not found\n",
-	[MAP_NOT_CLOSED]			=	"Error\nMap not closed\n",
-	
-};
 
 typedef struct s_vector
 {
@@ -105,7 +40,9 @@ typedef struct s_ray
 	t_vector		ray_pos;
 	int				ray_count;
 	unsigned int	offset;
+	int				global_light;
 	int				wall;
+	int				gun_light;
 	int				wall_height;
 	int				start_pos;
 	int				end_pos;
@@ -145,6 +82,10 @@ typedef struct s_textures
 	mlx_texture_t	*so;
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
+	mlx_texture_t	*gun0;
+	mlx_texture_t	*gun1;
+	mlx_texture_t	*gun2;
+	mlx_texture_t	*gun3;
 	mlx_texture_t	*pause_t;
 	int32_t			f_r;
 	int32_t			f_b;
@@ -157,6 +98,7 @@ typedef struct s_textures
 	mlx_image_t		*pause_i;
 	mlx_image_t		*ground;
 	mlx_image_t		*minimap;
+	mlx_image_t		*gun;
 	char			**buffer;
 }	t_textures;
 
@@ -173,6 +115,10 @@ typedef struct s_params {
 	bool		east;
 	bool		start;
 	int			pause;
+	int			gunx;
+	int			guny;
+	int			global_light;
+	int			gun_state;
 	uint32_t	fps;
 }	t_params;
 

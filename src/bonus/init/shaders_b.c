@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   shaders_b.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 09:31:24 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 19:11:35 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/06 20:50:15 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d_bonus.h"
-#include <stdio.h>
-#include "init_bonus.h"
-#include <math.h>
+#include "cub3d_bonus.h"
 
 void	shaders(int32_t *red, int32_t *green, int32_t *blue, t_ray *ray)
 {

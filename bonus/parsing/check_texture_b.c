@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_texture.c                                    :+:      :+:    :+:   */
+/*   check_texture_b.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:20:07 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/01 16:38:46 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/06 04:03:37 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "parser_bonus.h"
 #include <stdbool.h>
 
-parse_error	set_ceiling(char *str, t_params *p)
+char *	set_ceiling(char *str, t_params *p)
 {
 	int		count;
 	float	value;
@@ -58,7 +58,7 @@ parse_error	set_ceiling(char *str, t_params *p)
 	return (VALID);
 }
 
-parse_error	set_floor(char *str, t_params *p)
+char *	set_floor(char *str, t_params *p)
 {
 	int		count;
 	int	value;

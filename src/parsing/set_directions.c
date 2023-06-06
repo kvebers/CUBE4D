@@ -6,25 +6,27 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 15:12:46 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/04 02:12:25 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/06 04:15:26 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-parse_error	set_north(char *path, t_params *p)
+int	set_north(char *path, t_params *p)
 {
 	if (p->north)
-		return (MULT_NORTH_INPUT);
+	{
+		ft_putstr_fd("Error\nMultiple north inputs\n", 2);
+		return (INVALID);
+	}
 	else
 	{
 		if (open(path, O_RDONLY) == -1)
 		{
-			ft_putstr_fd(error_msgs[INVALID_NORTH_PATH], 2);
+			ft_putstr_fd( "Error\nInvalid north path\n", 2);
 			free(path);
-			return (INVALID_NORTH_PATH);
-		}
-		else
+			return (INVALID);
+		} else
 			p->txt->no = mlx_load_png(path);
 		p->north = true;
 	}
@@ -32,17 +34,20 @@ parse_error	set_north(char *path, t_params *p)
 	return (VALID);
 }
 
-parse_error	set_south(char *path, t_params *p)
+int	set_south(char *path, t_params *p)
 {
 	if (p->south)
-		return (MULT_SOUTH_INPUT);
+	{
+		ft_putstr_fd("Error\nMultiple south inputs\n", 2);
+		return (INVALID);
+	}
 	else
 	{
 		if (open(path, O_RDONLY) == -1)
 		{
-			ft_putstr_fd(error_msgs[INVALID_SOUTH_PATH], 2);
+			ft_putstr_fd("Error\nInvalid south path\n", 2);
 			free(path);
-			return (INVALID_SOUTH_PATH);
+			return (INVALID);
 		}
 		else
 			p->txt->so = mlx_load_png(path);
@@ -52,17 +57,20 @@ parse_error	set_south(char *path, t_params *p)
 	return (VALID);
 }
 
-parse_error	set_west(char *path, t_params *p)
+int set_west(char *path, t_params *p)
 {
 	if (p->west)
-		return (MULT_WEST_INPUT);
+	{
+		ft_putstr_fd("Error\nMultiple east inputs\n", 2);
+		return (INVALID);
+	}
 	else
 	{
 		if (open(path, O_RDONLY) == -1)
 		{
-			ft_putstr_fd(error_msgs[INVALID_WEST_PATH], 2);
+			ft_putstr_fd("Error\nInvalid west path\n", 2);
 			free(path);
-			return (INVALID_WEST_PATH);
+			return (INVALID);
 		}
 		else
 			p->txt->we = mlx_load_png(path);
@@ -72,17 +80,20 @@ parse_error	set_west(char *path, t_params *p)
 	return (VALID);
 }
 
-parse_error	set_east(char *path, t_params *p)
+int set_east(char *path, t_params *p)
 {
 	if (p->east)
-		return (MULT_NORTH_INPUT);
+	{
+		ft_putstr_fd("Error\nMultiple east inputs\n", 2);
+		return (INVALID);
+	}
 	else
 	{
 		if (open(path, O_RDONLY) == -1)
 		{
-			ft_putstr_fd(error_msgs[INVALID_EAST_PATH], 2);
+			ft_putstr_fd("Error\nInvalid east path\n", 2);
 			free(path);
-			return (INVALID_EAST_PATH);
+			return (INVALID);
 		}
 		else
 			p->txt->ea = mlx_load_png(path);

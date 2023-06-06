@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parser_b.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/01 16:39:23 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/06 04:03:42 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "../../cub3d_bonus.h"
 
 
-parse_error		set_params(char c, char *str, t_params *p)
+char *		set_params(char c, char *str, t_params *p)
 {
 	char *path;
-	parse_error err;
+	char * err;
 
 	path = ft_strtrim(str+3, "\n");
 	while (*str == ' ')
@@ -122,7 +122,7 @@ char	**init_params(t_params *p)
 	int i;
 	int j;
 	char **lines = p->lines;
-	parse_error error;
+	char * error;
 	
 	i = 0;
 	while (lines[i])

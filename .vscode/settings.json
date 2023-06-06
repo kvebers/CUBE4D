@@ -10,5 +10,11 @@
         "cub3d.h": "c",
         "mlx42.h": "c",
         "stdio.h": "c"
+    },
+
+
+    "[c]": {
+        "editor.defaultFormatter": "keyhr.42-c-format"
     }
+
 }

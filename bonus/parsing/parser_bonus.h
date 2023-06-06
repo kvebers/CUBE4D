@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/03 13:32:30 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/06 04:17:55 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef enum
 	INVALID_EAST_PATH,
 	MAP_404,	
 	MAP_NOT_CLOSED,
-} parse_error;
+} char *;
 
 static char *error_msgs[100]	= {
 	[VALID]						=	"Error\nVALID\n",
@@ -63,7 +63,7 @@ static char *error_msgs[100]	= {
 	[INVALID_WIDTH]				=	"Error\nInvalid width\n",
 	[MULT_FLOOR_INPUT]			=	"Error\nMultiple floor inputs\n",
 	[MANY_FLOOR_INPUT]			=	"Error\nToo many floor inputs\n",
-	[INVALID_FLOOR_FORMAT]		=	"Error\nInvalid floor format\n",
+	[INVALID_FLOOR_FORMAT]		=	
 	[INVALID_FLOOR_VALUES]		=	"Error\nInvalid floor values\n",
 	[MULT_CEILING_INPUT]		=	"Error\nMultiple ceiling inputs\n",
 	[MANY_CEILING_INPUT]		=	"Error\nToo many ceiling inputs\n",
@@ -181,8 +181,8 @@ int	parse(int argc, char **argv, t_params *params);
 
 
 /* check_texture.c */
-parse_error		set_ceiling(char *str, t_params *p);
-parse_error		set_floor(char *str, t_params *p);
+char *		set_ceiling(char *str, t_params *p);
+char *		set_floor(char *str, t_params *p);
 
 void			init_map(t_params *p, char **map);
 void			parse_map(t_params *p, char **map);

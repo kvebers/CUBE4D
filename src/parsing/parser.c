@@ -6,23 +6,17 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/04 02:12:05 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/06 06:57:37 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 #include "parser.h"
 
-/**
- * @brief Parse the map(p->lines) and set the parameters 
- * @param p pointer to the params struct
- * @return char** pointer to the first line of the map 
- */
 char	**init_params(t_params *p)
 {
 	int			i;
 	int			j;
-	parse_error	error;
 	char		**lines;
 
 	lines = p->lines;
@@ -32,20 +26,14 @@ char	**init_params(t_params *p)
 		j = 0;
 		while (lines[i][j] == ' ')
 			j++;
-		error = set_params(lines[i][j], lines[i], p);
-		if (error != VALID)
+		if (set_params(lines[i][j], lines[i], p) != VALID)
 			return (&lines[i]);
 		i++;
 	}
-	ft_putstr_fd(error_msgs[MAP_404], 2);
+	ft_putstr_fd("Error\nMap not found\n", 2);
 	return (NULL);
 }
 
-/**
- * @brief get all lines from files and store them in a char**
- * @param fd the file descriptor
- * @return char** which represents the whole file
- */
 char	**get_lines(int fd)
 {
 	char	**lines;
@@ -79,12 +67,7 @@ char	**get_lines(int fd)
 	return (lines);
 }
 
-/**
- * @brief check if the file name ends with .cub
- * @param file_name the name of the file
- * @return parse_error INVALID_FILE_EXTENSION if the file extension is not .cub
- */
-parse_error	check_file_name(char *file_name)
+int	check_file_name(char *file_name)
 {
 	int	i;
 
@@ -93,9 +76,9 @@ parse_error	check_file_name(char *file_name)
 		i++;
 	if (file_name[i - 1] == 'b' && file_name[i - 2] == 'u' && file_name[i
 		- 3] == 'c' && file_name[i - 4] == '.')
-		return (VALID);
-	ft_putstr_fd(error_msgs[INVALID_FILE_EXTENSION], 2);
-	return (INVALID_FILE_EXTENSION);
+		return (0);
+	ft_putstr_fd("Error\nInvalid file extension\n", 2);
+	return (VALID);
 }
 
 void	debug_info(t_params *params)
@@ -134,16 +117,16 @@ void	debug_info(t_params *params)
 	printf("---------------------- fin info ----------------------\n");
 }
 
-parse_error	init_game(t_params *params, int fd)
-{
+int	init_game(t_params *params, int fd) {
 	char	**map;
 
 	params->lines = get_lines(fd);
 	close(fd);
 	map = init_params(params);
-	init_map(params, map); // will allocate memory for the map and set it to 9's
+	init_map(params, map);
 	parse_map(params, map);
 	init_player(params);
+	
 	print_map(params, NULL);
 	if (!params->map->map)
 		return (1);
@@ -164,12 +147,12 @@ int	parse(int argc, char **argv, t_params *params)
 
 	if (argc != 2)
 	{
-		ft_putstr_fd(error_msgs[INVALID_NUM_ARGS], 2);
+		ft_putstr_fd("Error\nWrong number of arguments\n", 2);
 		return (1);
 	}
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 	{
-		ft_putstr_fd(error_msgs[INVALID_FILE_EXTENSION], 2);
+		ft_putstr_fd("Error\nInvalid file\n", 2);
 		return (1);
 	}
 	if (check_file_name(argv[1]) != VALID)
@@ -178,7 +161,7 @@ int	parse(int argc, char **argv, t_params *params)
 	}
 	if (init_game(params, fd) != VALID)
 	{
-		ft_putstr_fd(error_msgs[INIT_GAME_ERROR], 2);
+		ft_putstr_fd("Error\nGame initialization failed\n", 2);
 		return (1);
 	}
 

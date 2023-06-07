@@ -6,11 +6,17 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:20:07 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/07 04:41:30 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/07 05:05:07 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+void skip_whitespace(char **str)
+{
+	while (**str && **str == ' ')
+		(*str)++;
+}
 
 int	set_ceiling_txt(char *str, t_params *p)
 {
@@ -21,24 +27,16 @@ int	set_ceiling_txt(char *str, t_params *p)
 	str++;
 	while (*str)
 	{
-		while (*str == ' ')
-			str++;
+		skip_whitespace(&str);
 		if (count > 0)
 		{
 			if (*(str++) != ',')
-			{
-				ft_putstr_fd("Error\nInvalid ceiling format\n", 2);
-				return (INVALID);
-			}
-			while (*str == ' ')
-				str++;
+				return (ft_putstr_fd("Error\nInvalid ceiling format\n", 2), INVALID);
+			skip_whitespace(&str);
 		}
 		value = ft_atoi(str);
 		if (!ft_isdigit(*str) || value == -1)
-		{
-			ft_putstr_fd("Error\nInvalid ceiling values\n", 2);
-			return (INVALID);
-		}
+			return (ft_putstr_fd("Error\nInvalid ceiling values\n", 2), INVALID);
 		if (count == 0)
 			p->txt->c_r = value;
 		else if (count == 1)
@@ -65,25 +63,16 @@ int	set_floor_txt(char *str, t_params *p)
 	str++;
 	while (*str)
 	{
-		while (*str == ' ')
-			str++;
-
+		skip_whitespace(&str);
 		if (count > 0)
 		{
 			if (*(str++) != ',')
-			{
-				ft_putstr_fd("Error\nInvalid floor format\n", 2);
-				return (INVALID);
-			}
-			while (*str == ' ')
-				str++;
+				return (ft_putstr_fd("Error\nInvalid floor format\n", 2), INVALID);
+			skip_whitespace(&str);
 		}
 		value = ft_atoi(str);
 		if (!ft_isdigit(*str) || value == -1)
-		{
-			ft_putstr_fd("Error\nInvalid floor values\n", 2);
-			return (INVALID);
-		}
+			return (ft_putstr_fd("Error\nInvalid floor values\n", 2), INVALID);
 		if (count == 0)
 			p->txt->f_r = value;
 		else if (count == 1)

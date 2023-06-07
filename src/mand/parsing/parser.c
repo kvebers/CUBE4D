@@ -6,14 +6,14 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/06 21:06:18 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/07 04:23:32 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "parser.h"
 
-char	**init_params(t_params *p)
+static int	init_params(t_params *p, char ***map)
 {
 	int			i;
 	int			j;
@@ -27,44 +27,14 @@ char	**init_params(t_params *p)
 		while (lines[i][j] == ' ')
 			j++;
 		if (set_params(lines[i][j], lines[i], p) != VALID)
-			return (&lines[i]);
+		{
+			*map = &lines[i];
+			return (VALID);
+		}
 		i++;
 	}
 	ft_putstr_fd("Error\nMap not found\n", 2);
-	return (NULL);
-}
-
-char	**get_lines(int fd)
-{
-	char	**lines;
-	char	**tmp;
-	char	*s;
-	int		i;
-	int		j;
-
-	lines = NULL;
-	tmp = NULL;
-	i = 1;
-	s = get_next_line(fd);
-	while (s)
-	{
-		tmp = lines;
-		j = 0;
-		lines = malloc((i + 1) * sizeof(char *));
-		if (tmp)
-			while (tmp[j])
-			{
-				lines[j] = tmp[j];
-				j++;
-			}
-		lines[j++] = s;
-		lines[j] = 0;
-		i++;
-		s = get_next_line(fd);
-		free(tmp);
-	}
-	free(s);
-	return (lines);
+	return (INVALID);
 }
 
 int	check_file_name(char *file_name)
@@ -81,49 +51,16 @@ int	check_file_name(char *file_name)
 	return (INVALID);
 }
 
-void	debug_info(t_params *params)
-{
-	printf("--------------------- debug info ---------------------\n");
-	printf("map: %p\n", (void *)params->map);
-	printf("mlx: %p\n", (void *)params->mlx);
-	printf("floor: %s    | r:%d g:%d b:%d\n", params->floor ? "true" : "false",
-			params->txt->f_r, params->txt->f_g, params->txt->f_b);
-	printf("ceiling: %s  | r:%d g:%d b:%d\n",
-			params->ceiling ? "true" : "false",
-			params->txt->c_r,
-			params->txt->c_g,
-			params->txt->c_b);
-	printf("north: %s  | %p\n", params->north ? "true" : "false",
-			params->txt->no);
-	printf("south: %s  | %p\n", params->south ? "true" : "false",
-			params->txt->so);
-	printf("west: %s   | %p\n", params->west ? "true" : "false",
-			params->txt->we);
-	printf("east: %s   | %p\n", params->east ? "true" : "false",
-			params->txt->ea);
-	printf("player_pos_x: %f\nplayer_pos_y: %f\n", params->map->player.map_x,
-			params->map->player.map_y);
-	printf("player_angle: %f\n", params->map->player.angle);
-	printf("player_speed: %d\n", params->map->speed);
-	printf("minimap_box: %d\n", params->map->minimap_box);
-	printf("offset: %d\n", params->map->offset);
-	printf("map_size_x: %d\nmap_size_y: %d\n",
-			params->map->size_x,
-			params->map->size_y);
-	printf("height: %d\n", params->map->map_height);
-	printf("width: %d\n", params->map->map_width);
-	printf("total_height: %d\n", params->map->total_height);
-	printf("total_width: %d\n", params->map->total_width);
-	printf("---------------------- fin info ----------------------\n");
-}
-
 int	init_game(t_params *params, int fd) {
 	char	**map;
 
+	map = NULL;
 	params->lines = get_lines(fd);
 	close(fd);
-	map = init_params(params);
-	init_map(params, map);
+	if (init_params(params, &map) != VALID)
+		return (INVALID);
+	if (init_map(params, map))
+		return (INVALID);
 	parse_map(params, map);
 	init_player(params);
 	

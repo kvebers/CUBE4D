@@ -6,7 +6,7 @@
 #    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/06/06 21:02:51 by asioud           ###   ########.fr        #
+#    Updated: 2023/06/07 04:22:36 by asioud           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,8 @@ SOURCE_BONUS =	main \
 
 SOURCE		=	main \
 				parsing/map \
+				parsing/dfs \
+				parsing/utils \
 				parsing/player \
 				parsing/parser \
 				parsing/set_params \

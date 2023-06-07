@@ -6,75 +6,13 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:33 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/06 04:06:58 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/07 04:19:37 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "cub3d.h"
 
-char	put_chars(char c);
 
-/**
-
-	* @brief Recursively call the checkmap function for the adjacent cells in the map:
- * @param p The params struct
- * @param x The x coordinate of the cell
- * @param y The y coordinate of the cell
- * 
-
-	* The function checks the value at map[x][y] to determine the type of the current cell.
- * If the value is 1, 3, or 4, it means the current cell is either a wall,
- * a modified wall, or a sprite. In this case, the function returns without
- * performing any further checks on this cell.
- * 
- * If the value at map[x][y] is 0, it means the current cell is an empty space.
-
-	* The function modifies the value at this cell to 3 to mark it as a visited cell.
- *
- * If the value at map[x][y] is 2,
-	it means the current cell represents the player's
-
-	* spawn point. The function modifies the value at this cell to 4 to mark it as the
- * player's position.
- * @return void
-*/
-bool	check_map(t_params *p, int x, int y, int **map)
-{
-	bool	is_valid;
-
-	if (map[x][y] == '1' || map[x][y] == '3' || map[x][y] == '4')
-		return (true);
-	if (map[x][y] == '9')
-		return (true);
-	if (map[x][y] == '\n' || map[x][y] == '\0')
-		return (true);
-	if ((x < 0 || y < 0 || x == p->map->map_height))
-	{
-		ft_putstr_fd("Error\nMap not closed\n", 2);
-		return (false);
-	}
-	if (map[x][y] == -1)
-	{
-		ft_putstr_fd("Error\nMap not closed\n", 2);
-		return (false);
-	}
-	if (map[x][y] == '0')
-		map[x][y] = '3';
-	if (map[x][y] == '2')
-		map[x][y] = '4';
-	is_valid = true;
-	is_valid &= check_map(p, x + 1, y, map);
-	is_valid &= check_map(p, x, y + 1, map);
-	is_valid &= check_map(p, x - 1, y, map);
-	is_valid &= check_map(p, x, y - 1, map);
-	return (is_valid);
-}
-
-/**
- * @brief Convert the map from a lines array to a 2D int array 
- * @param p The params struct
- * @param map The lines array
- */
 void	parse_map(t_params *p, char **map)
 {
 	int	i;
@@ -104,20 +42,12 @@ void	parse_map(t_params *p, char **map)
 	p->map->map_height = i; /* to change later */
 }
 
-/**
- * @brief Initializes the size of the map and allocates memory for the map array
- * @param p 
- */
-void	init_map(t_params *p, char **map)
+int validate_map_input(char **map)
 {
-	int	i;
-	int	j;
-	int	len;
-	int	emptyline;
-	int	biglen;
+	int i = 0;
+	int j;
+	int emptyline = 0;
 
-	i = 0;
-	emptyline = 0;
 	while (map[i])
 	{
 		j = 0;
@@ -126,15 +56,22 @@ void	init_map(t_params *p, char **map)
 		if (!map[i][j])
 			emptyline = 1;
 		if (map[i][j] && emptyline)
+		{
 			ft_putstr_fd("ERROR\nAdditional Input after map\n", 2);
+			return 1;
+		}
 		i++;
 	}
-	p->map = (t_map *)malloc(sizeof(t_map));
-	p->map->map_height = i;
-	i = 0;
-	j = 0;
-	len = 0;
-	biglen = 0;
+	return 0;
+}
+
+void calculate_map_dimensions(t_params *p, char **map)
+{
+	int i = 0;
+	int j;
+	int len;
+	int biglen = 0;
+
 	while (map[i])
 	{
 		len = 0;
@@ -149,7 +86,22 @@ void	init_map(t_params *p, char **map)
 			biglen = len;
 		i++;
 	}
+
+	p->map->map_height = i;
 	p->map->map_width = biglen;
+}
+
+void allocate_and_initialize_map(t_params *p, char **map)
+{
+	int i = 0;
+
+	p->map = (t_map *)malloc(sizeof(t_map));
+	p->map->map_height = 0;
+	p->map->map_width = 0;
+	p->map->map = NULL;
+
+	calculate_map_dimensions(p, map);
+
 	p->map->map = (int **)malloc(p->map->map_height * sizeof(int *));
 	i = 0;
 	while (i < p->map->map_height)
@@ -160,59 +112,10 @@ void	init_map(t_params *p, char **map)
 	}
 }
 
-void	print_map(t_params *p, char **map)
+int init_map(t_params *p, char **map)
 {
-	int	i;
-	int	j;
-
-	printf("\n");
-	i = 0;
-	j = 0;
-	while (i < p->map->map_height)
-	{
-		j = 0;
-		while (j < p->map->map_width)
-		{
-			put_chars((char)p->map->map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	(void)map;
-}
-
-char	put_chars(char c)
-{
-	char colored_0[] = "\e[1;37m0\e[0m";
-	char colored_1[] = "\e[1;31m1\e[0m";
-	char colored_e[] = "\e[1;32mE\e[0m";
-	char colored_s[] = "\e[1;32mS\e[0m";
-	char colored_w[] = "\e[1;35mW\e[0m";
-	char colored_n[] = "\e[1;34mN\e[0m";
-	char colored_x[] = "\e[1;34mX\e[0m";
-	char colored_plus[] = "\e[1;34m+\e[0m";
-	char colored_9[] = "\e[1;33m9\e[0m";
-
-	if (c == '0')
-		write(1, &colored_0, 13);
-	else if (c == '1')
-		write(1, &colored_1, 13);
-	else if (c == 'N')
-		write(1, &colored_n, 13);
-	else if (c == 'S')
-		write(1, &colored_s, 13);
-	else if (c == 'W')
-		write(1, &colored_w, 13);
-	else if (c == 'E')
-		write(1, &colored_e, 13);
-	else if (c == '+')
-		write(1, &colored_plus, 13);
-	else if (c == 9)
-		write(1, &colored_9, 13);
-	else if (c == 'X')
-		write(1, &colored_x, 13);
-	else if (c == ' ')
-		write(1, " ", 1);
-	return (0);
+	if (validate_map_input(map))
+		return 1;
+	allocate_and_initialize_map(p, map);
+	return 0;
 }

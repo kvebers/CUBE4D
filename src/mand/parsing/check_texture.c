@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:20:07 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/06 04:32:00 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/07 04:41:30 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	set_ceiling_txt(char *str, t_params *p)
 {
 	int		count;
 	float	value;
-
 
 	count = 0;
 	str++;

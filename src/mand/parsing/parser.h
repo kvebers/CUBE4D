@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/07 04:21:29 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/07 04:51:18 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PARSER_H
 
 # include "cub3d.h"
-
 
 # define VALID 0
 
@@ -119,17 +118,18 @@ int					set_north(char *path, t_params *p);
 int					set_ceiling_txt(char *str, t_params *p);
 int					set_floor_txt(char *str, t_params *p);
 
-int				init_map(t_params *p, char **map);
+int					init_map(t_params *p, char **map);
 void				parse_map(t_params *p, char **map);
 bool				check_map(t_params *p, int x, int y, int **map);
 
 int					init_player(t_params *p);
 void				print_map(t_params *p, char **map);
 void				debug_info(t_params *params);
+int					init_game(t_params *params, int fd);
 void				free_2d_array(void **array, int height);
-char	put_chars(char c);
-void	print_map(t_params *p, char **map);
-char	**get_lines(int fd);
-void	debug_info(t_params *params);
+char				put_chars(char c);
+void				print_map(t_params *p, char **map);
+char				**get_lines(int fd);
+void				debug_info(t_params *params);
 
 #endif

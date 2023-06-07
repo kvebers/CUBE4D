@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/07 04:23:32 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/07 04:51:11 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 static int	init_params(t_params *p, char ***map)
 {
-	int			i;
-	int			j;
-	char		**lines;
+	int		i;
+	int		j;
+	char	**lines;
 
 	lines = p->lines;
 	i = 0;
@@ -51,7 +51,8 @@ int	check_file_name(char *file_name)
 	return (INVALID);
 }
 
-int	init_game(t_params *params, int fd) {
+int	init_game(t_params *params, int fd)
+{
 	char	**map;
 
 	map = NULL;
@@ -63,7 +64,6 @@ int	init_game(t_params *params, int fd) {
 		return (INVALID);
 	parse_map(params, map);
 	init_player(params);
-	
 	print_map(params, NULL);
 	if (!params->map->map)
 		return (1);

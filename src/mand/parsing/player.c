@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:54 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/06 04:08:18 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/07 04:51:23 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	init_player(t_params *p)
 		j = 0;
 		while (j < p->map->map_width)
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'S' \
-				|| map[i][j] == 'E' || map[i][j] == 'W')
+			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
+				|| map[i][j] == 'W')
 				c += set_angle(p, map[i][j], i, j);
 			j++;
 		}

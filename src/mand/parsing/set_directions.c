@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 15:12:46 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/06 04:15:26 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/07 04:51:28 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ int	set_north(char *path, t_params *p)
 	{
 		if (open(path, O_RDONLY) == -1)
 		{
-			ft_putstr_fd( "Error\nInvalid north path\n", 2);
+			ft_putstr_fd("Error\nInvalid north path\n", 2);
 			free(path);
 			return (INVALID);
-		} else
+		}
+		else
 			p->txt->no = mlx_load_png(path);
 		p->north = true;
 	}
@@ -57,7 +58,7 @@ int	set_south(char *path, t_params *p)
 	return (VALID);
 }
 
-int set_west(char *path, t_params *p)
+int	set_west(char *path, t_params *p)
 {
 	if (p->west)
 	{
@@ -80,7 +81,7 @@ int set_west(char *path, t_params *p)
 	return (VALID);
 }
 
-int set_east(char *path, t_params *p)
+int	set_east(char *path, t_params *p)
 {
 	if (p->east)
 	{

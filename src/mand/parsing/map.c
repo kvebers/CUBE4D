@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:33 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/07 04:19:37 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/07 04:36:54 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	parse_map(t_params *p, char **map)
 		{
 			if (map[i][j] == ' ' || map[i][j] == '\n')
 			{
-				p->map->map[x][y++] = (int)9;
+				p->map->map[x][y++] = 9;
 				j++;
 			}
 			else if (map[i][j])

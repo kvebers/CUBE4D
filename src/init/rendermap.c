@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:34:49 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/18 13:01:23 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/18 13:24:43 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,8 @@
 
 void	ray_collison(t_params *params, t_ray *ray, int *x, int *y)
 {
-	if (ray->ray_pos.pos_x % 64 != 0 || ray->ray.pos_y % 64 != 63)
-	{
-		if (ray->cos < 0)
-		{
-			ray->ray_pos_x
-		}
-	}
+	ray->ray_pos.pos_x += ray->ray_cos;
+	ray->ray_pos.pos_y += ray->ray_sin;
 	*x = (int)ray->ray_pos.pos_x;
 	*y = (int)ray->ray_pos.pos_y;
 	if (params->map->map[*x / 64][*y / 64] == '1' && ray->wall != 2)

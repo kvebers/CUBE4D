@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/04 02:12:57 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/18 12:55:59 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,10 @@ void					debug_ray(t_ray *ray);
 //render_texture.c
 void					render_wall_line(t_params *params, t_ray *ray, int x,
 							int y);
+//rendermap_utils.c
+void					init_ray(t_params *params, t_ray *ray);
+void					init_ray_frame(t_params *params, t_ray *ray);
+void					calculate_distance_helper(t_params *params, t_ray *ray);
+
 
 #endif

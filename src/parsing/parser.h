@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/04 02:11:17 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/18 13:07:38 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,11 @@ typedef struct s_ray
 	double			ray_txt_seg_s;
 	double			ray_txt_seg_e;
 	t_vector		ray_pos;
+	t_vector		ray_pos1;
 	int				ray_count;
 	unsigned int	offset;
 	int				wall;
-	int				wall_height;
+	float			wall_height;
 	int				start_pos;
 	int				end_pos;
 	uint32_t		r;

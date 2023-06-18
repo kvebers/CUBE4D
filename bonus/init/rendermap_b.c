@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:34:49 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/04 07:06:47 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/18 12:17:06 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	calculate_distance_helper(t_params *params, t_ray *ray)
 {
 	ray->distance
 		= sqrt(pow((params->map->player.x - ray->ray_pos.pos_x) / 90, 2)
-			+ pow((params->map->player.y - ray->ray_pos.pos_y) / 90, 2));
-	ray->distance = ray->distance * cos(M_PI / 180
-			* (ray->ray_angle - params->map->player.angle));
+			+ pow((params->map->player.y - ray->ray_pos.pos_y) / 90, 2))
+			* cos(M_PI / 180
+			* (ray->ray_angle - params->map->player.angle));;
 	if (ray->distance <= 0)
 		ray->distance = EPSILON;
 	ray->wall_height = (int)params->map->size_y / ray->distance;

@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 09:48:10 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/18 13:31:30 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/19 10:54:20 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ void	init_ray_frame(t_params *params, t_ray *ray)
 void	calculate_distance_helper(t_params *params, t_ray *ray)
 {
 	ray->distance = sqrt(pow((params->map->player.x - ray->ray_pos.pos_x) / 90,
-				2) + pow((params->map->player.y - ray->ray_pos.pos_y) / 90, 2))
-				* cos(M_PI / 180 * (ray->ray_angle
-				- params->map->player.angle));
+				2) + pow((params->map->player.y - ray->ray_pos.pos_y) / 90, 2));
 	if (ray->distance <= 0)
 		ray->distance = EPSILON;
 	ray->wall_height = params->map->size_y / ray->distance;
@@ -52,4 +50,10 @@ void	calculate_distance_helper(t_params *params, t_ray *ray)
 	ray->end_pos =  (int)  params->map->size_y / 2 + ray->wall_height / 2;
 	if (ray->end_pos >= params->map->size_y)
 		ray->end_pos = params->map->size_y - 1;
+}
+
+void	check_collisions(t_params *params, t_ray *ray, float x, float y)
+{
+	if (params->map->map[(int) x / 64][(int) y / 64] == '1' && ray->wall != 2)
+		ray->wall = 1;
 }

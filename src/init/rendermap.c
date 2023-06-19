@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:34:49 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/18 13:24:43 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/19 11:22:14 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,112 @@
 #include <math.h>
 #include <stdio.h>
 
-void	ray_collison(t_params *params, t_ray *ray, int *x, int *y)
+void choose_ray(t_params *params, t_ray *ray, int *x, int *y)
 {
-	ray->ray_pos.pos_x += ray->ray_cos;
-	ray->ray_pos.pos_y += ray->ray_sin;
-	*x = (int)ray->ray_pos.pos_x;
-	*y = (int)ray->ray_pos.pos_y;
-	if (params->map->map[*x / 64][*y / 64] == '1' && ray->wall != 2)
+	if (sqrt(pow((params->map->player.x - ray->ray_pos.pos_x) / 90,
+				2) + pow((params->map->player.y - ray->ray_pos.pos_y)
+				/ 90, 2)) < sqrt(pow((params->map->player.x
+				- ray->ray_pos1.pos_x) / 90, 2)
+				+ pow((params->map->player.y - ray->ray_pos1.pos_y) / 90, 2)))
+	{
+		*x = (int) ray->ray_pos.pos_x;
+		*y = (int) ray->ray_pos.pos_y;
+	}
+	else
+	{
+		ray->ray_pos.pos_x = ray->ray_pos1.pos_x;
+		ray->ray_pos.pos_y = ray->ray_pos1.pos_y;
+		*x = (int) ray->ray_pos1.pos_x;
+		*y = (int) ray->ray_pos1.pos_y;
+	}
+				
+}
+
+void	ray_collison_y(t_params *params, t_ray *ray)
+{
+	if (ray->ray_sin == 0)
+	{
 		ray->wall = 1;
+		ray->ray_pos1.pos_x = 2000000;
+		ray->ray_pos1.pos_y = 2000000;
+		return ;
+	}
+	else if (ray->ray_sin < 0)
+	{
+		ray->ray_pos1.pos_x = fmod(ray->ray_pos1.pos_y, 64) / ray->ray_sin * ray->ray_cos;
+		ray->ray_pos1.pos_y = ray->ray_pos1.pos_y -  fmod(ray->ray_pos1.pos_y, 64) - 0.001;
+	}
+	else if (ray->ray_sin > 0)
+	{
+		ray->ray_pos1.pos_x = ray->ray_pos1.pos_y + 64.0 -  fmod(ray->ray_pos1.pos_y, 64) / ray->ray_sin * ray->ray_cos;
+		ray->ray_pos1.pos_y = ray->ray_pos1.pos_y + (64.0 -  fmod(ray->ray_pos1.pos_y, 64) + 0.001);
+	}
+	check_collisions(params, ray, ray->ray_pos1.pos_x, ray->ray_pos1.pos_y);
+	while (ray->wall != 1)
+	{
+		if (ray->ray_sin < 0)
+		{
+			ray->ray_pos1.pos_y = ray->ray_pos1.pos_y - 64.0;
+			ray->ray_pos1.pos_x = 64 / ray->ray_sin * ray->ray_cos;
+		}
+		else
+		{
+			ray->ray_pos1.pos_y = ray->ray_pos1.pos_y + 64.0;
+			ray->ray_pos1.pos_x = 64 / ray->ray_sin * ray->ray_cos;
+		}
+		check_collisions(params, ray, ray->ray_pos1.pos_x, ray->ray_pos1.pos_y);
+	}
+}
+
+
+void	ray_collison_x(t_params *params, t_ray *ray)
+{
+	printf("I segfault here Ray x: %f, Ray, y: %f Cos: %f\n", ray->ray_pos.pos_x, ray->ray_pos.pos_y, ray->ray_cos);
+	if (ray->ray_cos == 0)
+	{
+		ray->wall = 1;
+		ray->ray_pos.pos_x = 2000000;
+		ray->ray_pos.pos_y = 2000000;
+		return ;
+	}
+	else if (ray->ray_cos < 0)
+	{
+		ray->ray_pos.pos_y = fmod(ray->ray_pos.pos_x, 64) / ray->ray_cos * ray->ray_sin;
+		ray->ray_pos.pos_x = ray->ray_pos.pos_x -  fmod(ray->ray_pos.pos_x, 64) - 0.001;
+	}
+	else if (ray->ray_cos > 0)
+	{
+		ray->ray_pos.pos_y = ray->ray_pos.pos_y + 64.0 -  fmod(ray->ray_pos.pos_x, 64) / ray->ray_cos * ray->ray_sin;
+		ray->ray_pos.pos_x = ray->ray_pos.pos_x + (64.0 -  fmod(ray->ray_pos.pos_x, 64) + 0.001);
+	}
+	printf("Ray x: %f, Ray, y: %f Cos: %f\n", ray->ray_pos.pos_x, ray->ray_pos.pos_y, ray->ray_cos);
+	check_collisions(params, ray, ray->ray_pos.pos_x, ray->ray_pos.pos_y);
+	while (ray->wall != 1)
+	{
+		if (ray->ray_cos < 0)
+		{
+			ray->ray_pos.pos_x = ray->ray_pos.pos_x - 64.0;
+			ray->ray_pos.pos_y = 64 / ray->ray_cos * ray->ray_sin;
+		}
+		else
+		{
+			ray->ray_pos.pos_x = ray->ray_pos.pos_x + 64.0;
+			ray->ray_pos.pos_y = 64 / ray->ray_cos * ray->ray_sin;
+		}
+		check_collisions(params, ray, ray->ray_pos.pos_x, ray->ray_pos.pos_y);
+	}
+	printf("Here: Ray x: %f, Ray, y: %f Cos: %f\n", ray->ray_pos.pos_x, ray->ray_pos.pos_y, ray->ray_cos);
 }
 
 void	calculate_distance(t_params *params, t_ray *ray)
 {
-	int	x;
-	int	y;
+	int x;
+	int y;
 	
-	while (ray->wall == 0)
-		ray_collison(params, ray, &x, &y);
+	ray_collison_x(params, ray);
+	ray->wall = 0;
+	ray_collison_y(params, ray);
+	choose_ray(params, ray, &x, &y);
 	calculate_distance_helper(params, ray);
 	render_wall_line(params, ray, x, y);
 }

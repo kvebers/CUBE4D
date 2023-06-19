@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/18 12:55:59 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/19 10:42:50 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void					render_wall_line(t_params *params, t_ray *ray, int x,
 void					init_ray(t_params *params, t_ray *ray);
 void					init_ray_frame(t_params *params, t_ray *ray);
 void					calculate_distance_helper(t_params *params, t_ray *ray);
+void					check_collisions(t_params *params, t_ray *ray, float x, float y);
 
 
 #endif

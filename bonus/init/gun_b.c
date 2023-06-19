@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 13:51:02 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 16:18:48 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/19 12:09:05 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,6 @@ void	gun_stuff(t_params *params)
 	params->txt->gun->instances->z = 4;
 	if (params->fps % 5 == 0)
 	{
-		mlx_delete_image(params->mlx, params->txt->ground);
-		render_skybox(params);
-		render_map(params);
-		mlx_delete_image(params->mlx, params->txt->minimap);
-		render_minimap(params);
 		params->gunx = params->gunx + 5;
 		params->txt->ground->instances->z = 2;
 		params->txt->minimap->instances->z = 3;

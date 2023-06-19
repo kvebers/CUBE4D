@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:34:49 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/19 11:22:14 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/19 11:36:32 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void	calculate_distance(t_params *params, t_ray *ray)
 	int x;
 	int y;
 	
+	ray->wall = 0;
 	ray_collison_x(params, ray);
 	ray->wall = 0;
 	ray_collison_y(params, ray);

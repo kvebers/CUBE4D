@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyhooks.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/04 02:13:00 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/19 11:38:07 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@ void	w_pressed(t_params *params)
 
 	vector = vector_estimation(params->map->speed, params->map->player.angle);
 	check_valid_move1(params, vector.pos_x, vector.pos_y);
-	mlx_delete_image(params->mlx, params->txt->ground);
-	render_skybox(params);
-	render_map(params);
-	mlx_delete_image(params->mlx, params->txt->minimap);
-	render_minimap(params);
 }
 
 void	s_pressed(t_params *params)
@@ -35,11 +30,6 @@ void	s_pressed(t_params *params)
 	vector = vector_estimation(params->map->speed, params->map->player.angle
 			- 180);
 	check_valid_move1(params, vector.pos_x, vector.pos_y);
-	mlx_delete_image(params->mlx, params->txt->ground);
-	render_skybox(params);
-	render_map(params);
-	mlx_delete_image(params->mlx, params->txt->minimap);
-	render_minimap(params);
 }
 
 void	a_pressed(t_params *params)
@@ -49,11 +39,6 @@ void	a_pressed(t_params *params)
 	vector = vector_estimation(params->map->speed, params->map->player.angle
 			- 90);
 	check_valid_move1(params, vector.pos_x, vector.pos_y);
-	mlx_delete_image(params->mlx, params->txt->ground);
-	render_skybox(params);
-	render_map(params);
-	mlx_delete_image(params->mlx, params->txt->minimap);
-	render_minimap(params);
 }
 
 void	d_pressed(t_params *params)
@@ -63,11 +48,6 @@ void	d_pressed(t_params *params)
 	vector = vector_estimation(params->map->speed, params->map->player.angle
 			+ 90);
 	check_valid_move1(params, vector.pos_x, vector.pos_y);
-	mlx_delete_image(params->mlx, params->txt->ground);
-	render_skybox(params);
-	render_map(params);
-	mlx_delete_image(params->mlx, params->txt->minimap);
-	render_minimap(params);
 }
 
 void	keyhook(mlx_key_data_t key_data, void *param)
@@ -89,4 +69,9 @@ void	keyhook(mlx_key_data_t key_data, void *param)
 		a_pressed(params);
 	else if (mlx_is_key_down(params->mlx, MLX_KEY_D))
 		d_pressed(params);
+	mlx_delete_image(params->mlx, params->txt->ground);
+	render_skybox(params);
+	render_map(params);
+	mlx_delete_image(params->mlx, params->txt->minimap);
+	render_minimap(params);
 }

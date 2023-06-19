@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 15:36:29 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/19 11:43:03 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,6 @@ void	w_pressed(t_params *params)
 
 	vector = vector_estimation(params->map->speed, params->map->player.angle);
 	check_valid_move1(params, vector.pos_x, vector.pos_y);
-	mlx_delete_image(params->mlx, params->txt->ground);
-	render_skybox(params);
-	render_map(params);
-	mlx_delete_image(params->mlx, params->txt->minimap);
-	render_minimap(params);
-	params->guny = params->guny - 5;
-	params->txt->ground->instances->z = 2;
-	params->txt->minimap->instances->z = 3;
-	params->txt->gun->instances->z = 4;
 }
 
 void	s_pressed(t_params *params)
@@ -40,15 +31,6 @@ void	s_pressed(t_params *params)
 	vector = vector_estimation(params->map->speed, params->map->player.angle
 			- 180);
 	check_valid_move1(params, vector.pos_x, vector.pos_y);
-	mlx_delete_image(params->mlx, params->txt->ground);
-	render_skybox(params);
-	render_map(params);
-	mlx_delete_image(params->mlx, params->txt->minimap);
-	render_minimap(params);
-	params->guny = params->guny + 5;
-	params->txt->ground->instances->z = 2;
-	params->txt->minimap->instances->z = 3;
-	params->txt->gun->instances->z = 4;
 }
 
 void	a_pressed(t_params *params)
@@ -58,15 +40,6 @@ void	a_pressed(t_params *params)
 	vector = vector_estimation(params->map->speed, params->map->player.angle
 			- 90);
 	check_valid_move1(params, vector.pos_x, vector.pos_y);
-	mlx_delete_image(params->mlx, params->txt->ground);
-	render_skybox(params);
-	render_map(params);
-	mlx_delete_image(params->mlx, params->txt->minimap);
-	render_minimap(params);
-	params->gunx = params->gunx - 5;
-	params->txt->ground->instances->z = 2;
-	params->txt->minimap->instances->z = 3;
-	params->txt->gun->instances->z = 4;
 }
 
 void	d_pressed(t_params *params)
@@ -76,14 +49,6 @@ void	d_pressed(t_params *params)
 	vector = vector_estimation(params->map->speed, params->map->player.angle
 			+ 90);
 	check_valid_move1(params, vector.pos_x, vector.pos_y);
-	mlx_delete_image(params->mlx, params->txt->ground);
-	render_skybox(params);
-	render_map(params);
-	mlx_delete_image(params->mlx, params->txt->minimap);
-	render_minimap(params);
-	params->gunx = params->gunx + 5;
-	params->txt->ground->instances->z = 2;
-	params->txt->minimap->instances->z = 3;
 }
 
 void	keyhook(void *param)
@@ -109,5 +74,14 @@ void	keyhook(void *param)
 	if (mlx_is_key_down(params->mlx, MLX_KEY_RIGHT))
 		arrow_pressed_r(params);
 	mousehook(params);
+	mlx_delete_image(params->mlx, params->txt->ground);
+	render_skybox(params);
+	render_map(params);
+	mlx_delete_image(params->mlx, params->txt->minimap);
+	render_minimap(params);
+	params->guny = params->guny - 5;
+	params->txt->ground->instances->z = 2;
+	params->txt->minimap->instances->z = 3;
+	params->txt->gun->instances->z = 4;
 }
 

@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:05:04 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 19:15:09 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/19 14:12:09 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void	spawn_doors(t_params *params)
 					params->map->map[x][y] = '2';
 			if (params->map->map[x][y] == '0' && rand() % 7 == 0)
 					params->map->map[x][y] = '5';
+			if (params->map->map[x][y] == '0' && rand() % 20 == 0)
+					params->map->map[x][y] = '6';
 			y++;
 		}
 		x++;

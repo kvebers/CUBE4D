@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:36:51 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 19:19:32 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/19 14:06:33 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	check_valid_move1(t_params *params, double posx, double posy)
 	y = (int)((round(params->map->player.y + posy * 1.5) / 64));
 	if (params->map->map[x][y] != '1'
 		&& params->map->map[x][y] != '2'
-		&& params->map->map[x][y] != '3')
+		&& params->map->map[x][y] != '3'
+		&& params->map->map[x][y] != '6')
 	{
 		params->map->player.x = params->map->player.x + posx;
 		params->map->player.y = params->map->player.y + posy;

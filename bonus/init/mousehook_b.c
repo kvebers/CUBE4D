@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 17:02:12 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 16:17:11 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/19 14:15:56 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,17 @@ void	escape(mlx_key_data_t key_data, void *param)
 	if (key_data.key == MLX_KEY_UP
 		&& key_data.action == MLX_PRESS && params->gun_state == 0)
 		params->gun_state = 4;
+}
+
+void	do_the_rendering(t_params *params)
+{
+	mlx_delete_image(params->mlx, params->txt->ground);
+	render_skybox(params);
+	render_map(params);
+	mlx_delete_image(params->mlx, params->txt->minimap);
+	render_minimap(params);
+	params->guny = params->guny - 5;
+	params->txt->ground->instances->z = 2;
+	params->txt->minimap->instances->z = 3;
+	params->txt->gun->instances->z = 4;
 }

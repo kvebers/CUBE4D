@@ -6,7 +6,7 @@
 #    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/06/20 11:21:39 by kvebers          ###   ########.fr        #
+#    Updated: 2023/06/20 14:36:11 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SOURCE_BONUS =	main_b \
 				init/gun_b \
 				init/scenarios \
 				init/enemy_b \
+				init/render_end \
 
 SOURCE		=	main \
 				parsing/map \

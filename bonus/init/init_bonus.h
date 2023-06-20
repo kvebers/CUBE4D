@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/20 12:29:21 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/20 14:41:29 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,6 @@ void		trigger_scenarios(t_params *params);
 //ENEMY.c
 void		update_map(t_params *params);
 void		init_enemy_animation(t_params *params);
+// render end
+void		render_end(void);
 #endif

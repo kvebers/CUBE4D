@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:04:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/19 14:08:20 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/20 12:17:03 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	render_mini_map(t_params *params, int x, int y)
 	else if (params->map->map[new_x / 64][new_y / 64] == '2'
 		|| params->map->map[new_x / 64][new_y / 64] == '4')
 		mlx_put_pixel(params->txt->minimap, x, y, rgb(255, 40, 40, 255));
-	else if (params->map->map[new_x / 64][new_y / 64] == '5')
-		mlx_put_pixel(params->txt->minimap, x, y, rgb(255, 100, 40, 255));
 	else if (params->map->map[new_x / 64][new_y / 64] == '6')
+		mlx_put_pixel(params->txt->minimap, x, y, rgb(255, 200, 40, 255));
+	else if (params->map->map[new_x / 64][new_y / 64] >= 'a')
 		mlx_put_pixel(params->txt->minimap, x, y, rgb(255, 200, 40, 255));
 	else if (params->map->map[new_x / 64][new_y / 64] != '1'
 		&& params->map->map[new_x / 64][new_y / 64] != '3')

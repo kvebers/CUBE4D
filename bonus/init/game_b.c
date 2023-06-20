@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 14:45:13 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/20 13:54:03 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ void	init_helper(t_params *p)
 	p->map->door = mlx_load_png("textures/Door.png");
 	p->map->def = mlx_load_png("textures/Test5.png");
 	p->txt->pause_t = mlx_load_png("textures/hell_img.png");
+	p->txt->static_enemy1 = mlx_load_png("textures/static1.png");
+	p->txt->static_enemy2 = mlx_load_png("textures/static2.png");
+	init_enemy_animation(p);
 	p->pause = 1;
 	init_gun(p);
 	spawn_doors(p);
@@ -55,6 +58,7 @@ void	init_settings(t_params *p)
 	p->map->offset = OFFSET;
 	p->map->fov = 66.0;
 	p->fps = 0;
+	p->lose = 0;
 	p->map->total_width = p->map->map_height * 64;
 	p->map->total_height = p->map->map_width * 64;
 	p->map->player.x = p->map->player.map_x * 64;

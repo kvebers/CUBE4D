@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/19 14:16:52 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/20 11:11:22 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	keyhook(void *param)
 	if (mlx_is_key_down(params->mlx, MLX_KEY_RIGHT))
 		arrow_pressed_r(params);
 	mousehook(params);
+	update_map(params);
 	do_the_rendering(params);
 }
 

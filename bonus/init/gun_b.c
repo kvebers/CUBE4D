@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 13:51:02 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/19 12:09:05 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/20 14:05:39 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,30 @@
 #include "init_bonus.h"
 #include "../parsing/parser_bonus.h"
 #include <math.h>
+
+void	destroy_enemy(t_params *params)
+{
+	t_vector	vector;
+
+	vector = vector_estimation(64, params->map->player.angle);
+	if (params->map->map[(int)(vector.pos_x + (int)params->map->player.x)
+		/ 64][(int)(vector.pos_y + params->map->player.y) / 64] == '6'
+		|| params->map->map[(int)(vector.pos_x + (int)params->map->player.x)
+		/ 64][(int)(vector.pos_y + params->map->player.y) / 64] > 'a')
+	{
+		params->map->map[(int)(vector.pos_x + (int)params->map->player.x)
+			/ 64][(int)(vector.pos_y + params->map->player.y) / 64] = '0';
+	}
+	vector = vector_estimation(128, params->map->player.angle);
+	if (params->map->map[(int)(vector.pos_x + (int)params->map->player.x)
+		/ 64][(int)(vector.pos_y + params->map->player.y) / 64] == '6'
+		|| params->map->map[(int)(vector.pos_x + (int)params->map->player.x)
+		/ 64][(int)(vector.pos_y + params->map->player.y) / 64] > 'a')
+	{
+		params->map->map[(int)(vector.pos_x + (int)params->map->player.x)
+			/ 64][(int)(vector.pos_y + params->map->player.y) / 64] = '0';
+	}
+}
 
 void	render_gun(t_params *params)
 {
@@ -28,6 +52,8 @@ void	render_gun(t_params *params)
 		params->txt->gun = mlx_texture_to_image(params->mlx, params->txt->gun1);
 	mlx_image_to_window(params->mlx, params->txt->gun,
 		params->gunx + 10, params->guny + 10);
+	if (params->gun_state == 4)
+		destroy_enemy(params);
 	params->gunx = 0;
 	params->guny = 0;
 	if (params->gun_state == 4)

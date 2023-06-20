@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/03 19:10:28 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/20 13:53:33 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,9 @@ typedef struct s_textures
 	mlx_texture_t	*gun1;
 	mlx_texture_t	*gun2;
 	mlx_texture_t	*gun3;
+	mlx_texture_t	*static_enemy1;
+	mlx_texture_t	*static_enemy2;
+	mlx_texture_t	*enemy[26];
 	mlx_texture_t	*pause_t;
 	int32_t			f_r;
 	int32_t			f_b;
@@ -185,6 +188,7 @@ typedef struct s_params {
 	int			global_light;
 	int			gun_state;
 	uint32_t	fps;
+	int			lose;
 }	t_params;
 
 /* parser.c */

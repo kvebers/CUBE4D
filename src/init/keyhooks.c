@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:02:30 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/19 11:38:07 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/20 09:44:34 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,15 @@ void	keyhook(mlx_key_data_t key_data, void *param)
 		mlx_close_window(params->mlx);
 	if (mlx_is_key_down(params->mlx, MLX_KEY_W))
 		w_pressed(params);
-	else if (mlx_is_key_down(params->mlx, MLX_KEY_S))
+	if (mlx_is_key_down(params->mlx, MLX_KEY_S))
 		s_pressed(params);
-	else if (mlx_is_key_down(params->mlx, MLX_KEY_LEFT))
+	if (mlx_is_key_down(params->mlx, MLX_KEY_LEFT))
 		arrow_pressed_l(params);
-	else if (mlx_is_key_down(params->mlx, MLX_KEY_RIGHT))
+	if (mlx_is_key_down(params->mlx, MLX_KEY_RIGHT))
 		arrow_pressed_r(params);
-	else if (mlx_is_key_down(params->mlx, MLX_KEY_A))
+	if (mlx_is_key_down(params->mlx, MLX_KEY_A))
 		a_pressed(params);
-	else if (mlx_is_key_down(params->mlx, MLX_KEY_D))
+	if (mlx_is_key_down(params->mlx, MLX_KEY_D))
 		d_pressed(params);
 	mlx_delete_image(params->mlx, params->txt->ground);
 	render_skybox(params);

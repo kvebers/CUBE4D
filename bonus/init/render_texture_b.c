@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 12:03:31 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/02 16:51:37 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/20 12:32:43 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ mlx_texture_t	*texture_to_render(t_params *params, int x, int y, int wall)
 		return (params->map->def);
 	if (wall == 2)
 		return (params->map->door);
+	if (wall == 4 && params->fps % 2 == 0)
+		return (params->txt->static_enemy1);
+	if (wall == 4 && params->fps % 2 == 1)
+		return (params->txt->static_enemy2);
+	if (wall > 4)
+		return (params->txt->enemy[wall - 5]);
 	if (x % 64 == 0)
 		return (params->txt->so);
 	if (x % 64 == 63)

@@ -6,7 +6,7 @@
 #    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/06/19 14:38:46 by kvebers          ###   ########.fr        #
+#    Updated: 2023/06/20 11:21:39 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ CFLAGS		=	-Wall -Wextra -Werror -g
 SRC_DIR		=	src/
 SRC_BON		=	bonus/
 OBJ_DIR		=	obj/
-OBJ_B		
 LIBS 		=	-L/Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib -lglfw
 FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
 VPATH		=	$(SRC_DIR):$(SRC_BON)
@@ -47,6 +46,7 @@ SOURCE_BONUS =	main_b \
 				init/sound_b \
 				init/gun_b \
 				init/scenarios \
+				init/enemy_b \
 
 SOURCE		=	main \
 				parsing/map \
@@ -69,7 +69,7 @@ SOURCE		=	main \
 SRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SOURCE)))
 OBJ			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SOURCE)))
 SRC_B		=	$(addprefix $(SRC_BON), $(addsuffix .c, $(SOURCE_BONUS)))
-OBJ_B		=	$(addprefix $(OBJ_BONUS_DIR), $(addsuffix .o, $(SOURCE_BONUS)))
+OBJ_B		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SOURCE_BONUS)))
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:05:04 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/19 14:12:09 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/20 12:14:29 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
+#include "math.h"
 
 void	close_doors(t_params *params)
 {
@@ -28,13 +29,6 @@ void	close_doors(t_params *params)
 	{
 		params->map->map[(int)(vector.pos_x + (int)params->map->player.x)
 			/ 64][(int)(vector.pos_y + params->map->player.y) / 64] = '2';
-		mlx_delete_image(params->mlx, params->txt->ground);
-		render_skybox(params);
-		render_map(params);
-		mlx_delete_image(params->mlx, params->txt->minimap);
-		render_minimap(params);
-		params->txt->ground->instances->z = 1;
-		params->txt->minimap->instances->z = 3;
 	}
 }
 
@@ -48,16 +42,16 @@ void	open_doors(t_params *params)
 	{
 		params->map->map[(int)(vector.pos_x + (int)params->map->player.x)
 			/ 64][(int)(vector.pos_y + params->map->player.y) / 64] = '4';
-		mlx_delete_image(params->mlx, params->txt->ground);
-		render_skybox(params);
-		render_map(params);
-		mlx_delete_image(params->mlx, params->txt->minimap);
-		render_minimap(params);
-		params->txt->ground->instances->z = 1;
-		params->txt->minimap->instances->z = 3;
 	}
 	else
 		close_doors(params);
+}
+
+int		player_pos(t_params *params, int x, int y)
+{
+	if (sqrt(pow(params->map->player.x / 64 - x, 2) + pow(params->map->player.y / 64 - y, 2)) < 8)
+		return (1);
+	return (0);
 }
 
 void	spawn_doors(t_params *params)
@@ -79,7 +73,8 @@ void	spawn_doors(t_params *params)
 					params->map->map[x][y] = '2';
 			if (params->map->map[x][y] == '0' && rand() % 7 == 0)
 					params->map->map[x][y] = '5';
-			if (params->map->map[x][y] == '0' && rand() % 20 == 0)
+			if (params->map->map[x][y] == '0' && rand() % 20 == 0
+				&& player_pos(params, x, y) == 0)
 					params->map->map[x][y] = '6';
 			y++;
 		}

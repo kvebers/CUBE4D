@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 11:12:08 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/20 13:53:49 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/20 14:21:05 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ void	update_map(t_params *params)
 			if (params->map->map[cnt][cnt1] == '6')
 			{
 				if (sqrt(pow(cnt - x, 2) + pow(cnt1 - y, 2)) < 2.5)
+				{
 					params->map->map[cnt][cnt1] = 'a';
+					system("afplay ./sound/Swoosh.mp3 &");
+				}
 			}
 			else if (params->map->map[cnt][cnt1] >= 'a' && params->map->map[cnt][cnt1] < 'z')
 				params->map->map[cnt][cnt1]++;

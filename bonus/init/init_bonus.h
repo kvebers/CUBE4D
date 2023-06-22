@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/20 14:41:29 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/21 11:51:54 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 typedef struct s_params	t_params;
 typedef struct s_vector	t_vector;
 typedef struct s_ray	t_ray;
+typedef struct s_pain	t_pain;
 //INIT.c
 int			init_cube(t_params *params);
 //UTILS.c

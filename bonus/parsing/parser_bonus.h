@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/20 13:53:33 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/21 11:59:46 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,13 @@ typedef struct s_params {
 	uint32_t	fps;
 	int			lose;
 }	t_params;
+
+typedef struct s_pain
+{
+	mlx_t			*mlx;
+	mlx_texture_t	*end_pain[7];
+	int				frame_pain;
+} t_pain;
 
 /* parser.c */
 int	parse(int argc, char **argv, t_params *params);

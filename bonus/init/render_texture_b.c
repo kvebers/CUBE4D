@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 12:03:31 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/20 12:32:43 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/26 12:49:10 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,49 @@ int32_t	get_pixel_color(int x, int y, mlx_texture_t *texture, t_ray *ray)
 	return (rgb(red, green, blue, transperent));
 }
 
-mlx_texture_t	*texture_to_render(t_params *params, int x, int y, int wall)
+mlx_texture_t	*fix_corners(t_params *params, int x, int y, t_ray *ray)
 {
-	if (wall == 1)
+	if (x % 64 == 63 && y % 64 == 63)
+	{
+		if (ray->ray_angle >= 45 && ray->ray_angle < 135)
+			return (params->txt->no);
+	}
+	if (x % 64 == 0 && y % 64 == 0)
+	{
+		if (ray->ray_angle >= 135 && ray->ray_angle < 225)
+			return (params->txt->ea);
+	}
+	if (x % 64 == 63 && y % 64 == 0)
+	{
+		if (ray->ray_angle >= 225 && ray->ray_angle < 315)
+			return (params->txt->we);
+	}
+	if (x % 64 == 0 && y % 64 == 63)
+	{
+		if ((ray->ray_angle >= 315 && ray->ray_angle <= 360) || (ray->ray_angle >= 0 && ray->ray_angle < 45))
+			return (params->txt->so);
+	}
+	return (NULL);
+}
+
+mlx_texture_t	*texture_to_render(t_params *params, int x, int y, t_ray *ray)
+{
+	mlx_texture_t	*t;
+
+	t = NULL;
+	if (ray->wall == 1)
 		return (params->map->def);
-	if (wall == 2)
+	if (ray->wall == 2)
 		return (params->map->door);
-	if (wall == 4 && params->fps % 2 == 0)
+	if (ray->wall == 4 && params->fps % 2 == 0)
 		return (params->txt->static_enemy1);
-	if (wall == 4 && params->fps % 2 == 1)
+	if (ray->wall == 4 && params->fps % 2 == 1)
 		return (params->txt->static_enemy2);
-	if (wall > 4)
-		return (params->txt->enemy[wall - 5]);
+	if (ray->wall > 4)
+		return (params->txt->enemy[ray->wall - 5]);
+	t = fix_corners(params, x, y, ray);
+	if (t != NULL)
+		return (t);
 	if (x % 64 == 0)
 		return (params->txt->so);
 	if (x % 64 == 63)
@@ -77,7 +108,8 @@ void	render_wall_line(t_params *params, t_ray *ray, int x, int y)
 {
 	mlx_texture_t	*t;
 
-	t = texture_to_render(params, x, y, ray->wall);
+	t = NULL;
+	t = texture_to_render(params, x, y, ray);
 	ray->r = 0;
 	ray->ray_txt_inc = ((double)ray->wall_height
 			/ (double)params->txt->no->height);

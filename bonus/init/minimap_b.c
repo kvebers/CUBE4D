@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:04:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/20 12:17:03 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/26 10:09:26 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "init_bonus.h"
 #include "../parsing/parser_bonus.h"
 #include "math.h"
-
 
 void	render_player(t_params *params)
 {
@@ -44,8 +43,8 @@ void	render_player(t_params *params)
 
 void	render_mini_map(t_params *params, int x, int y)
 {
-    int	new_x;
-    int	new_y;
+	int	new_x;
+	int	new_y;
 
 	new_x = x + params->map->player.x - params->map->offset;
 	new_y = y + params->map->player.y - params->map->offset;
@@ -67,7 +66,6 @@ void	render_mini_map(t_params *params, int x, int y)
 	else
 		mlx_put_pixel(params->txt->minimap, x, y, rgb(64, 64, 64, 255));
 }
-
 
 void	put_mini_pixel(t_params *params, int x, int y)
 {

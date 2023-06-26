@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:44:47 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/03 12:51:51 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/26 10:10:27 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	set_up_celling(t_params *params, int x, int y)
 	int	g;
 	int	b;
 
-	x = abs(params->map->size_x / 2 - x) / 2; 
+	x = abs(params->map->size_x / 2 - x) / 2;
 	y = params->map->size_y / 2 - abs(params->map->size_y / 2 - y);
 	offset = sqrt(x * x + y * y) / 11;
 	r = params->txt->c_r - offset;

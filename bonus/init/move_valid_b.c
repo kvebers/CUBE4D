@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:36:51 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/20 12:16:01 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/26 10:09:41 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ void	check_valid_move1(t_params *params, double posx, double posy)
 			trigger_scenarios(params);
 	}
 }
-

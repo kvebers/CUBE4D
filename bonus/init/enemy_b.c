@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 11:12:08 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/20 14:57:48 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/26 09:35:56 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,8 @@
 #include "../parsing/parser_bonus.h"
 #include <math.h>
 
-void	init_enemy_animation(t_params *params)
+void	init_enemy_animation1(t_params *params)
 {
-	params->txt->enemy[0] = mlx_load_png("textures/e/1.png");
-	params->txt->enemy[1] = mlx_load_png("textures/e/2.png");
-	params->txt->enemy[2] = mlx_load_png("textures/e/3.png");
-	params->txt->enemy[3] = mlx_load_png("textures/e/4.png");
-	params->txt->enemy[4] = mlx_load_png("textures/e/5.png");
-	params->txt->enemy[5] = mlx_load_png("textures/e/6.png");
-	params->txt->enemy[6] = mlx_load_png("textures/e/7.png");
-	params->txt->enemy[7] = mlx_load_png("textures/e/8.png");
-	params->txt->enemy[8] = mlx_load_png("textures/e/9.png");
-	params->txt->enemy[9] = mlx_load_png("textures/e/10.png");
 	params->txt->enemy[10] = mlx_load_png("textures/e/11.png");
 	params->txt->enemy[11] = mlx_load_png("textures/e/12.png");
 	params->txt->enemy[12] = mlx_load_png("textures/e/13.png");
@@ -46,43 +36,46 @@ void	init_enemy_animation(t_params *params)
 	params->txt->enemy[25] = mlx_load_png("textures/e/26.png");
 }
 
-
-void	update_map(t_params *params)
+void	init_enemy_animation(t_params *params)
 {
-	int	cnt = 0;
-	int	cnt1 = 0;
-	int	x;
-	int	y; 
-	
-	x = params->map->player.x / 64;
-	y = params->map->player.y / 64;
-	
+	params->txt->enemy[0] = mlx_load_png("textures/e/1.png");
+	params->txt->enemy[1] = mlx_load_png("textures/e/2.png");
+	params->txt->enemy[2] = mlx_load_png("textures/e/3.png");
+	params->txt->enemy[3] = mlx_load_png("textures/e/4.png");
+	params->txt->enemy[4] = mlx_load_png("textures/e/5.png");
+	params->txt->enemy[5] = mlx_load_png("textures/e/6.png");
+	params->txt->enemy[6] = mlx_load_png("textures/e/7.png");
+	params->txt->enemy[7] = mlx_load_png("textures/e/8.png");
+	params->txt->enemy[8] = mlx_load_png("textures/e/9.png");
+	params->txt->enemy[9] = mlx_load_png("textures/e/10.png");
+	init_enemy_animation1(params);
+}
+
+void	update_map(t_params *params, int x, int y, int cnt)
+{
+	int	cnt1;
 
 	while (cnt < params->map->map_height)
 	{
 		cnt1 = 0;
 		while (cnt1 < params->map->map_width)
 		{
-			if (params->map->map[cnt][cnt1] == '6')
+			if (params->map->map[cnt][cnt1] == '6'
+				&& sqrt(pow(cnt - x, 2) + pow(cnt1 - y, 2)) < 2.5)
 			{
-				if (sqrt(pow(cnt - x, 2) + pow(cnt1 - y, 2)) < 2.5)
-				{
-					params->map->map[cnt][cnt1] = 'a';
-					system("afplay ./sound/Swoosh.mp3 &");
-				}
+				params->map->map[cnt][cnt1] = 'a';
+				system("afplay ./sound/Swoosh.mp3 &");
 			}
-			else if (params->map->map[cnt][cnt1] >= 'a' && params->map->map[cnt][cnt1] < 'z')
+			else if (params->map->map[cnt][cnt1] >= 'a'
+				&& params->map->map[cnt][cnt1] < 'z')
 				params->map->map[cnt][cnt1]++;
 			if (params->map->map[cnt][cnt1] == 'z')
 			{
 				mlx_close_window(params->mlx);
 				params->lose = 1;
-				
 			}
 			cnt1++;
 		}
 		cnt++;
 	}
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:05:04 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/20 12:14:29 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/26 09:32:08 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,10 @@ void	open_doors(t_params *params)
 		close_doors(params);
 }
 
-int		player_pos(t_params *params, int x, int y)
+int	player_pos(t_params *params, int x, int y)
 {
-	if (sqrt(pow(params->map->player.x / 64 - x, 2) + pow(params->map->player.y / 64 - y, 2)) < 8)
+	if (sqrt(pow(params->map->player.x / 64 - x, 2)
+			+ pow(params->map->player.y / 64 - y, 2)) < 8)
 		return (1);
 	return (0);
 }

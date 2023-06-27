@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 12:03:31 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/26 12:49:10 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/06/27 13:42:31 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,6 @@ int32_t	get_pixel_color(int x, int y, mlx_texture_t *texture, t_ray *ray)
 	return (rgb(red, green, blue, transperent));
 }
 
-mlx_texture_t	*fix_corners(t_params *params, int x, int y, t_ray *ray)
-{
-	if (x % 64 == 63 && y % 64 == 63)
-	{
-		if (ray->ray_angle >= 45 && ray->ray_angle < 135)
-			return (params->txt->no);
-	}
-	if (x % 64 == 0 && y % 64 == 0)
-	{
-		if (ray->ray_angle >= 135 && ray->ray_angle < 225)
-			return (params->txt->ea);
-	}
-	if (x % 64 == 63 && y % 64 == 0)
-	{
-		if (ray->ray_angle >= 225 && ray->ray_angle < 315)
-			return (params->txt->we);
-	}
-	if (x % 64 == 0 && y % 64 == 63)
-	{
-		if ((ray->ray_angle >= 315 && ray->ray_angle <= 360) || (ray->ray_angle >= 0 && ray->ray_angle < 45))
-			return (params->txt->so);
-	}
-	return (NULL);
-}
-
 mlx_texture_t	*texture_to_render(t_params *params, int x, int y, t_ray *ray)
 {
 	mlx_texture_t	*t;
@@ -71,16 +46,15 @@ mlx_texture_t	*texture_to_render(t_params *params, int x, int y, t_ray *ray)
 		return (params->txt->static_enemy2);
 	if (ray->wall > 4)
 		return (params->txt->enemy[ray->wall - 5]);
-	t = fix_corners(params, x, y, ray);
-	if (t != NULL)
-		return (t);
-	if (x % 64 == 0)
-		return (params->txt->so);
-	if (x % 64 == 63)
+	if (y % 64 == 0 && params->map->map[x / 64][(y - 1)/ 64] == '0')
 		return (params->txt->no);
-	if (y % 64 == 0)
+	if (y % 64 == 63 && params->map->map[x / 64][(y + 1)/ 64] == '0')
+		return (params->txt->so);
+	if (x % 64 == 0)
+		return (params->txt->ea);
+	if (x % 64 == 63)
 		return (params->txt->we);
-	return (params->txt->ea);
+	return (params->txt->we);
 }
 
 void	render_wall_line_loop(t_params *params, t_ray *ray,

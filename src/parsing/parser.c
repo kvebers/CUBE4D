@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/04 02:12:05 by asioud           ###   ########.fr       */
+/*   Updated: 2023/06/27 08:38:39 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,5 @@ int	parse(int argc, char **argv, t_params *params)
 		ft_putstr_fd(error_msgs[INIT_GAME_ERROR], 2);
 		return (1);
 	}
-
 	return (0);
 }

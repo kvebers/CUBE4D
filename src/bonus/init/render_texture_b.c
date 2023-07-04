@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_texture_b.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 12:03:31 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/27 13:42:31 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/07/04 16:13:14 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d_bonus.h"
-#include <stdio.h>
-#include "init_bonus.h"
-#include "../parsing/parser_bonus.h"
-#include <math.h>
+#include "cub3d_bonus.h"
 
 int32_t	get_pixel_color(int x, int y, mlx_texture_t *texture, t_ray *ray)
 {

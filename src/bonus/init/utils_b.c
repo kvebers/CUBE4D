@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_b.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 18:37:17 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/26 10:07:26 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/07/04 16:13:14 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d_bonus.h"
-#include <stdio.h>
-#include "init_bonus.h"
-#include "../parsing/parser_bonus.h"
-#include <math.h>
+#include "cub3d_bonus.h"
 
 uint32_t	rgb(int r, int g, int b, int a)
 {

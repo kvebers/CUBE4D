@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main_b.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:09:48 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/04 10:14:03 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/07/04 16:14:39 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing/parser_bonus.h"
-#include "../cub3d_bonus.h"
+#include "cub3d_bonus.h"
 
 void	check_leaks(void)
 {

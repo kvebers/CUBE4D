@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   gun_b.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 13:51:02 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/20 14:05:39 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/07/04 16:13:14 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d_bonus.h"
-#include <stdio.h>
-#include "init_bonus.h"
-#include "../parsing/parser_bonus.h"
-#include <math.h>
+#include "cub3d_bonus.h"
 
 void	destroy_enemy(t_params *params)
 {

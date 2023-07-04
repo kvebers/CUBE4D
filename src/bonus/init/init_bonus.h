@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/07/04 09:20:06 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/07/04 16:15:20 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INIT_BONUS_H
 # define INIT_BONUS_H
 
-# include "../../cub3d_bonus.h"
-# include "../../libs/MLX42/include/MLX42/MLX42.h"
-
 # define EPSILON 0.000001
 # define PRECISION 64
+
+# include "cub3d_bonus.h"
 
 typedef struct s_params	t_params;
 typedef struct s_vector	t_vector;

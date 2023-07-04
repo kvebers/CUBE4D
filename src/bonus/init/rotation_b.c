@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rotation_b.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 16:02:37 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/19 11:42:42 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/07/04 16:13:14 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d_bonus.h"
-#include <stdio.h>
-#include "init_bonus.h"
-#include <math.h>
+#include "cub3d_bonus.h"
 
 void	arrow_pressed_l(t_params *params)
 {

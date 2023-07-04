@@ -3,19 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parser_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/04 09:50:31 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/07/04 16:14:12 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_BONUS_H
 # define PARSER_BONUS_H
 
-# include "../../cub3d_bonus.h"
-# include "../../libs/MLX42/include/MLX42/MLX42.h"
-# include <stdbool.h>
+# include "cub3d_bonus.h"
 
 typedef enum
 {

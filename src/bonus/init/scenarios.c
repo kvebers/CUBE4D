@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   scenarios.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 17:06:03 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/19 13:48:26 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/07/04 16:13:14 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d_bonus.h"
-#include <stdio.h>
-#include "init_bonus.h"
-#include "../parsing/parser_bonus.h"
-#include <math.h>
-#include <stdlib.h>
-#include <time.h>
+#include "cub3d_bonus.h"
 
 void	trigger_scenarios(t_params *params)
 {

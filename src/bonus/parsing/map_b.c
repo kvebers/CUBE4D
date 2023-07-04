@@ -3,37 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   map_b.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:33 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/26 10:12:03 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/07/04 16:13:44 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_bonus.h"
 
-
 char	put_chars(char c);
 
-/**
- * @brief Recursively call the checkmap function for the adjacent cells in the map:
- * @param p The params struct
- * @param x The x coordinate of the cell
- * @param y The y coordinate of the cell
- * 
- * The function checks the value at map[x][y] to determine the type of the current cell.
- * If the value is 1, 3, or 4, it means the current cell is either a wall,
- * a modified wall, or a sprite. In this case, the function returns without
- * performing any further checks on this cell.
- * 
- * If the value at map[x][y] is 0, it means the current cell is an empty space.
- * The function modifies the value at this cell to 3 to mark it as a visited cell.
- *
- * If the value at map[x][y] is 2, it means the current cell represents the player's
- * spawn point. The function modifies the value at this cell to 4 to mark it as the
- * player's position.
- * @return void
-*/
 void	check_map(t_params *p, int x, int y, int **map)
 {
 	if (map[x][y] == '1' || map[x][y] == '3' || map[x][y] == '4')

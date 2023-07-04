@@ -6,7 +6,7 @@
 #    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/06/20 14:36:11 by kvebers          ###   ########.fr        #
+#    Updated: 2023/07/04 09:21:18 by kvebers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
 VPATH		=	$(SRC_DIR):$(SRC_BON)
 
 SOURCE_BONUS =	main_b \
+				init/free_textures \
 				parsing/parser_b \
 				parsing/check_texture_b \
 				parsing/map_b \

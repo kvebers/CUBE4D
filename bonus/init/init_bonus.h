@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/26 09:29:54 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/07/04 09:20:06 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,5 @@ void		update_map(t_params *params, int x, int y, int cnt1);
 void		init_enemy_animation(t_params *params);
 // render end
 void		render_end(void);
+void		free_textures(t_params *params);
 #endif

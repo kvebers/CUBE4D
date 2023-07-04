@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 18:44:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/26 10:04:36 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/07/04 10:10:13 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void	free_textures(t_params *params)
 	int	cnt;
 
 	cnt = 0;
+	mlx_delete_image(params->mlx, params->txt->pause_i);
+	mlx_delete_image(params->mlx, params->txt->gun);
+	mlx_delete_image(params->mlx, params->txt->minimap);
+	mlx_delete_image(params->mlx, params->txt->ground);
 	mlx_delete_texture(params->txt->gun0);
 	mlx_delete_texture(params->txt->gun1);
 	mlx_delete_texture(params->txt->gun2);

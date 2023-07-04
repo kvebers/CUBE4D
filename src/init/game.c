@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/04 02:12:39 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/04 10:00:10 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,5 @@ int	init_cube(t_params *params)
 	init_settings(params);
 	params->mlx = mlx_init(1920, 1080, "Cub3d", false);
 	game_loop(params);
-	free(params->map->map);
 	return (0);
 }

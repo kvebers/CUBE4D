@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+         #
+#    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/07/04 09:21:18 by kvebers          ###   ########.fr        #
+#    Updated: 2023/07/04 15:47:25 by asioud           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,13 @@ USER		=	$(shell whoami)
 LIBFT		=	libs/libft/libft.a
 LIBMLX		=	libs/MLX42/build/libmlx42.a
 CFLAGS		=	-Wall -Wextra -Werror -g
-SRC_DIR		=	src/
-SRC_BON		=	bonus/
+SRC_DIR		=	src/mand
+SRC_BON		=	src/bonus/
 OBJ_DIR		=	obj/
+OBJ_DIR_B		=	obj_b/
 LIBS 		=	-L/Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib -lglfw
 FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
+HEADER_FILES=	-I./ -I./libs/libft/includes -I./libs/MLX42/include/MLX42
 VPATH		=	$(SRC_DIR):$(SRC_BON)
 
 SOURCE_BONUS =	main_b \
@@ -68,10 +70,10 @@ SOURCE		=	main \
 				init/render_texture \
 				init/render_background \
 
-SRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SOURCE)))
+SSRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SOURCE)))
 OBJ			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SOURCE)))
 SRC_B		=	$(addprefix $(SRC_BON), $(addsuffix .c, $(SOURCE_BONUS)))
-OBJ_B		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SOURCE_BONUS)))
+OBJ_B		=	$(addprefix $(OBJ_DIR_B), $(addsuffix .o, $(SOURCE_BONUS)))
 
 all: $(NAME)
 
@@ -91,13 +93,17 @@ $(LIBFT):
 	@echo "Libft installed"
 
 $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
-	@$(CC) $(CFLAGS) $(LIBFT) $(OBJ) $(LIBMLX) $(FRAMEWORK) $(LIBS) -o $(NAME)
+	@$(CC) $(HEADER_FILES) $(CFLAGS)  $(LIBFT) $(OBJ) $(LIBMLX) $(FRAMEWORK) $(LIBS) -o $(NAME)
 	@$(RM) $(NAME_BONUS)
 	@$(RM) $(OBJ_B)
 
 $(OBJ_DIR)%.o : %.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) $(HEADER_FILES) -c $< -o $@
+	@$(CC)  $(HEADER_FILES) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR_B)%.o : %.c
+	@mkdir -p $(@D)
+	@$(CC)  $(HEADER_FILES) $(CFLAGS) -c $< -o $@
 
 $(LIBMLX): install_glfw \
 

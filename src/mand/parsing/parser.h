@@ -6,14 +6,14 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/04 02:11:17 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/04 15:49:28 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "../../cub3d.h"
+# include "cub3d.h"
 
 typedef enum
 {

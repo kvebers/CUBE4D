@@ -6,13 +6,11 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:44:47 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/04 02:13:11 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/04 15:49:28 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
-#include "init.h"
-#include <stdio.h>
+#include "cub3d.h"
 
 void	render_skybox(t_params *params)
 {

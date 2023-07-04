@@ -6,15 +6,14 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:05:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/04 02:12:57 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/04 15:49:28 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INIT_H
 # define INIT_H
 
-# include "../../cub3d.h"
-# include "../../libs/MLX42/include/MLX42/MLX42.h"
+# include "cub3d.h"
 
 # define EPSILON 0.000001
 # define PRECISION 64

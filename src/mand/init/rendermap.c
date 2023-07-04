@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rendermap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:34:49 by kvebers           #+#    #+#             */
-/*   Updated: 2023/06/27 09:08:32 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/07/04 15:49:28 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
-#include "init.h"
-#include <math.h>
-#include <stdio.h>
+#include "cub3d.h"
 
 void	calculate_distance_helper(t_params *params, t_ray *ray)
 {

@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/07/04 10:00:10 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/07/04 15:49:28 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
-#include "../parsing/parser.h"
-#include "init.h"
-#include <stdio.h>
+#include "cub3d.h"
+
 
 void	game_loop(t_params *params)
 {

@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/04 15:49:28 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/05 20:40:33 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ typedef struct s_params
 	bool			south;
 	bool			west;
 	bool			east;
+	void			*mem;
 }					t_params;
 
 /* parser.c */
@@ -193,5 +194,6 @@ int					init_player(t_params *p);
 void				print_map(t_params *p, char **map);
 void				debug_info(t_params *params);
 void				free_2d_array(void **array, int height);
+void				cub_free(t_params p);
 
 #endif

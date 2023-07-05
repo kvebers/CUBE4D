@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/04 16:13:54 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/05 19:56:32 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,7 @@ int parse(int argc, char **argv, t_params *params)
 {
 	int		fd;
 	params->txt = malloc(sizeof(t_textures));
+	params->mem = NULL;
 	if (argc != 2)
 	{
 		ft_printf_fd(2, error_msgs[INVALID_NUM_ARGS]);
@@ -213,7 +214,7 @@ int parse(int argc, char **argv, t_params *params)
 	close(fd);
 
 	char **map = init_params(params); // **map will point to the first line of the map
-	init_map(params, map); // will allocate memory for the map and set it to 9's 
+	init_map(params, map); // will allocate memory for the map and set it to 9's
 	parse_map(params, map);
 	init_player(params);
 	print_map(params, NULL);

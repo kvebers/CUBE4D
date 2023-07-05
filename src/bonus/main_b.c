@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:09:48 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/04 16:14:39 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/04 16:42:28 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ void	cub_free(t_params p)
 	free_2d(p.lines);
 	free_2d_array((void **)p.map->map, p.map->map_height);
 	free(p.map);
-	
 }
-
 
 int	main(int argc, char **argv)
 {

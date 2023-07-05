@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:33 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/04 14:49:28 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/05 19:34:10 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	init_map(t_params *p, char **map)
 			ft_putstr_fd("ERROR\nAdditional Input after map\n", 2);
 		i++;
 	}
-	p->map = (t_map *)malloc(sizeof(t_map));
+	p->map = (t_map *)my_malloc(&p->mem, sizeof(t_map));
 	p->map->map_height = i;
 	i = 0;
 	j = 0;
@@ -150,11 +150,11 @@ void	init_map(t_params *p, char **map)
 		i++;
 	}
 	p->map->map_width = biglen;
-	p->map->map = (int **)malloc(p->map->map_height * sizeof(int *));
+	p->map->map = (int **)my_malloc(&p->mem, p->map->map_height * sizeof(int *));
 	i = 0;
 	while (i < p->map->map_height)
 	{
-		p->map->map[i] = (int *)malloc(p->map->map_width * sizeof(int));
+		p->map->map[i] = (int *)my_malloc(&p->mem, p->map->map_width * sizeof(int));
 		ft_memset(p->map->map[i], 9, p->map->map_width * sizeof(int));
 		i++;
 	}

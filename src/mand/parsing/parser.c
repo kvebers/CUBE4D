@@ -6,18 +6,13 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/04 15:49:28 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/05 22:48:36 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "parser.h"
 
-/**
- * @brief Parse the map(p->lines) and set the parameters 
- * @param p pointer to the params struct
- * @return char** pointer to the first line of the map 
- */
 char	**init_params(t_params *p)
 {
 	int			i;
@@ -25,6 +20,11 @@ char	**init_params(t_params *p)
 	parse_error	error;
 	char		**lines;
 
+	if (!p->lines)
+	{
+		ft_putstr_fd("Error\n404 Map Not Found\n", 2);
+		cub_free(*p);
+	}
 	lines = p->lines;
 	i = 0;
 	while (lines[i])
@@ -41,12 +41,7 @@ char	**init_params(t_params *p)
 	return (NULL);
 }
 
-/**
- * @brief get all lines from files and store them in a char**
- * @param fd the file descriptor
- * @return char** which represents the whole file
- */
-char	**get_lines(int fd)
+char	**get_lines(int fd, t_params *p)
 {
 	char	**lines;
 	char	**tmp;
@@ -79,11 +74,6 @@ char	**get_lines(int fd)
 	return (lines);
 }
 
-/**
- * @brief check if the file name ends with .cub
- * @param file_name the name of the file
- * @return parse_error INVALID_FILE_EXTENSION if the file extension is not .cub
- */
 parse_error	check_file_name(char *file_name)
 {
 	int	i;
@@ -138,12 +128,13 @@ parse_error	init_game(t_params *params, int fd)
 {
 	char	**map;
 
-	params->lines = get_lines(fd);
+	params->lines = get_lines(fd, params);
 	close(fd);
 	map = init_params(params);
-	init_map(params, map); // will allocate memory for the map and set it to 9's
+	init_map(params, map);
 	parse_map(params, map);
-	init_player(params);
+	if (init_player(params) != 0)
+		return (INVALID);
 	print_map(params, NULL);
 	if (!params->map->map)
 		return (1);
@@ -165,21 +156,19 @@ int	parse(int argc, char **argv, t_params *params)
 	if (argc != 2)
 	{
 		ft_putstr_fd(error_msgs[INVALID_NUM_ARGS], 2);
-		return (1);
+		cub_free(*params);
 	}
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 	{
 		ft_putstr_fd(error_msgs[INVALID_FILE_EXTENSION], 2);
-		return (1);
+		cub_free(*params);
 	}
 	if (check_file_name(argv[1]) != VALID)
-	{
-		return (1);
-	}
+		cub_free(*params);
 	if (init_game(params, fd) != VALID)
 	{
 		ft_putstr_fd(error_msgs[INIT_GAME_ERROR], 2);
-		return (1);
+		cub_free(*params);
 	}
 	return (0);
 }

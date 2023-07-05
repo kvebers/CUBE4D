@@ -6,7 +6,7 @@
 #    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/07/04 15:47:25 by asioud           ###   ########.fr        #
+#    Updated: 2023/07/05 22:21:10 by asioud           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,10 @@ RM			=	rm -rf
 NAME		=	cub3D
 NAME_BONUS	=	cub4D
 USER		=	$(shell whoami)
+GC 			=	libs/garbage_collector/libgc.a
 LIBFT		=	libs/libft/libft.a
 LIBMLX		=	libs/MLX42/build/libmlx42.a
-CFLAGS		=	-Wall -Wextra -Werror -g
+CFLAGS		=	-g
 SRC_DIR		=	src/mand
 SRC_BON		=	src/bonus/
 OBJ_DIR		=	obj/
@@ -70,7 +71,7 @@ SOURCE		=	main \
 				init/render_texture \
 				init/render_background \
 
-SSRC			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SOURCE)))
+SSRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SOURCE)))
 OBJ			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SOURCE)))
 SRC_B		=	$(addprefix $(SRC_BON), $(addsuffix .c, $(SOURCE_BONUS)))
 OBJ_B		=	$(addprefix $(OBJ_DIR_B), $(addsuffix .o, $(SOURCE_BONUS)))
@@ -93,7 +94,8 @@ $(LIBFT):
 	@echo "Libft installed"
 
 $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
-	@$(CC) $(HEADER_FILES) $(CFLAGS)  $(LIBFT) $(OBJ) $(LIBMLX) $(FRAMEWORK) $(LIBS) -o $(NAME)
+	@cd libs/garbage_collector && make
+	$(CC) $(HEADER_FILES) $(CFLAGS)  $(LIBFT) $(GC) $(OBJ) $(LIBMLX) $(FRAMEWORK) $(LIBS) -o $(NAME)
 	@$(RM) $(NAME_BONUS)
 	@$(RM) $(OBJ_B)
 
@@ -114,7 +116,7 @@ bonus: $(LIBFT) $(LIBMLX) $(OBJ_B)
 
 clean:
 	@$(RM) obj
-	@$(RM) $(OBJ_B)
+	@$(RM) obj_b
 	@make clean -C ./libs/libft
 
 fclean: clean

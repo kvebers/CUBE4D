@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 15:04:21 by asioud            #+#    #+#             */
-/*   Updated: 2023/06/04 02:12:29 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/05 22:44:32 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,12 @@ parse_error	set_params(char c, char *str, t_params *p)
 		return (set_east(path, p));
 	else if (c == '1' || c == '2' || c == '0')
 		return (free(path), INVALID_IDENTIFIERS);
+	else if (c == '\n')
+		return (free(path), VALID);
+	else
+	{
+		ft_putstr_fd("Error\nWrong Input\n", 2);
+		cub_free(*p);
+	}
 	return (free(path), VALID);
 }

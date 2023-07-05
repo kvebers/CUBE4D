@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:20:07 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/06 00:07:30 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 00:16:16 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	set_ceiling_values(char *str, t_params *p, int count)
 
 parse_error	set_ceiling_txt(char *str, t_params *p)
 {
-	int	count;
+	int		count;
 	float	value;
 
 	if (p->ceiling)

@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:33 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/05 19:34:10 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 00:11:06 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,14 @@
 
 char	put_chars(char c);
 
-/**
+void	convert_map_values(int x, int y, int **map)
+{
+	if (map[x][y] == '0')
+		map[x][y] = '3';
+	if (map[x][y] == '2')
+		map[x][y] = '4';
+}
 
-	* @brief Recursively call the checkmap function for the adjacent cells in the map:
- * @param p The params struct
- * @param x The x coordinate of the cell
- * @param y The y coordinate of the cell
- * 
-
-	* The function checks the value at map[x][y] to determine the type of the current cell.
- * If the value is 1, 3, or 4, it means the current cell is either a wall,
- * a modified wall, or a sprite. In this case, the function returns without
- * performing any further checks on this cell.
- * 
- * If the value at map[x][y] is 0, it means the current cell is an empty space.
-
-	* The function modifies the value at this cell to 3 to mark it as a visited cell.
- *
- * If the value at map[x][y] is 2,
-	it means the current cell represents the player's
-
-	* spawn point. The function modifies the value at this cell to 4 to mark it as the
- * player's position.
- * @return void
-*/
 bool	check_map(t_params *p, int x, int y, int **map)
 {
 	bool	is_valid;
@@ -58,10 +42,7 @@ bool	check_map(t_params *p, int x, int y, int **map)
 		ft_putstr_fd(error_msgs[MAP_NOT_CLOSED], 2);
 		return (false);
 	}
-	if (map[x][y] == '0')
-		map[x][y] = '3';
-	if (map[x][y] == '2')
-		map[x][y] = '4';
+	convert_map_values(x, y, map);
 	is_valid = true;
 	is_valid &= check_map(p, x + 1, y, map);
 	is_valid &= check_map(p, x, y + 1, map);
@@ -70,11 +51,6 @@ bool	check_map(t_params *p, int x, int y, int **map)
 	return (is_valid);
 }
 
-/**
- * @brief Convert the map from a lines array to a 2D int array 
- * @param p The params struct
- * @param map The lines array
- */
 void	parse_map(t_params *p, char **map)
 {
 	int	i;
@@ -101,13 +77,9 @@ void	parse_map(t_params *p, char **map)
 		i++;
 		x++;
 	}
-	p->map->map_height = i; /* to change later */
+	p->map->map_height = i;
 }
 
-/**
- * @brief Initializes the size of the map and allocates memory for the map array
- * @param p 
- */
 void	init_map(t_params *p, char **map)
 {
 	int	i;

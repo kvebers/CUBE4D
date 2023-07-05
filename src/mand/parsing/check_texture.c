@@ -6,27 +6,12 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:20:07 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/05 23:00:56 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/05 23:54:34 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-skip_space()
-{
-	while (*str == ' ')
-		str++;
-	if (count > 0)
-	{
-		if (*(str++) != ',')
-			return (INVALID_CEILING_FORMAT);
-		while (*str == ' ')
-			str++;
-	}
-	value = ft_atoi(str);
-	if (!ft_isdigit(*str) || value == -1)
-		return (INVALID_CEILING_VALUES);
-}
 parse_error	set_ceiling_txt(char *str, t_params *p)
 {
 	int		count;
@@ -38,7 +23,18 @@ parse_error	set_ceiling_txt(char *str, t_params *p)
 	str++;
 	while (*str)
 	{
-		skip_spaces(&str);
+		while (*str == ' ')
+			str++;
+		if (count > 0)
+		{
+			if (*(str++) != ',')
+				return (INVALID_CEILING_FORMAT);
+			while (*str == ' ')
+				str++;
+		}
+		value = ft_atoi(str);
+		if (!ft_isdigit(*str) || value == -1)
+			return (INVALID_CEILING_VALUES);
 		if (count == 0)
 			p->txt->c_r = value;
 		else if (count == 1)
@@ -60,7 +56,6 @@ parse_error	set_floor_txt(char *str, t_params *p)
 {
 	int count;
 	int value;
-
 	if (p->floor)
 		return (MANY_FLOOR_INPUT);
 	count = 0;
@@ -73,12 +68,14 @@ parse_error	set_floor_txt(char *str, t_params *p)
 		{
 			if (*(str++) != ',')
 				return (INVALID_FLOOR_FORMAT);
+
 			while (*str == ' ')
 				str++;
 		}
 		value = ft_atoi(str);
 		if (!ft_isdigit(*str) || value == -1)
 			return (INVALID_FLOOR_VALUES);
+
 		if (count == 0)
 			p->txt->f_r = value;
 		else if (count == 1)

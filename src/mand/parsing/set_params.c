@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 15:04:21 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/06 02:20:25 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 02:30:14 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	set_params(char c, char *str, t_params *p)
 	else
 	{
 		ft_putstr_fd("Error\nInvalid input\n", 2);
+		free(path);
 		cub_free(*p);
 	}
 	return (free(path), 0);

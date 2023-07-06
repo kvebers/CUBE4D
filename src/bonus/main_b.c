@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_b.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:09:48 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/06 15:22:59 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 15:45:16 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	cub_free(t_params p)
 		mlx_delete_texture(p.txt->we);
 	if (p.txt->ea)
 		mlx_delete_texture(p.txt->ea);
-	check_leaks();
 	exit (1);
 }
 
@@ -44,19 +43,16 @@ int	main(int argc, char **argv)
 	params.lose = 0;
 	if (parse(argc, argv, &params) == 0)
 	{
-		// init_cube(&params);
-		cub_free(params);
+		init_cube(&params);
+		free_textures(&params);
 	}
 	if (params.lose == 1)
 	{
 		mlx_terminate(params.mlx);
-		free_textures(&params);
 		render_end();
 	}
 	else
-	{
 		mlx_terminate(params.mlx);
-		free_textures(&params);
-	}
+	cub_free(params);
 	return (0);
 }

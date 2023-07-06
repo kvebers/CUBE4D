@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 18:44:44 by kvebers           #+#    #+#             */
-/*   Updated: 2023/07/06 14:37:32 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 15:30:26 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	free_textures(t_params *params)
 	mlx_delete_texture(params->txt->pause_t);
 	mlx_delete_texture(params->txt->static_enemy1);
 	mlx_delete_texture(params->txt->static_enemy2);
+	mlx_delete_texture(params->map->def);
+	mlx_delete_texture(params->map->door);
 	while (cnt < 26)
 	{
 		mlx_delete_texture(params->txt->enemy[cnt]);

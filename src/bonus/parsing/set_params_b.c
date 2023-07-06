@@ -6,11 +6,11 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 15:04:21 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/06 13:57:52 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 15:07:56 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "cub3d_bonus.h"
 
 int	set_floor(char *str, t_params *p)
 {

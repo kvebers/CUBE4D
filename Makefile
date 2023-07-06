@@ -6,7 +6,7 @@
 #    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/07/06 00:26:37 by asioud           ###   ########.fr        #
+#    Updated: 2023/07/06 15:15:51 by asioud           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,14 @@ VPATH		=	$(SRC_DIR):$(SRC_BON)
 
 SOURCE_BONUS =	main_b \
 				init/free_textures \
-				parsing/parser_b \
-				parsing/check_texture_b \
 				parsing/map_b \
+				parsing/utils_b \
 				parsing/player_b \
+				parsing/parser_b \
+				parsing/init_map_b \
+				parsing/set_params_b \
+				parsing/check_texture_b \
+				parsing/set_directions_b \
 				init/utils_b \
 				init/keyhooks_b \
 				init/minimap_b \

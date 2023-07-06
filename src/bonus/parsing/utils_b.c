@@ -5,32 +5,49 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 18:37:17 by kvebers           #+#    #+#             */
-/*   Updated: 2023/07/06 13:45:30 by asioud           ###   ########.fr       */
+/*   Created: 2023/07/06 00:23:25 by asioud            #+#    #+#             */
+/*   Updated: 2023/07/06 15:08:00 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
-uint32_t	rgb(int r, int g, int b, int a)
+char	**manage_memory_for_lines(char **lines, char *s, int i)
 {
-	return (r << 24 | g << 16 | b << 8 | a);
-}
+	char	**tmp;
+	int		j;
 
-void	draw_line(t_params *params, t_ray *ray, int32_t color)
-{
-	while (ray->ray_txt_seg_s < ray->ray_txt_seg_e)
+	tmp = lines;
+	j = 0;
+	lines = malloc((i + 1) * sizeof(char *));
+	if (tmp)
 	{
-		if (ray->ray_txt_seg_s >= 0)
+		while (tmp[j])
 		{
-			mlx_put_pixel(params->txt->ground, ray->ray_count, \
-				ray->ray_txt_seg_s, color);
+			lines[j] = tmp[j];
+			j++;
 		}
-		ray->ray_txt_seg_s++;
 	}
+	lines[j++] = s;
+	lines[j] = 0;
+	free(tmp);
+	return (lines);
 }
 
-double	deg_to_rad(double deg)
+char	**get_lines(int fd, t_params *p)
 {
-	return (deg * M_PI / 180);
+	char	**lines;
+	char	*s;
+	int		i;
+
+	lines = NULL;
+	i = 1;
+	s = get_next_line(fd);
+	while (s)
+	{
+		lines = manage_memory_for_lines(lines, s, i);
+		i++;
+		s = get_next_line(fd);
+	}
+	return (free(s), lines);
 }

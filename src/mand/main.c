@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:09:48 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/06 02:21:13 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 15:22:01 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	cub_free(t_params p)
 		mlx_delete_texture(p.txt->we);
 	if (p.txt->ea)
 		mlx_delete_texture(p.txt->ea);
-	// if (p.map->map)
-	// 	free_2d_array((void **)p.map->map, p.map->map_height);
 	check_leaks();
 	exit (1);
 }
@@ -45,7 +43,7 @@ int	main(int argc, char **argv)
 	params.txt = &(t_textures){0};
 	if (parse(argc, argv, &params) == 0)
 	{	
-		// init_cube(&params);
+		init_cube(&params);
 		cub_free(params);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 12:03:31 by kvebers           #+#    #+#             */
-/*   Updated: 2023/07/04 15:49:28 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 13:45:13 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int32_t	get_pixel_color(int x, int y, mlx_texture_t *texture)
 
 mlx_texture_t	*texture_to_render(t_params *params, int x, int y)
 {
-	if (y % 64 == 0 && params->map->map[x / 64][(y - 1)/ 64] == '0')
+	if (y % 64 == 0 && params->map->map[x / 64][(y - 1) / 64] == '0')
 		return (params->txt->no);
-	if (y % 64 == 63 && params->map->map[x / 64][(y + 1)/ 64] == '0')
+	if (y % 64 == 63 && params->map->map[x / 64][(y + 1) / 64] == '0')
 		return (params->txt->so);
 	if (x % 64 == 0)
 		return (params->txt->ea);

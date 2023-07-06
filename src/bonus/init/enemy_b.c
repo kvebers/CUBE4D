@@ -6,12 +6,11 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 11:12:08 by kvebers           #+#    #+#             */
-/*   Updated: 2023/07/04 16:13:14 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 14:20:12 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
-
 
 void	init_enemy_animation1(t_params *params)
 {

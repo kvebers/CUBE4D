@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   parser_b.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/06 14:14:53 by asioud           ###   ########.fr       */
+/*   Created: 2023/07/06 13:42:22 by asioud            #+#    #+#             */
+/*   Updated: 2023/07/06 15:18:15 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef PARSER_B_H
+# define PARSER_B_H
 
-# include "cub3d.h"
+# include "cub3d_bonus.h"
 
 typedef struct s_vector
 {
@@ -37,12 +37,14 @@ typedef struct s_ray
 	t_vector		ray_pos;
 	int				ray_count;
 	unsigned int	offset;
+	int				global_light;
 	int				wall;
+	int				gun_light;
 	int				wall_height;
 	int				start_pos;
 	int				end_pos;
 	uint32_t		r;
-}					t_ray;
+}	t_ray;
 
 typedef struct s_pos
 {
@@ -66,8 +68,10 @@ typedef struct s_map
 	int				speed;
 	int				minimap_box;
 	double			fov;
+	mlx_texture_t	*def;
+	mlx_texture_t	*door;
 	t_pos			player;
-}					t_map;
+}	t_map;
 
 typedef struct s_textures
 {
@@ -75,6 +79,14 @@ typedef struct s_textures
 	mlx_texture_t	*so;
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
+	mlx_texture_t	*gun0;
+	mlx_texture_t	*gun1;
+	mlx_texture_t	*gun2;
+	mlx_texture_t	*gun3;
+	mlx_texture_t	*static_enemy1;
+	mlx_texture_t	*static_enemy2;
+	mlx_texture_t	*enemy[26];
+	mlx_texture_t	*pause_t;
 	int32_t			f_r;
 	int32_t			f_b;
 	int32_t			f_g;
@@ -83,28 +95,46 @@ typedef struct s_textures
 	int32_t			c_g;
 	int32_t			floor;
 	int32_t			celling;
+	mlx_image_t		*pause_i;
 	mlx_image_t		*ground;
 	mlx_image_t		*minimap;
+	mlx_image_t		*gun;
 	char			**buffer;
-}					t_textures;
+}	t_textures;
 
-typedef struct s_params
+typedef struct s_params {
+	char		**lines;
+	t_textures	*txt;
+	t_map		*map;
+	mlx_t		*mlx;
+	bool		floor;
+	bool		ceiling;
+	bool		north;
+	bool		south;
+	bool		west;
+	bool		east;
+	bool		start;
+	int			pause;
+	int			gunx;
+	int			guny;
+	int			global_light;
+	int			gun_state;
+	uint32_t	fps;
+	int			lose;
+	void		*mem;
+}	t_params;
+
+typedef struct s_pain
 {
-	char			**lines;
-	t_textures		*txt;
-	t_map			*map;
 	mlx_t			*mlx;
-	bool			floor;
-	bool			ceiling;
-	bool			north;
-	bool			south;
-	bool			west;
-	bool			east;
-	void			*mem;
-}					t_params;
+	mlx_texture_t	*end_pain[7];
+	int				frame_pain;
+}	t_pain;
 
+/* parser.c */
 int					parse(int argc, char **argv, t_params *params);
 
+/* check_texture.c */
 int					set_east(char *path, t_params *p);
 int					set_west(char *path, t_params *p);
 int					set_south(char *path, t_params *p);

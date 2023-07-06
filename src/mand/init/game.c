@@ -6,12 +6,11 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/07/04 15:49:28 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 14:48:55 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void	game_loop(t_params *params)
 {

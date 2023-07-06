@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 12:03:31 by kvebers           #+#    #+#             */
-/*   Updated: 2023/07/04 16:13:14 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 13:43:12 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ mlx_texture_t	*texture_to_render(t_params *params, int x, int y, t_ray *ray)
 		return (params->txt->static_enemy2);
 	if (ray->wall > 4)
 		return (params->txt->enemy[ray->wall - 5]);
-	if (y % 64 == 0 && params->map->map[x / 64][(y - 1)/ 64] == '0')
+	if (y % 64 == 0 && params->map->map[x / 64][(y - 1) / 64] == '0')
 		return (params->txt->no);
-	if (y % 64 == 63 && params->map->map[x / 64][(y + 1)/ 64] == '0')
+	if (y % 64 == 63 && params->map->map[x / 64][(y + 1) / 64] == '0')
 		return (params->txt->so);
 	if (x % 64 == 0)
 		return (params->txt->ea);

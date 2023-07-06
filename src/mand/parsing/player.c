@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:54 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/06 01:40:08 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 13:50:19 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,27 @@ static void	set_angle(t_params *p, char c)
 		p->map->player.angle = 0;
 }
 
+void	print_err(int c, t_params *p)
+{
+	if (c == 0)
+	{
+		ft_putstr_fd("NO SPAWNPOINT\n", 2);
+		cub_free(*p);
+	}
+	else if (c > 1)
+	{
+		ft_putstr_fd("MULTIPLE SPAWNPOINTS SET\n", 2);
+		cub_free(*p);
+	}
+}
+
+void	init_init_player(int *c, int *i, int ***map, t_params *p)
+{
+	*c = 0;
+	*i = 0;
+	*map = p->map->map;
+}
+
 int	init_player(t_params *p)
 {
 	int	i;
@@ -31,9 +52,7 @@ int	init_player(t_params *p)
 	int	c;
 	int	**map;
 
-	i = 0;
-	c = 0;
-	map = p->map->map;
+	init_init_player(&c, &i, &map, p);
 	while (i < p->map->map_height)
 	{
 		j = 0;
@@ -51,15 +70,6 @@ int	init_player(t_params *p)
 		}
 		i++;
 	}
-	if (c == 0)
-	{
-		ft_putstr_fd("NO SPAWNPOINT\n", 2);
-		return (1);
-	}
-	else if (c > 1)
-	{
-		ft_putstr_fd("MULTIPLE SPAWNPOINTS SET\n", 2);
-		return (1);
-	}
+	print_err(c, p);
 	return (0);
 }

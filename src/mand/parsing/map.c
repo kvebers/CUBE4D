@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:33 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/06 00:15:11 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 01:38:26 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,9 @@ bool	check_map(t_params *p, int x, int y, int **map)
 		return (true);
 	if (map[x][y] == '\n' || map[x][y] == '\0')
 		return (true);
-	if ((x < 0 || y < 0 || x == p->map->map_height))
+	if (x < 0 || y < 0 || x == p->map->map_height || map[x][y] == -1)
 	{
-		ft_putstr_fd(error_msgs[MAP_NOT_CLOSED], 2);
-		return (false);
-	}
-	if (map[x][y] == -1)
-	{
-		ft_putstr_fd(error_msgs[MAP_NOT_CLOSED], 2);
+		ft_putstr_fd("Error\nMap not closed\n", 2);
 		return (false);
 	}
 	convert_map_values(x, y, map);

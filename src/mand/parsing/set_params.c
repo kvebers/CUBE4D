@@ -6,43 +6,40 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 15:04:21 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/05 22:44:32 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 02:20:25 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-parse_error	set_floor(char *str, t_params *p)
+int	set_floor(char *str, t_params *p)
 {
-	parse_error	err;
-
 	if (p->floor)
 	{
-		return (MULT_NORTH_INPUT);
+		ft_putstr_fd("Error\nMultiple floor inputs\n", 2);
+		cub_free(*p);
 	}
 	else
 	{
-		if ((err = set_floor_txt(str, p)) != VALID)
-			ft_putstr_fd(error_msgs[INVALID_FLOOR_FORMAT], 2);
+		if (set_floor_txt(str, p) != 0)
+			ft_putstr_fd("Error\nInvalid floor format\n", 2);
 	}
-	return (err);
+	return (0);
 }
 
-parse_error	set_ceiling(char *str, t_params *p)
+int	set_ceiling(char *str, t_params *p)
 {
-	parse_error	err;
-
 	if (p->ceiling)
-		return (MULT_SOUTH_INPUT);
+		ft_putstr_fd("Error\nMultiple ceiling inputs\n", 2);
 	else
 	{
-		if ((err = set_ceiling_txt(str, p)) != VALID)
-			ft_putstr_fd(error_msgs[INVALID_FLOOR_FORMAT], 2);
+		if (set_ceiling_txt(str, p) != 0)
+			ft_putstr_fd("Error\nInvalid floor format\n", 2);
 	}
-	return (err);
+	return (0);
 }
 
-parse_error	set_params(char c, char *str, t_params *p)
+int	set_params(char c, char *str, t_params *p)
 {
 	char	*path;
 
@@ -62,13 +59,13 @@ parse_error	set_params(char c, char *str, t_params *p)
 	else if (c == 'E' && *(str + 1) == 'A' && *(str + 2) == ' ')
 		return (set_east(path, p));
 	else if (c == '1' || c == '2' || c == '0')
-		return (free(path), INVALID_IDENTIFIERS);
+		return (free(path), 1);
 	else if (c == '\n')
-		return (free(path), VALID);
+		return (free(path), 0);
 	else
 	{
-		ft_putstr_fd("Error\nWrong Input\n", 2);
+		ft_putstr_fd("Error\nInvalid input\n", 2);
 		cub_free(*p);
 	}
-	return (free(path), VALID);
+	return (free(path), 0);
 }

@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:42:57 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/06 00:26:17 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 01:48:23 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,11 @@ typedef struct s_params
 int					parse(int argc, char **argv, t_params *params);
 
 /* check_texture.c */
-int					set_params(char c, char *str, t_params *p);
 int					set_east(char *path, t_params *p);
 int					set_west(char *path, t_params *p);
 int					set_south(char *path, t_params *p);
 int					set_north(char *path, t_params *p);
+int					set_params(char c, char *str, t_params *p);
 int					set_ceiling_txt(char *str, t_params *p);
 int					set_floor_txt(char *str, t_params *p);
 
@@ -125,4 +125,10 @@ void				debug_info(t_params *params);
 void				free_2d_array(void **array, int height);
 void				cub_free(t_params p);
 
+void				check_empty_line(t_params *p, char **map);
+void				compute_map_width(t_params *p, char **map);
+void				allocate_map(t_params *p);
+
+char	**get_lines(int fd, t_params *p);
+char	**extend_lines_array(char **lines, char *s, int i);
 #endif

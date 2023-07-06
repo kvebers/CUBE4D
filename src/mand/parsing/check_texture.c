@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:20:07 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/06 00:16:16 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 01:50:44 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int	set_floor_values(char *str, t_params *p, int count)
 
 	value = ft_atoi(str);
 	if (!ft_isdigit(*str) || value == -1)
-		return (INVALID_FLOOR_VALUES);
+	{
+		ft_printf_fd(2, "Error\nInvalid floor values\n");
+		cub_free(*p);
+	}
 	if (count == 0)
 		p->txt->f_r = value;
 	else if (count == 1)
@@ -61,13 +64,13 @@ int	set_ceiling_values(char *str, t_params *p, int count)
 	return (0);
 }
 
-parse_error	set_ceiling_txt(char *str, t_params *p)
+int	set_ceiling_txt(char *str, t_params *p)
 {
 	int		count;
 	float	value;
 
 	if (p->ceiling)
-		return (MANY_CEILING_INPUT);
+		return (1);
 	count = 0;
 	str++;
 	while (*str)
@@ -76,7 +79,7 @@ parse_error	set_ceiling_txt(char *str, t_params *p)
 		if (count > 0)
 		{
 			if (*(str++) != ',')
-				return (INVALID_CEILING_FORMAT);
+				return (1);
 			skip_whitespace(&str);
 		}
 		if (set_ceiling_values(str, p, count))
@@ -85,16 +88,16 @@ parse_error	set_ceiling_txt(char *str, t_params *p)
 			str++;
 		count++;
 	}
-	return (VALID);
+	return (0);
 }
 
-parse_error	set_floor_txt(char *str, t_params *p)
+int	set_floor_txt(char *str, t_params *p)
 {
 	int	count;
 	int	value;
 
 	if (p->floor)
-		return (MANY_FLOOR_INPUT);
+		return (1);
 	count = 0;
 	str++;
 	while (*str)
@@ -103,7 +106,7 @@ parse_error	set_floor_txt(char *str, t_params *p)
 		if (count > 0)
 		{
 			if (*(str++) != ',')
-				return (INVALID_FLOOR_FORMAT);
+				return (1);
 			skip_whitespace(&str);
 		}
 		if (set_floor_values(str, p, count))
@@ -112,5 +115,5 @@ parse_error	set_floor_txt(char *str, t_params *p)
 			str++;
 		count++;
 	}
-	return (VALID);
+	return (0);
 }

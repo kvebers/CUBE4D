@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:54 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/04 16:47:04 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 01:40:08 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ int	init_player(t_params *p)
 	if (c == 0)
 	{
 		ft_putstr_fd("NO SPAWNPOINT\n", 2);
-		return (INVALID);
+		return (1);
 	}
 	else if (c > 1)
 	{
 		ft_putstr_fd("MULTIPLE SPAWNPOINTS SET\n", 2);
-		return (INVALID);
+		return (1);
 	}
-	return (VALID);
+	return (0);
 }

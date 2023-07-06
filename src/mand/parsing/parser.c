@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/06 00:23:53 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/06 01:51:40 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	**init_params(t_params *p)
 {
 	int				i;
 	int				j;
-	parse_error		error;
 	char			**lines;
 
 	if (!p->lines)
@@ -31,38 +30,15 @@ char	**init_params(t_params *p)
 		j = 0;
 		while (lines[i][j] == ' ')
 			j++;
-		error = set_params(lines[i][j], lines[i], p);
-		if (error != VALID)
+		if (set_params(lines[i][j], lines[i], p) != 0)
 			return (&lines[i]);
 		i++;
 	}
-	ft_putstr_fd(error_msgs[MAP_404], 2);
+	ft_putstr_fd("Error\nMap not found\n", 2);
 	return (NULL);
 }
 
-char	**extend_lines_array(char **lines, char *s, int i)
-{
-	char	**tmp;
-	int		j;
-
-	tmp = lines;
-	lines = malloc((i + 1) * sizeof(char *));
-	if (tmp)
-	{
-		j = 0;
-		while (tmp[j])
-		{
-			lines[j] = tmp[j];
-			j++;
-		}
-		free(tmp);
-	}
-	lines[j++] = s;
-	lines[j] = 0;
-	return (lines);
-}
-
-parse_error	check_file_name(char *file_name)
+int	check_file_name(char *file_name)
 {
 	int	i;
 
@@ -71,12 +47,11 @@ parse_error	check_file_name(char *file_name)
 		i++;
 	if (file_name[i - 1] == 'b' && file_name[i - 2] == 'u' \
 	&& file_name[i - 3] == 'c' && file_name[i - 4] == '.')
-		return (VALID);
-	ft_putstr_fd(error_msgs[INVALID_FILE_EXTENSION], 2);
-	return (INVALID_FILE_EXTENSION);
+		return (0);
+	return (1);
 }
 
-parse_error	init_game(t_params *params, int fd)
+int	init_game(t_params *params, int fd)
 {
 	char	**map;
 	int		**map_copy;
@@ -87,8 +62,7 @@ parse_error	init_game(t_params *params, int fd)
 	init_map(params, map);
 	parse_map(params, map);
 	if (init_player(params) != 0)
-		return (INVALID);
-	print_map(params, NULL);
+		return (1);
 	if (!params->map->map)
 		return (1);
 	map_copy = (int **)copy_2d_array((void **)params->map->map,
@@ -97,9 +71,9 @@ parse_error	init_game(t_params *params, int fd)
 			sizeof(int));
 	if (check_map(params, params->map->player.map_x, params->map->player.map_y,
 			map_copy) != true)
-		return (INVALID);
+		return (1);
 	free_2d_array((void **)map_copy, params->map->map_height);
-	return (VALID);
+	return (0);
 }
 
 int	parse(int argc, char **argv, t_params *params)
@@ -108,20 +82,23 @@ int	parse(int argc, char **argv, t_params *params)
 
 	if (argc != 2)
 	{
-		ft_putstr_fd(error_msgs[INVALID_NUM_ARGS], 2);
+		ft_putstr_fd("Error\nWrong number of arguments\n", 2);
 		cub_free(*params);
 	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr_fd(error_msgs[INVALID_FILE_EXTENSION], 2);
+		ft_putstr_fd("Error\nInvalid file\n", 2);
 		cub_free(*params);
 	}
-	if (check_file_name(argv[1]) != VALID)
-		cub_free(*params);
-	if (init_game(params, fd) != VALID)
+	if (check_file_name(argv[1]) != 0)
 	{
-		ft_putstr_fd(error_msgs[INIT_GAME_ERROR], 2);
+		ft_putstr_fd("Error\nInvalid file extension\n", 2);
+		cub_free(*params);
+	}
+	if (init_game(params, fd) != 0)
+	{
+		ft_putstr_fd("Error\nGame initialization failed\n", 2);
 		cub_free(*params);
 	}
 	return (0);

@@ -4,8 +4,9 @@ WE ./textures/Test3.png
 EA ./textures/Test4.png
 
 F 190,178,123
-C 135,206,256
+C 135,206,255
 
 111
 1N1
-111
+101
+110

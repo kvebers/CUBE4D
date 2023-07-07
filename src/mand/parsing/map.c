@@ -6,13 +6,21 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 10:09:33 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/07 23:15:42 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/07 23:42:22 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
 char	put_chars(char c);
+
+void convert_values(int x, int y, int **map)
+{
+	if (map[x][y] == '0')
+		map[x][y] = '3';
+	if (map[x][y] == '2')
+		map[x][y] = '4';
+}
 
 bool	check_map(t_params *p, int x, int y, int **map)
 {
@@ -29,6 +37,7 @@ bool	check_map(t_params *p, int x, int y, int **map)
 		return (true);
 	if (map[x][y] == '9')
 		return (false);
+	convert_values(x, y, map);
 	is_valid = true;
 	is_valid &= check_map(p, x + 1, y, map);
 	is_valid &= check_map(p, x, y + 1, map);

@@ -6,7 +6,7 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:09:48 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/06 15:45:16 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/07/07 21:37:06 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	cub_free(t_params p)
 		mlx_delete_texture(p.txt->we);
 	if (p.txt->ea)
 		mlx_delete_texture(p.txt->ea);
+	check_leaks();
 	exit (1);
 }
 

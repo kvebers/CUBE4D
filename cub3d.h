@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 03:06:44 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/06 00:17:32 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/07 21:34:58 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,5 @@
 # define SPEED 15
 # define HEIGHT 1920
 # define WIDTH 1080
-# define MINIMAP_BOX WIDTH / 4
-# define OFFSET WIDTH / 8
 
 #endif

@@ -6,12 +6,12 @@
 /*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 03:06:44 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/06 15:52:01 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/07/07 21:35:02 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H_BONUS
-# define CUB3D_H_BONUS
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -31,7 +31,5 @@
 # define SPEED 15
 # define HEIGHT 1920
 # define WIDTH 1080
-// # define MINIMAP_BOX WIDTH / 4
-// # define OFFSET WIDTH / 8
 
 #endif

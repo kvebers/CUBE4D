@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:04:06 by kvebers           #+#    #+#             */
-/*   Updated: 2023/07/06 14:48:55 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/07 21:35:25 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	init_settings(t_params *p)
 	p->map->speed = SPEED;
 	p->map->size_x = HEIGHT;
 	p->map->size_y = WIDTH;
-	p->map->minimap_box = MINIMAP_BOX;
-	p->map->offset = OFFSET;
+	p->map->minimap_box = WIDTH / 4;
+	p->map->offset = WIDTH / 8;
 	p->map->fov = 66.0;
 	p->map->total_width = p->map->map_height * 64;
 	p->map->total_height = p->map->map_width * 64;

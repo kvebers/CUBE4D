@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
+/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 00:14:51 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/06 00:15:20 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/07 22:03:33 by kvebers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	allocate_map(t_params *p)
 	{
 		p->map->map[i] = (int *)my_malloc \
 		(&p->mem, p->map->map_width * sizeof(int));
-		ft_memset(p->map->map[i], 9, p->map->map_width * sizeof(int));
+		ft_memset(p->map->map[i], '1', p->map->map_width * sizeof(int));
 		i++;
 	}
 }

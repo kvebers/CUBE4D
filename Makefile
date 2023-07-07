@@ -6,7 +6,7 @@
 #    By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 02:09:51 by asioud            #+#    #+#              #
-#    Updated: 2023/07/06 15:15:51 by asioud           ###   ########.fr        #
+#    Updated: 2023/07/08 00:02:52 by asioud           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,8 +100,7 @@ $(LIBFT):
 	@echo "Libft installed"
 
 $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
-	@cd libs/garbage_collector && make
-	$(CC) $(HEADER_FILES) $(CFLAGS)  $(LIBFT) $(GC) $(OBJ) $(LIBMLX) $(FRAMEWORK) $(LIBS) -o $(NAME)
+	$(CC) $(HEADER_FILES) $(CFLAGS)  $(LIBFT) $(OBJ) $(LIBMLX) $(FRAMEWORK) $(LIBS) -o $(NAME)
 	@$(RM) $(NAME_BONUS)
 	@$(RM) $(OBJ_B)
 

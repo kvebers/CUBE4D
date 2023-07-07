@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvebers <kvebers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/07 21:55:08 by kvebers          ###   ########.fr       */
+/*   Updated: 2023/07/08 00:30:36 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	init_game(t_params *params, int fd)
 	map = init_params(params);
 	init_map(params, map);
 	parse_map(params, map);
-	print_map(params, NULL);
 	if (init_player(params) != 0)
 		return (1);
 	if (!params->map->map)

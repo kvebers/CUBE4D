@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:20:07 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/06 01:50:44 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/07 23:14:45 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	set_floor_values(char *str, t_params *p, int count)
 	int	value;
 
 	value = ft_atoi(str);
-	if (!ft_isdigit(*str) || value == -1)
+	if (value > 255 || value < 0 || !ft_isdigit(*str))
 	{
 		ft_printf_fd(2, "Error\nInvalid floor values\n");
 		cub_free(*p);
@@ -46,7 +46,7 @@ int	set_ceiling_values(char *str, t_params *p, int count)
 	int	value;
 
 	value = ft_atoi(str);
-	if (!ft_isdigit(*str) || value == -1)
+	if (value > 255 || value < 0 || !ft_isdigit(*str))
 	{
 		ft_printf_fd(2, "Error\nInvalid ceiling values\n");
 		cub_free(*p);

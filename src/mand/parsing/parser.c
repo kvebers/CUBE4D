@@ -6,7 +6,7 @@
 /*   By: asioud <asioud@42heilbronn.de>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 02:15:50 by asioud            #+#    #+#             */
-/*   Updated: 2023/07/08 00:30:36 by asioud           ###   ########.fr       */
+/*   Updated: 2023/07/08 04:50:29 by asioud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int	init_game(t_params *params, int fd)
 			params->map->map_height,
 			params->map->map_width,
 			sizeof(int));
-	if (check_map(params, params->map->player.map_x, params->map->player.map_y,
-			map_copy) != true)
+	if (check_map(params, params->map->player.map_x, \
+		params->map->player.map_y, map_copy) != true)
 		return (1);
 	free_2d_array((void **)map_copy, params->map->map_height);
 	return (0);
